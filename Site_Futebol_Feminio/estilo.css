@@ -10,12 +10,22 @@ body {
     color: #111;
 }
 
+img {
+    width: 6rem;
+    height: 5rem;
+}
+
 .header {
     background: #0a1a2f;
     color: white;
     display: flex;
     justify-content: space-between;
     padding: 1rem 2rem;
+}
+
+.menu {
+    display: flex;
+    align-items: center;
 }
 
 .menu a {
@@ -50,6 +60,7 @@ body {
 }
 
 .card {
+    border:#111 solid 3px;
     background: #1de9b6;
     padding: 1.5rem;
     border-radius: 10px;
