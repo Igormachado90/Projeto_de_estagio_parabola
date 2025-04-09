@@ -1,0 +1,130 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #e0e5eb;
+    color: #111;
+}
+
+.header {
+    background: #0a1a2f;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
+
+.menu a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+}
+
+.hero {
+    background: #0a1a2f;
+    color: white;
+    text-align: center;
+    padding: 3rem 1rem;
+}
+
+.hero .btn {
+    background: #1de9b6;
+    padding: 0.8rem 1.5rem;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    color: black;
+    display: inline-block;
+    margin-top: 1rem;
+}
+
+.destaques {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin: 2rem;
+}
+
+.card {
+    background: #1de9b6;
+    padding: 1.5rem;
+    border-radius: 10px;
+    width: 20%;
+    text-align: center;
+}
+
+.quadrados {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem;
+    height: 15rem;
+}
+
+.cards {
+    display: flex;
+    justify-content: space-around;
+    margin: 2rem;
+    flex-wrap: wrap;
+}
+
+.cards .card,
+.quadrados .box {
+    background: white;
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem;
+    width: 30%;
+}
+
+.equipe {
+    display: flex;
+    justify-content:center;
+
+    margin: 2rem;
+    flex-wrap: wrap;
+}
+
+.membro {
+    border-radius: 8px;
+    padding: 1rem;
+    margin: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.thumb {
+    background: #0a1a2f;
+    height: 150px;
+    border-radius: 5px;
+}
+
+.equipe .circle {
+    background: #0a1a2f;
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin: 0 auto 1rem;
+}
+
+.footer {
+    background: #0a1a2f;
+    color: white;
+    padding: 2rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer .coluna a {
+    display: block;
+    color: #1de9b6;
+    text-decoration: none;
+    margin-top: 0.5rem;
+}
+
+/* #f5eb2b */
