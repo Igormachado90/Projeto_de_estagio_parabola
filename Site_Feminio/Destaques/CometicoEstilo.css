@@ -1,0 +1,148 @@
+.competitions-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.competitions-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.competition-tabs {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+.tab-button {
+    padding: 10px 20px;
+    background: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 5px;
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.tab-button:hover {
+    background: #ddd;
+}
+
+.tab-button.active {
+    background: #8a2be2;
+    color: white;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.5s;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.competition-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 30px;
+}
+
+.competition-card {
+    background: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.competition-card:hover {
+    transform: translateY(-5px);
+}
+
+.competition-image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.competition-content {
+    padding: 20px;
+}
+
+.competition-title {
+    color: #8a2be2;
+    font-size: 22px;
+    margin-bottom: 10px;
+}
+
+.competition-info {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.info-label {
+    font-weight: bold;
+    margin-right: 5px;
+    color: #555;
+}
+
+.competition-teams {
+    margin-top: 15px;
+}
+
+.teams-title {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.team-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.team-badge {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+.calendar-btn {
+    display: block;
+    text-align: center;
+    background: #8a2be2;
+    color: white;
+    padding: 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-top: 15px;
+    transition: background 0.3s;
+}
+
+.calendar-btn:hover {
+    background: #7b1fa2;
+}
+
+@media (max-width: 768px) {
+    .competition-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .competition-tabs {
+        flex-direction: column;
+    }
+}

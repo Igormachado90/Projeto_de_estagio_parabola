@@ -5,7 +5,7 @@
     <title> Projeto de Estagio </title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    
+
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.35.6/dist/umd/supabase.min.js"></script>
 </head>
 
@@ -18,180 +18,181 @@
     <div vw class="enabled">
         <div vw-access-button class="active"></div>
         <div vw-plugin-wrapper>
-          <div class="vw-plugin-top-wrapper"></div>
+            <div class="vw-plugin-top-wrapper"></div>
         </div>
-      </div>
-      <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
-      <script>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
-      </script>
-    
+    </script>
+
 
     <!--////////////////////////////////////////cabeçalho///////////////////////////////////////////-->
-<style>
-    body {
-        margin: 0;
-        padding: 0;
-        text-align: center;
-    }
-
-    header {
-        color: rgb(0, 0, 0);
-        background-color: #fdd568;
-        font-size: 15px;
-        padding-top: 1vh;
-        width: 100vw;
-    }
-
-    #logo {
-        width: 100vw;
-        text-align: center;
-    }
-
-    #logo h1 {
-        font-size: 25px;
-        display: inline;
-        font-family: Arial, Helvetica, sans-serif;
-        margin: 0 5vw 0 5vw;
-    }
-
-    #logo img {
-        height: 80px;
-        width: 100px;
-    }
-
-    .tex {
-        font-family: Arial, Helvetica, sans-serif;
-        text-align: center;
-    }
-
-    .barra_de_menus a {
-        font-family: Arial, Helvetica, sans-serif;
-        font-size: 15px;
-        color: #000044;
-        text-decoration: none;
-    }
-
-    .barra_de_menus ul {
-        padding: 1.5vh 0 1.5vh 0;
-        background-color: #fdd568;
-        display: flex;
-        text-align: center;
-        justify-content: center;
-        gap: 10px;
-        list-style: none;
-    }
-
-    .barra_de_menus li {
-        border-radius: 4px;
-        background-color: #ffffff;
-        flex: 1 1 1;
-        width: 80px;
-        height: 35px;
-        align-content: center;
-        padding: 0 1vw 0 1vw;
-        box-shadow: #2b2b2b 3px 3px 3px;
-    }
-
-    .barra_de_menus li:hover {
-        background-color: #6866f0;
-    }
-
-    p {
-        padding-left: 10px;
-        padding-right: 10px;
-    }
-
-    @media screen and (max-width: 640px) {
-        header {
-            font-size: 10px;
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            text-align: center;
         }
 
-        #logo h1 {
+        header {
+            color: rgb(0, 0, 0);
+            background-color: #fdd568;
             font-size: 15px;
+            padding-top: 1vh;
+            width: 100vw;
         }
 
-        #logo img {
-            height: 40px;
-            width: 60px;
-        }
-
-        .barra_de_menus ul {
-            gap: 3px;
-
-        }
-
-        .barra_de_menus li {
-            width: 70px;
-        }
-
-        .barra_de_menus a {
-            font-size: 12px;
-            text-decoration: none;
-        }
-
-        .tex {
-            font-size: 17px;
-        }
-    }
-    @media screen and (max-width: 380px) {
-        header {
-            font-size: 10px;
+        #logo {
+            width: 100vw;
+            text-align: center;
         }
 
         #logo h1 {
-            font-size: 12px;
+            font-size: 25px;
+            display: inline;
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0 5vw 0 5vw;
         }
 
         #logo img {
-            height: 30px;
-            width: 50px;
-        }
-
-        .barra_de_menus ul {
-            gap: 3px;
-
-        }
-
-        .barra_de_menus li {
-            width: 65px;
-        }
-
-        .barra_de_menus a {
-            font-size: 10px;
-            text-decoration: none;
+            height: 80px;
+            width: 100px;
         }
 
         .tex {
-            font-size: 17px;
+            font-family: Arial, Helvetica, sans-serif;
+            text-align: center;
         }
-    }
-</style>
+
+        .barra_de_menus a {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 15px;
+            color: #000044;
+            text-decoration: none;
+        }
+
+        .barra_de_menus ul {
+            padding: 1.5vh 0 1.5vh 0;
+            background-color: #fdd568;
+            display: flex;
+            text-align: center;
+            justify-content: center;
+            gap: 10px;
+            list-style: none;
+        }
+
+        .barra_de_menus li {
+            border-radius: 4px;
+            background-color: #ffffff;
+            flex: 1 1 1;
+            width: 80px;
+            height: 35px;
+            align-content: center;
+            padding: 0 1vw 0 1vw;
+            box-shadow: #2b2b2b 3px 3px 3px;
+        }
+
+        .barra_de_menus li:hover {
+            background-color: #6866f0;
+        }
+
+        p {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+
+        @media screen and (max-width: 640px) {
+            header {
+                font-size: 10px;
+            }
+
+            #logo h1 {
+                font-size: 15px;
+            }
+
+            #logo img {
+                height: 40px;
+                width: 60px;
+            }
+
+            .barra_de_menus ul {
+                gap: 3px;
+
+            }
+
+            .barra_de_menus li {
+                width: 70px;
+            }
+
+            .barra_de_menus a {
+                font-size: 12px;
+                text-decoration: none;
+            }
+
+            .tex {
+                font-size: 17px;
+            }
+        }
+
+        @media screen and (max-width: 380px) {
+            header {
+                font-size: 10px;
+            }
+
+            #logo h1 {
+                font-size: 12px;
+            }
+
+            #logo img {
+                height: 30px;
+                width: 50px;
+            }
+
+            .barra_de_menus ul {
+                gap: 3px;
+
+            }
+
+            .barra_de_menus li {
+                width: 65px;
+            }
+
+            .barra_de_menus a {
+                font-size: 10px;
+                text-decoration: none;
+            }
+
+            .tex {
+                font-size: 17px;
+            }
+        }
+    </style>
 
 
-<header>
+    <header>
 
-    <div id="logo">
+        <div id="logo">
 
-        <img src="./imagens/logo.png">
-        <h1 tabindex="0">PORTAL DO FUTEBOL BRASIL</h1>
-        <img src="./imagens/Instituto_Federal_do_Pará_-_Marca_Vertical_2015.svg">
+            <img src="./imagens/logo.png">
+            <h1 tabindex="0">PORTAL DO FUTEBOL BRASIL</h1>
+            <img src="./imagens/Instituto_Federal_do_Pará_-_Marca_Vertical_2015.svg">
 
 
-    </div>
+        </div>
 
-    <div class="barra_de_menus">
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li> <a href="./html/eventos.html">Eventos</a> </li>
-                <li><a href="./html/info.html">Informações Gerais</b></a> </li>
-                <li><a href="./html/sobre.html"> Contato </a></li>
-            </ul>
-        </nav>
-    </div>
+        <div class="barra_de_menus">
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li> <a href="./html/eventos.html">Eventos</a> </li>
+                    <li><a href="./html/info.html">Informações Gerais</b></a> </li>
+                    <li><a href="./html/sobre.html"> Contato </a></li>
+                </ul>
+            </nav>
+        </div>
 
-</header>
+    </header>
 
 
     <!--////////////////////////////////Carrocel///////////////////////////// -->
@@ -222,8 +223,8 @@
 
         .item img {
             width: 100%;
-            height: 270px; 
-            object-fit: cover; 
+            height: 270px;
+            object-fit: cover;
         }
 
         .carousel-caption {
@@ -234,7 +235,7 @@
             width: 100%;
             text-align: center;
             margin: 0 auto;
-            position: relative; 
+            position: relative;
             bottom: 0;
         }
 
@@ -284,9 +285,10 @@
 
         @media screen and (max-width: 640px) {
             .carousel {
-            max-width: 500px;
-           
-        }
+                max-width: 500px;
+
+            }
+
             .carousel-caption {
                 font-size: 12px;
                 padding: 5px 0;
@@ -303,11 +305,13 @@
                 font-size: 14px;
             }
         }
+
         @media screen and (max-width: 390px) {
             .carousel {
-            max-width: 400px;
-           
-        }
+                max-width: 400px;
+
+            }
+
             .carousel-caption {
                 font-size: 11px;
                 padding: 5px 0;
@@ -450,16 +454,16 @@
 
         .base {
             width: 65%;
-    
+
             border-radius: 5px;
-  
+
             padding: 10px;
             box-sizing: border-box;
         }
 
         .base img {
             float: left;
-            margin:  2px 20px 20px 20px;
+            margin: 2px 20px 20px 20px;
             max-width: 100%;
             width: 250px;
             height: auto;
@@ -490,7 +494,7 @@
             }
 
             .base img {
-                margin:  1px 10px 10px 10px;
+                margin: 1px 10px 10px 10px;
                 max-width: 100%;
                 width: 150px;
                 height: auto;
@@ -519,7 +523,7 @@
             }
 
             .base img {
-               
+
                 max-width: 100%;
                 width: 120px;
                 height: auto;
@@ -531,30 +535,32 @@
             }
         }
     </style>
-        <div class="container2">
-            <div class="base">
-                <img src="../Projeto_IntegradorII-2/imagens/img-imfor.jpg" alt="imagem inlustrativa" tabindex="0">
+    <div class="container2">
+        <div class="base">
+            <img src="../Projeto_IntegradorII-2/imagens/img-imfor.jpg" alt="imagem inlustrativa" tabindex="0">
 
-                <p tabindex="0">O futebol é um esporte que tem ganhado cada vez mais a participação e destaque das mulheres. A
-                    presença feminina nos campos de futebol tem quebrado barreiras e preconceitos, mostrando que o
-                    talento e a paixão pelo esporte não têm gênero. As mulheres têm conquistado espaço e respeito, tanto
-                    em competições nacionais quanto internacionais, inspirando novas gerações de atletas.</p>
-                <br>
-                <p tabindex="0">No Pará, o futebol é uma paixão que move multidões. O estado é conhecido por sua fervorosa torcida e
-                    por revelar grandes talentos que brilham nos gramados do Brasil e do mundo. Clubes tradicionais,
-                    como o Paysandu e o Remo, têm uma rica história e são pilares do futebol paraense, contribuindo para
-                    o desenvolvimento do esporte na região.</p>
-            </div>
-            <div class="menu-noti" >
-                <ul>
-                    <li><a href="./html/paginaadm.html">Perfil administradores</a></li>
-                    <li><a href="./mapadobrasil.html">Mapa de pesquisas</a></li>
-                    <li><a href="https://ifpa.edu.br/index.php">Portal do IFPA</a></li>
-                    <li><a href="./mapab.html">mapa2</a></li>
-                </ul>
-            </div>
+            <p tabindex="0">O futebol é um esporte que tem ganhado cada vez mais a participação e destaque das mulheres.
+                A
+                presença feminina nos campos de futebol tem quebrado barreiras e preconceitos, mostrando que o
+                talento e a paixão pelo esporte não têm gênero. As mulheres têm conquistado espaço e respeito, tanto
+                em competições nacionais quanto internacionais, inspirando novas gerações de atletas.</p>
+            <br>
+            <p tabindex="0">No Pará, o futebol é uma paixão que move multidões. O estado é conhecido por sua fervorosa
+                torcida e
+                por revelar grandes talentos que brilham nos gramados do Brasil e do mundo. Clubes tradicionais,
+                como o Paysandu e o Remo, têm uma rica história e são pilares do futebol paraense, contribuindo para
+                o desenvolvimento do esporte na região.</p>
         </div>
-    
+        <div class="menu-noti">
+            <ul>
+                <li><a href="./html/paginaadm.html">Perfil administradores</a></li>
+                <li><a href="./mapadobrasil.html">Mapa de pesquisas</a></li>
+                <li><a href="https://ifpa.edu.br/index.php">Portal do IFPA</a></li>
+                <li><a href="./mapab.html">mapa2</a></li>
+            </ul>
+        </div>
+    </div>
+
 
     <!--////////////////////////////////////carrocel2//////////////////////////////-->
 
@@ -567,7 +573,7 @@
             justify-items: center;
             align-items: center;
             height: auto;
-            
+
         }
 
         .carousel-grid img {
@@ -755,12 +761,12 @@
 
     <div class="container3">
         <h2 class="tex2" tabindex="0">Mural de fotos</h2>
-        <div id="carousel1" class="carousel-grid" ></div>
+        <div id="carousel1" class="carousel-grid"></div>
         <div id="carousel2" class="carousel-grid" style="display: none;"></div>
 
         <div class="carousel-nav">
-            <button onclick="showCarousel(1)" >1</button>
-            <button onclick="showCarousel(2)" >2</button>
+            <button onclick="showCarousel(1)">1</button>
+            <button onclick="showCarousel(2)">2</button>
         </div>
     </div>
 
@@ -778,13 +784,13 @@
 
         async function fetchImages() {
             let { data, error } = await _supabase
-            .from('Imagensmural')
-            .select('*');
+                .from('Imagensmural')
+                .select('*');
 
             if (error) {
-            console.error('Error fetching images:', error);
+                console.error('Error fetching images:', error);
             } else {
-            populateCarousels(data);
+                populateCarousels(data);
             }
         }
 
@@ -792,16 +798,16 @@
             const carousel1 = document.getElementById('carousel1');
             const carousel2 = document.getElementById('carousel2');
             items.forEach((item, index) => {
-            const imgElement = document.createElement('img');
-            imgElement.src = item.image;
-            imgElement.alt = item.title;
-            imgElement.onclick = () => openModal(imgElement);
-            images.push(imgElement);
-            if (index < 8) {
-                carousel1.appendChild(imgElement);
-            } else {
-                carousel2.appendChild(imgElement);
-            }
+                const imgElement = document.createElement('img');
+                imgElement.src = item.image;
+                imgElement.alt = item.title;
+                imgElement.onclick = () => openModal(imgElement);
+                images.push(imgElement);
+                if (index < 8) {
+                    carousel1.appendChild(imgElement);
+                } else {
+                    carousel2.appendChild(imgElement);
+                }
             });
         }
 
@@ -823,9 +829,9 @@
         function moveModal(n) {
             currentImgIndex += n;
             if (currentImgIndex >= images.length) {
-            currentImgIndex = 0;
+                currentImgIndex = 0;
             } else if (currentImgIndex < 0) {
-            currentImgIndex = images.length - 1;
+                currentImgIndex = images.length - 1;
             }
             var modalImg = document.getElementById("img01");
             var captionText = document.getElementById("caption");
@@ -850,7 +856,7 @@
     <!--////////////////////////////////////////footer///////////////////////////////////////////-->
     <style>
         .footer {
-            background-color:#fdd568;
+            background-color: #fdd568;
             color: #000000;
             padding: 40px 0;
             text-align: center;
@@ -862,7 +868,7 @@
             margin-top: 40px;
         }
 
-        .footer > div {
+        .footer>div {
             flex: 1 1 30%;
             margin: 10px;
         }
@@ -910,7 +916,7 @@
                 padding: 20px 0;
             }
 
-            .footer > div {
+            .footer>div {
                 flex: 1 1 100%;
                 margin: 10px 0;
             }
@@ -923,7 +929,7 @@
 
             .footer .about p {
                 font-size: 12px;
-               
+
             }
 
             .footer .social-media h1 {
@@ -931,16 +937,18 @@
             }
         }
     </style>
-   
+
 
     <div class="footer">
         <div class="logo">
             <img src="./imagens/brasil f logo2.png" alt="Logo">
         </div>
         <div class="about">
-            <p tabindex="0">Desenvolvido por: Betânia, Caroline, Geise e Tânia. Discentes de Tecnologia em Redes de Computadores, IFPA
+            <p tabindex="0">Desenvolvido por: Betânia, Caroline, Geise e Tânia. Discentes de Tecnologia em Redes de
+                Computadores, IFPA
                 Campus Tucuruí. Turma T325-6NH.</p>
-            <p tabindex="0">Responsáveis pelas atualizações e manutenção: Thiago Felipe, Marley Roberto, Talia Santos, Kaillane. Discentes
+            <p tabindex="0">Responsáveis pelas atualizações e manutenção: Thiago Felipe, Marley Roberto, Talia Santos,
+                Kaillane. Discentes
                 de Tecnologia em Redes de Computadores, IFPA Campus Tucuruí. Turma T325-8NI.</p>
             <img src="./imagens/academ2.png" alt="Academia">
             <img src="./imagens/logogov.png" alt="Governo">
@@ -948,9 +956,12 @@
         </div>
         <div class="social-media">
             <h1 id="contat">Contatos de mídias sociais</h1>
-            <a href="https://www.facebook.com/share/1A7ETQFw2N/"><img src="./imagens/facebook_2496095.png" alt="Facebook"></a>
-            <a href="https://www.instagram.com/para.bola_aldeia.do.futebol?utm_source=qr&igsh=M2VsMHk1ajVvZmRh"><img src="./imagens/instagram_2111463.png" alt="Instagram"></a>
-            <a href="https://youtube.com/@parabolaifpa?si=vo5rNu4t3kIDI-jc"><img src="./imagens/youtube_2496113.png" alt="YouTube"></a>
+            <a href="https://www.facebook.com/share/1A7ETQFw2N/"><img src="./imagens/facebook_2496095.png"
+                    alt="Facebook"></a>
+            <a href="https://www.instagram.com/para.bola_aldeia.do.futebol?utm_source=qr&igsh=M2VsMHk1ajVvZmRh"><img
+                    src="./imagens/instagram_2111463.png" alt="Instagram"></a>
+            <a href="https://youtube.com/@parabolaifpa?si=vo5rNu4t3kIDI-jc"><img src="./imagens/youtube_2496113.png"
+                    alt="YouTube"></a>
         </div>
     </div>
 

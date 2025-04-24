@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <title>FUTEBOL FEMININO - Portal Completo</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="/Projeto_de_estagio_parabola/Site_Feminio/estilo.css">
+</head>
+
+
+<body>
+    <!-- VLibras -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>    
+</body>
+
+<body>
+    <!-- Menu de Navegação -->
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/Projeto_de_estagio_parabola/Site_Feminio/Index.html">
+                    <img src="/Projeto_de_estagio_parabola/Site_Feminio/Logo/Logo_Brasil_Futebol.png" alt="Logo">
+                </a>
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#links-menu">
+                    <i class="material-icons">menu</i>
+                </button>
+            </div>
+            <nav id="links-menu" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active"><a href="Index.html">PÁGINA PRINCIPAL</a></li>
+                    <li><a href="artigos.html">ARTIGOS</a></li>
+                    <li><a href="eventos.html">EVENTOS</a></li>
+                    <li><a href="info.html">INFORMAÇÕES</a></li>
+                    <li><a href="sobre.html">CONTATO</a></li>
+                </ul>
+            </nav>
+        </div>
+    </nav>
+
+    <!-- Banner Principal -->
+    <div class="jumbotron">
+        <h1>FUTEBOL FEMININO BRASILEIRO</h1>
+        <p class="lead">Acompanhe tudo sobre a modalidade que mais cresce no país</p>
+        <a href="#destaques" class="btn btn-primary btn-lg">Conheça as nossas atletas</a>
+    </div>
+
+    <!-- Carrossel de Destaques -->
+    <div class="container" style="margin-top: 30px;">
+        <div id="myCarousel" class="carousel slide" data-ride="carousel">
+            <!-- Indicadores -->
+            <ol class="carousel-indicators">
+                <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+                <li data-target="#myCarousel" data-slide-to="1"></li>
+                <li data-target="#myCarousel" data-slide-to="2"></li>
+                <li data-target="#myCarousel" data-slide-to="3"></li>
+            </ol>
+
+            <!-- Slides -->
+            <div class="carousel-inner">
+                <div class="item active">
+                    <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e" alt="Seleção Brasileira"
+                        style="width:100%; height: 500px; object-fit: cover;">
+                    <div class="carousel-caption">
+                        <h3>SELEÇÃO BRASILEIRA</h3>
+                        <p>Acompanhe a trajetória da nossa seleção rumo às próximas competições internacionais.</p>
+                        <a href="#" class="btn btn-warning">Saiba mais</a>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018" alt="Campeonato Brasileiro"
+                        style="width:100%; height: 500px; object-fit: cover;">
+                    <div class="carousel-caption">
+                        <h3>CAMPEONATO BRASILEIRO</h3>
+                        <p>Tabela, resultados e destaques da principal competição nacional.</p>
+                        <a href="#" class="btn btn-warning">Confira</a>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b" alt="Jogadoras em Ação"
+                        style="width:100%; height: 500px; object-fit: cover;">
+                    <div class="carousel-caption">
+                        <h3>JOGADORAS EM DESTAQUE</h3>
+                        <p>Conheça as atletas que estão fazendo história no futebol feminino.</p>
+                        <a href="#" class="btn btn-warning">Ver perfil</a>
+                    </div>
+                </div>
+
+                <div class="item">
+                    <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b" alt="Base e Formação"
+                        style="width:100%; height: 500px; object-fit: cover;">
+                    <div class="carousel-caption">
+                        <h3>BASE E FORMAÇÃO</h3>
+                        <p>Projetos que estão transformando o futuro do futebol feminino no Brasil.</p>
+                        <a href="#" class="btn btn-warning">Conheça</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controles -->
+            <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+                <span class="glyphicon glyphicon-chevron-left"></span>
+                <span class="sr-only">Anterior</span>
+            </a>
+            <a class="right carousel-control" href="#myCarousel" data-slide="next">
+                <span class="glyphicon glyphicon-chevron-right"></span>
+                <span class="sr-only">Próximo</span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Seção de Destaques -->
+    <div class="container" id="destaques" style="margin-top: 50px;">
+        <h2 class="section-title">DESTAQUES</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="feature-box text-center">
+                    <i class="fas fa-trophy"></i>
+                    <h3>COMPETIÇÕES</h3>
+                    <p>Acompanhe todos os campeonatos nacionais e internacionais de futebol feminino.</p>
+                    <a href="Destaques/competico.html" class="btn btn-primary">Ver calendário</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box text-center">
+                    <i class="fas fa-newspaper"></i>
+                    <h3>NOTÍCIAS</h3>
+                    <p>Fique por dentro das últimas novidades do universo do futebol feminino.</p>
+                    <a href="Destaques/noticias.html" class="btn btn-primary">Ler notícias</a>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="feature-box text-center">
+                    <i class="fas fa-users"></i>
+                    <h3>ATLETAS</h3>
+                    <p>Conheça as jogadoras que estão fazendo história no futebol brasileiro.</p>
+                    <a href="/Projeto_de_estagio_parabola/Site_Feminio/Destaques/atletas.html" class="btn btn-primary">Ver perfil das atletas</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Destaque da Jogadora -->
+    <div class="container" style="margin-top: 50px;">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="player-spotlight">
+                    <img src="https://images.unsplash.com/photo-1552667466-07770ae110d0" alt="Jogadora em Destaque"
+                        class="img-responsive">
+                    <h3>Marta Vieira da Silva</h3>
+                    <p>Considerada a melhor jogadora de futebol feminino de todos os tempos, Marta é seis vezes
+                        vencedora do prêmio de Melhor Jogadora do Mundo pela FIFA.</p>
+                    <a href="#" class="btn btn-primary">Ver trajetória completa</a>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="player-spotlight">
+                    <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b" alt="Jogadora em Destaque"
+                        class="img-responsive">
+                    <h3>Formiga</h3>
+                    <p>Com mais de 200 jogos pela seleção brasileira, Formiga é uma das jogadoras mais experientes e
+                        vitoriosas do futebol feminino mundial.</p>
+                    <a href="#" class="btn btn-primary">Ver trajetória completa</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Últimas Notícias -->
+    <div class="container" style="margin-top: 50px;">
+        <h2 class="section-title">ÚLTIMAS NOTÍCIAS</h2>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="news-card">
+                    <img src="https://images.unsplash.com/photo-1461896836934-ffe607ba8211" alt="Notícia 1"
+                        class="img-responsive">
+                    <div class="card-body">
+                        <h4 class="card-title">Seleção Brasileira convocada</h4>
+                        <p class="card-text">Técnica Pia Sundhage anuncia lista de convocadas para os próximos amistosos
+                            internacionais.</p>
+                        <a href="#" class="btn btn-primary">Ler mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="news-card">
+                    <img src="https://escolaeducacao.com.br/wp-content/uploads/2023/02/shutterstock_1722928891-scaled.jpg"
+                        alt="Notícia 2" class="img-responsive">
+                    <div class="card-body">
+                        <h4 class="card-title">Brasileirão Feminino 2023</h4>
+                        <p class="card-text">Confira a tabela completa da próxima edição do Campeonato Brasileiro
+                            Feminino.</p>
+                        <a href="#" class="btn btn-primary">Ler mais</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="news-card">
+                    <img src="https://images.sympla.com.br/65cccb0046590.jpg" alt="Notícia 3" class="img-responsive">
+                    <div class="card-body">
+                        <h4 class="card-title">Projeto social transforma vidas</h4>
+                        <p class="card-text">Iniciativa no Rio de Janeiro usa o futebol feminino como ferramenta de
+                            inclusão social.</p>
+                        <a href="#" class="btn btn-primary">Ler mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center" style="margin: 30px 0;">
+            <a href="#" class="btn btn-primary btn-lg">Ver todas as notícias</a>
+        </div>
+    </div>
+
+    <!-- Galeria de Fotos -->
+    <div class="container" style="margin-top: 50px;">
+        <h2 class="section-title">GALERIA DE FOTOS</h2>
+        <div class="row">
+            <div class="col-md-3 col-sm-6">
+                <a href="#" data-toggle="modal" data-target="#photoModal1">
+                    <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b" alt="Foto 1"
+                        class="img-responsive img-thumbnail"
+                        style="height: 200px; width: 100%; object-fit: cover; margin-bottom: 15px;">
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="#" data-toggle="modal" data-target="#photoModal2">
+                    <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018" alt="Foto 2"
+                        class="img-responsive img-thumbnail"
+                        style="height: 200px; width: 100%; object-fit: cover; margin-bottom: 15px;">
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="#" data-toggle="modal" data-target="#photoModal3">
+                    <img src="https://images.unsplash.com/photo-1523580846011-d3a5bc25702b" alt="Foto 3"
+                        class="img-responsive img-thumbnail"
+                        style="height: 200px; width: 100%; object-fit: cover; margin-bottom: 15px;">
+                </a>
+            </div>
+            <div class="col-md-3 col-sm-6">
+                <a href="#" data-toggle="modal" data-target="#photoModal4">
+                    <img src="https://images.unsplash.com/photo-1540747913346-19e32dc3e97e" alt="Foto 4"
+                        class="img-responsive img-thumbnail"
+                        style="height: 200px; width: 100%; object-fit: cover; margin-bottom: 15px;">
+                </a>
+            </div>
+        </div>
+        <div class="text-center" style="margin: 30px 0;">
+            <a href="#" class="btn btn-primary btn-lg">Ver galeria completa</a>
+        </div>
+    </div>
+
+    <!-- Modal para Fotos (exemplo) -->
+    <div class="modal fade" id="photoModal1" tabindex="-1" role="dialog" aria-labelledby="photoModalLabel1">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                            aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="photoModalLabel1">Treino da Seleção Brasileira</h4>
+                </div>
+                <div class="modal-body text-center">
+                    <img src="https://images.unsplash.com/photo-1517649763962-0c623066013b" alt="Foto em tamanho maior"
+                        class="img-responsive">
+                </div>
+                <div class="modal-footer">
+                    <p>Seleção Brasileira em treino preparatório para a Copa do Mundo Feminina.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+            <!-- Rodapé -->
+            <footer class="footer">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h3>Sobre Nós</h3>
+                            <p>O Portal de Futebol Feminino é dedicado a promover e divulgar o futebol praticado por
+                                mulheres no Brasil e no mundo.</p>
+                            <div class="social-icons">
+                                <a href="#"><i class="fab fa-facebook"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fab fa-instagram"></i></a>
+                                <a href="#"><i class="fab fa-youtube"></i></a>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Links Rápidos</h3>
+                            <ul class="list-unstyled">
+                                <li><a href="menu.html">Página Principal</a></li>
+                                <li><a href="artigos.html">Artigos</a></li>
+                                <li><a href="eventos.html">Eventos</a></li>
+                                <li><a href="info.html">Informações Gerais</a></li>
+                                <li><a href="sobre.html">Contato</a></li>
+                            </ul>
+                        </div>
+                        <div class="col-md-4">
+                            <h3>Newsletter</h3>
+                            <p>Assine nossa newsletter e receba as últimas notícias diretamente no seu e-mail.</p>
+                            <form>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" placeholder="Seu e-mail">
+                                </div>
+                                <button type="submit" class="btn btn-warning">Assinar</button>
+                            </form>
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="text-center">
+                        <p>&copy; 2023 Portal de Futebol Feminino. Todos os direitos reservados.</p>
+                    </div>
+                </div>
+            </footer>
+
+</body>
+
+</html>
