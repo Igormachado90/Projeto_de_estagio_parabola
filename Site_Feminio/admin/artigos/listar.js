@@ -1,4 +1,4 @@
-import supabase from "../../assets/JS/supabase-client";
+const supabase = window.supabase;
 
 document.addEventListener('DOMContentLoaded', async () => {
     await CarregaArtigos();

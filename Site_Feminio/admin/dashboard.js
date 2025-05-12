@@ -1,27 +1,26 @@
-import supabase from "../assets/JS/supabase-client.js";
+const supabase = window.supabase;
 
 document.addEventListener("DOMContentLoaded", async () => {
     await CarregaEstatisticas();
-
+    await CarregaAtividadesRecentes();
 });
 
 const CarregaEstatisticas = async () => {
 
     // ler todas as linhas da tabela artigos
-    // e contar quantas linhas existem
-    let { data: artigos, error } = await supabase
+    const { count: artigosCount } = await supabase
         .from('artigos')
         .select('*', { count: 'exact', head: true });
-
+    document.getElementById('total-artigos').textContent = artigosCount || 0;
+    
     //ler todas as linhas da tabela eventos
-    // e contar quantas linhas existem
-    let { data: eventos, error2 } = await supabase
+    const { count: eventosCount } = await supabase
         .from('eventos')
         .select('*', { count: 'exact', head: true });
+    document.getElementById('total-eventos').textContent = eventosCount || 0;
 }
 
 const CarregaAtividadesRecentes = async () => {
-
     const activityList = document.getElementById('recent-activity');
 
     // Buscar atividades recentes de todas as tabelas

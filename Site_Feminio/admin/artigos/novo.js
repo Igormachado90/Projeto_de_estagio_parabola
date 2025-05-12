@@ -1,4 +1,4 @@
-import supabase from '../../assets/JS/supabase-client';
+const supabase = window.supabase;
 
 document.addEventListener('DOMContentLoaded', () => {
     // Definir data atual como padrão
@@ -7,40 +7,51 @@ document.addEventListener('DOMContentLoaded', () => {
     // Formulário de submissão
     document.getElementById('form-artigo').addEventListener('submit', async (e) => {
         e.preventDefault();
-        await saveArtigo();
+        await SalvarArtigo();
     });
 });
 
-async function saveArtigo() {
+async function SalvarArtigo() {
     const form = document.getElementById('form-artigo');
     const submitBtn = form.querySelector('button[type="submit"]');
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Salvando...';
     
-    const artigo = {
-        titulo: document.getElementById('titulo').value,
-        resumo: document.getElementById('resumo').value,
-        conteudo: document.getElementById('conteudo').value,
-        autor: document.getElementById('autor').value,
-        data_publicacao: document.getElementById('data_publicacao').value,
-        imagem: document.getElementById('imagem').value || null,
-        status: document.getElementById('status').value
-    };
-    
-    const { data, error } = await supabase
-        .from('artigos')
-        .insert([artigo])
-        .select();
-    
-    submitBtn.disabled = false;
-    submitBtn.textContent = 'Salvar Artigo';
-    
-    if (error) {
+    try {
+        submitBtn.disabled = true;
+        submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Salvando...';
+        
+        const artigo = {
+            titulo: document.getElementById('titulo').value,
+            resumo: document.getElementById('resumo').value,
+            conteudo: document.getElementById('conteudo').value,
+            autor: document.getElementById('autor').value,
+            data_publicacao: document.getElementById('data_publicacao').value,
+            imagem: document.getElementById('imagem').value || null,
+            status: document.getElementById('status').value
+        };
+        
+        // Verifica se todos os campos obrigatórios estão preenchidos
+        if (!artigo.titulo || !artigo.conteudo || !artigo.autor) {
+            throw new Error('Preencha todos os campos obrigatórios');
+        }
+        
+        const { data, error } = await supabase
+            .from('artigos')
+            .insert([artigo])
+            .select();
+        
+        if (error) throw error;
+        
+        alert('Artigo salvo com sucesso!');
+        window.location.href = `../../admin/artigos/listar.html?id=${data[0].id}`;
+        console.log('Dados a serem enviados:', artigo);
+        
+    } catch (error) {
+        console.error('Erro ao salvar artigo:', error);
         alert('Erro ao salvar artigo: ' + error.message);
-        console.error(error);
-        return;
+    } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Salvar Artigo';
     }
-    
-    alert('Artigo salvo com sucesso!');
-    window.location.href = `editar.html?id=${data[0].id}`;
+
+    console.log('Cliente Supabase:', supabase);
 }

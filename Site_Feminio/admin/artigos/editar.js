@@ -1,11 +1,11 @@
-import supabase from '../../assets/JS/supabase-client';
+const supabase = window.supabase;
 
 document.addEventListener('DOMContentLoaded', async () => {
     const urlParams = new URLSearchParams(window.location.search);
     const artigoId = urlParams.get('id');
     
     if (!artigoId) {
-        window.location.href = 'listar.html';
+        window.location.href = '../../admin/artigos/listar.html';
         return;
     }
     
@@ -32,9 +32,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
             
             alert('Artigo excluído com sucesso');
-            window.location.href = 'listar.html';
+            window.location.href = '../../admin/artigos/listar.html';
         }
     });
+});
+
+// Botão de cancelar
+document.getElementById('btn-cancelar').addEventListener('click', () => {
+    if (confirm('Tem certeza que deseja cancelar? Todas as alterações não salvas serão perdidas.')) {
+        window.location.href = '../../admin/artigos/listar.html';
+    }
 });
 
 async function loadArtigo(id) {
@@ -46,7 +53,7 @@ async function loadArtigo(id) {
     
     if (error || !artigo) {
         alert('Artigo não encontrado');
-        window.location.href = 'listar.html';
+        window.location.href = '../../admin/artigos/listar.html';
         return;
     }
     
@@ -61,6 +68,7 @@ async function loadArtigo(id) {
     document.getElementById('status').value = artigo.status;
 }
 
+/// Função para atualizar o artigo
 async function updateArtigo(id) {
     const form = document.getElementById('form-artigo');
     const submitBtn = form.querySelector('button[type="submit"]');
@@ -93,5 +101,7 @@ async function updateArtigo(id) {
     }
     
     alert('Artigo atualizado com sucesso!');
-    await loadArtigo(id);
+    window.location.href = '../../admin/artigos/listar.html';
+    // await loadArtigo(id);
+    return;
 }
