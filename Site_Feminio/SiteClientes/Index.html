@@ -5,12 +5,14 @@
     <title>FUTEBOL FEMININO - Portal Completo</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="/Projeto_de_estagio_parabola/Site_Feminio/estilo.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../SiteClientes/estilo.css">
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 
@@ -25,24 +27,25 @@
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
-    </script>    
+    </script>
 </body>
 
 <body>
-    <!-- Menu de Navegação -->
-    <nav class="navbar navbar-expand-lg navbar-light">
+    <!-- Barra de Navegação -->
+    <nav class="navbar">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/Projeto_de_estagio_parabola/Site_Feminio/Index.html">
-                    <img src="/Projeto_de_estagio_parabola/Site_Feminio/Logo/Logo_Brasil_Futebol.png" alt="Logo">
+                <a class="navbar-brand" href="../SiteClientes/Index.html">
+                    <img src="../Logo/Logo_Brasil_Futebol.png" alt="Logo">
                 </a>
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#links-menu">
+
+                <button class="menu-toggle" id="menuToggle">
                     <i class="material-icons">menu</i>
                 </button>
             </div>
-            <nav id="links-menu" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="active"><a href="Index.html">PÁGINA PRINCIPAL</a></li>
+            <nav id="links-menu">
+                <ul class="nav-links">
+                    <li class="active"><a href="../SiteClientes/Index.html">PÁGINA PRINCIPAL</a></li>
                     <li><a href="artigos.html">ARTIGOS</a></li>
                     <li><a href="eventos.html">EVENTOS</a></li>
                     <li><a href="info.html">INFORMAÇÕES</a></li>
@@ -150,7 +153,8 @@
                     <i class="fas fa-users"></i>
                     <h3>ATLETAS</h3>
                     <p>Conheça as jogadoras que estão fazendo história no futebol brasileiro.</p>
-                    <a href="/Projeto_de_estagio_parabola/Site_Feminio/Destaques/atletas.html" class="btn btn-primary">Ver perfil das atletas</a>
+                    <a href="/Projeto_de_estagio_parabola/Site_Feminio/Destaques/atletas.html"
+                        class="btn btn-primary">Ver perfil das atletas</a>
                 </div>
             </div>
         </div>
@@ -166,7 +170,8 @@
                     <h3>Marta Vieira da Silva</h3>
                     <p>Considerada a melhor jogadora de futebol feminino de todos os tempos, Marta é seis vezes
                         vencedora do prêmio de Melhor Jogadora do Mundo pela FIFA.</p>
-                    <a href="/Projeto_de_estagio_parabola/Site_Feminio/maria.html" class="btn btn-primary">Ver trajetória completa</a>
+                    <a href="/Projeto_de_estagio_parabola/Site_Feminio/maria.html" class="btn btn-primary">Ver
+                        trajetória completa</a>
                 </div>
             </div>
             <div class="col-md-6">
@@ -285,48 +290,48 @@
         </div>
     </div>
 
-            <!-- Rodapé -->
-            <footer class="footer">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <h3>Sobre Nós</h3>
-                            <p>O Portal de Futebol Feminino é dedicado a promover e divulgar o futebol praticado por
-                                mulheres no Brasil e no mundo.</p>
-                            <div class="social-icons">
-                                <a href="#"><i class="fab fa-facebook"></i></a>
-                                <a href="#"><i class="fab fa-twitter"></i></a>
-                                <a href="#"><i class="fab fa-instagram"></i></a>
-                                <a href="#"><i class="fab fa-youtube"></i></a>
-                            </div>
-                        </div>
-                        <div class="col-md-4">
-                            <h3>Links Rápidos</h3>
-                            <ul class="list-unstyled">
-                                <li><a href="menu.html">Página Principal</a></li>
-                                <li><a href="artigos.html">Artigos</a></li>
-                                <li><a href="eventos.html">Eventos</a></li>
-                                <li><a href="info.html">Informações Gerais</a></li>
-                                <li><a href="sobre.html">Contato</a></li>
-                            </ul>
-                        </div>
-                        <div class="col-md-4">
-                            <h3>Newsletter</h3>
-                            <p>Assine nossa newsletter e receba as últimas notícias diretamente no seu e-mail.</p>
-                            <form>
-                                <div class="form-group">
-                                    <input type="email" class="form-control" placeholder="Seu e-mail">
-                                </div>
-                                <button type="submit" class="btn btn-warning">Assinar</button>
-                            </form>
-                        </div>
-                    </div>
-                    <hr>
-                    <div class="text-center">
-                        <p>&copy; 2023 Portal de Futebol Feminino. Todos os direitos reservados.</p>
+    <!-- Rodapé -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h3>Sobre Nós</h3>
+                    <p>O Portal de Futebol Feminino é dedicado a promover e divulgar o futebol praticado por
+                        mulheres no Brasil e no mundo.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-            </footer>
+                <div class="col-md-4">
+                    <h3>Links Rápidos</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="menu.html">Página Principal</a></li>
+                        <li><a href="artigos.html">Artigos</a></li>
+                        <li><a href="eventos.html">Eventos</a></li>
+                        <li><a href="info.html">Informações Gerais</a></li>
+                        <li><a href="sobre.html">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>Newsletter</h3>
+                    <p>Assine nossa newsletter e receba as últimas notícias diretamente no seu e-mail.</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Seu e-mail">
+                        </div>
+                        <button type="submit" class="btn btn-warning">Assinar</button>
+                    </form>
+                </div>
+            </div>
+            <hr>
+            <div class="text-center">
+                <p>&copy; 2023 Portal de Futebol Feminino. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
 
 </body>
 

@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marta Vieira da Silva - Ídolo do Futebol Feminino</title>
+    <style>
+        :root {
+            --primary-color: #8a2be2;
+            --secondary-color: #000044;
+            --accent-color: #ffd700;
+            --text-color: #333;
+            --light-bg: #f8f9fa;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('https://images.unsplash.com/photo-1540747913346-19e32dc3e97e');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+        
+        .hero-section h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--accent-color);
+        }
+        
+        .hero-section p {
+            font-size: 1.2rem;
+            max-width: 800px;
+        }
+        
+        .player-profile {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .player-image {
+            flex: 1;
+            min-width: 300px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .player-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .player-info {
+            flex: 2;
+            min-width: 300px;
+        }
+        
+        .player-info h2 {
+            color: var(--secondary-color);
+            font-size: 2rem;
+            margin-bottom: 20px;
+            border-bottom: 3px solid var(--primary-color);
+            padding-bottom: 10px;
+        }
+        
+        .player-info p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .achievements {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            margin-bottom: 40px;
+        }
+        
+        .achievements h3 {
+            color: var(--primary-color);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+        
+        .achievements ul {
+            list-style-position: inside;
+            columns: 2;
+        }
+        
+        .achievements li {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+        
+        .cta-button:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-section p {
+                font-size: 1rem;
+            }
+            
+            .achievements ul {
+                columns: 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <h1>Marta Vieira da Silva</h1>
+        <p>A maior jogadora de futebol feminino de todos os tempos</p>
+    </div>
+    
+    <div class="container">
+        <div class="player-profile">
+            <div class="player-image">
+                <img src="https://conteudo.imguol.com.br/c/esporte/futebol/2023/07/25/marta-da-silva-da-selecao-brasileira-durante-jogo-contra-a-jamaica-1690309185362_v2_450x600.jpg" alt="Marta Vieira da Silva">
+            </div>
+            
+            <div class="player-info">
+                <h2>A Rainha do Futebol</h2>
+                <p>Considerada a melhor jogadora de futebol feminino de todos os tempos, Marta Vieira da Silva é seis vezes vencedora do prêmio de Melhor Jogadora do Mundo pela FIFA, um recorde absoluto tanto no futebol feminino quanto masculino.</p>
+                <p>Nascida em Dois Riachos, Alagoas, em 19 de fevereiro de 1986, Marta superou inúmeras dificuldades para se tornar a principal referência do futebol feminino mundial e uma inspiração para milhões de meninas que sonham em jogar futebol.</p>
+                <p>Com seu estilo único, técnica apurada e grande capacidade de decisão, Marta revolucionou o futebol feminino e ajudou a elevar o patamar do esporte em todo o mundo.</p>
+                
+                <a href="#" class="cta-button">Ver trajetória completa</a>
+            </div>
+        </div>
+        
+        <div class="achievements">
+            <h3>Principais Conquistas e Prêmios</h3>
+            <ul>
+                <li>6× Melhor Jogadora do Mundo pela FIFA (2006, 2007, 2008, 2009, 2010, 2018)</li>
+                <li>Maior artilheira da história das Copas do Mundo Femininas (17 gols)</li>
+                <li>Medalhista olímpica (prata em 2004 e 2008)</li>
+                <li>Campeã da Libertadores Feminina pelo Santos (2009)</li>
+                <li>Eleita Atleta do Ano no Brasil (2008)</li>
+                <li>Embaixadora da ONU para Mulheres e Igualdade de Gênero</li>
+                <li>Incluída no Hall da Fama do Futebol (2021)</li>
+                <li>Maior artilheira da história da Seleção Brasileira</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

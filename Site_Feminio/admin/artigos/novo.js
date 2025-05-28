@@ -21,11 +21,12 @@ async function SalvarArtigo() {
         
         const artigo = {
             titulo: document.getElementById('titulo').value,
+            instituto: document.getElementById('instituto').value,
             resumo: document.getElementById('resumo').value,
             conteudo: document.getElementById('conteudo').value,
             autor: document.getElementById('autor').value,
             data_publicacao: document.getElementById('data_publicacao').value,
-            imagem: document.getElementById('imagem').value || null,
+            artigo: document.getElementById('link_artigo').value || null,
             status: document.getElementById('status').value
         };
         

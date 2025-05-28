@@ -45,6 +45,7 @@ body {
 }
 
 .user-info img {
+    width: 54px;
     border-radius: 50%;
 }
 
@@ -310,4 +311,53 @@ textarea.form-control {
     display: flex;
     justify-content: flex-end;
     gap: 10px;
+}
+
+/* Estilos para a página de configurações */
+.card {
+    margin-bottom: 20px;
+    border: none;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.1);
+}
+
+.card-header {
+    padding: 15px 20px;
+}
+
+.form-control-color {
+    width: 80px;
+    height: 45px;
+    padding: 5px;
+}
+
+/* Estilos para a página de logout */
+.logout-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f8f9fc;
+}
+
+.logout-card {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+    max-width: 500px;
+    width: 100%;
+}
+
+.logout-icon {
+    font-size: 3rem;
+    color: #e74a3b;
+    margin-bottom: 20px;
+}
+
+.logout-actions {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 30px;
 }

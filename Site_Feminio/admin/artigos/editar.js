@@ -60,11 +60,12 @@ async function loadArtigo(id) {
     // Preencher formulário
     document.getElementById('id').value = artigo.id;
     document.getElementById('titulo').value = artigo.titulo;
+    document.getElementById('instituto').value = artigo.instituto;
     document.getElementById('resumo').value = artigo.resumo;
     document.getElementById('conteudo').value = artigo.conteudo;
     document.getElementById('autor').value = artigo.autor;
     document.getElementById('data_publicacao').value = artigo.data_publicacao.split('T')[0];
-    document.getElementById('imagem').value = artigo.imagem || '';
+    document.getElementById('link_artigo').value = artigo.link_artigo || '';
     document.getElementById('status').value = artigo.status;
 }
 
@@ -77,11 +78,12 @@ async function updateArtigo(id) {
     
     const artigo = {
         titulo: document.getElementById('titulo').value,
+        instituto: document.getElementById('instituto').value,
         resumo: document.getElementById('resumo').value,
         conteudo: document.getElementById('conteudo').value,
         autor: document.getElementById('autor').value,
         data_publicacao: document.getElementById('data_publicacao').value,
-        imagem: document.getElementById('imagem').value || null,
+        imagem: document.getElementById('link_artigo').value,
         status: document.getElementById('status').value,
         updated_at: new Date().toISOString()
     };

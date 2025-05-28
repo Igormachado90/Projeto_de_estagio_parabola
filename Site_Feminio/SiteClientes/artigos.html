@@ -5,10 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/Projeto_de_estagio_parabola/Site_Feminio/ArtigEstilo.css">
-    <link rel="stylesheet" href="/Projeto_de_estagio_parabola/Site_Feminio/estilo.css">
+    <link rel="stylesheet" href="../SiteClientes/ArtigEstilo.css">
+    <link rel="stylesheet" href="../SiteClientes/estilo.css">
     <title>Artigos - Futebol Feminino</title>
 </head>
 
@@ -17,8 +17,8 @@
     <nav class="navbar">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="/Projeto_de_estagio_parabola/Site_Feminio/Index.html">
-                    <img src="/Projeto_de_estagio_parabola/Site_Feminio/Logo/Logo_Brasil_Futebol.png" alt="Logo">
+                <a class="navbar-brand" href="../SiteClientes/Index.html">
+                    <img src="../Logo/Logo_Brasil_Futebol.png" alt="Logo">
                 </a>
 
                 <button class="menu-toggle" id="menuToggle">
@@ -27,7 +27,7 @@
             </div>
             <nav id="links-menu">
                 <ul class="nav-links">
-                    <li><a href="/Projeto_de_estagio_parabola/Site_Feminio/Index.html">PÁGINA PRINCIPAL</a></li>
+                    <li><a href="../SiteClientes/Index.html">PÁGINA PRINCIPAL</a></li>
                     <li class="active"><a href="artigos.html">ARTIGOS</a></li>
                     <li><a href="eventos.html">EVENTOS</a></li>
                     <li><a href="info.html">INFORMAÇÕES</a></li>
@@ -162,26 +162,52 @@
     </div>
 
     <!-- Rodapé -->
-    <footer>
+    <footer class="footer">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6">
-                    <h5>Sobre o Projeto</h5>
-                    <p>Portal dedicado à divulgação de pesquisas acadêmicas sobre futebol feminino no Brasil.</p>
+                <div class="col-md-4">
+                    <h3>Sobre Nós</h3>
+                    <p>O Portal de Futebol Feminino é dedicado a promover e divulgar o futebol praticado por
+                        mulheres no Brasil e no mundo.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
                 </div>
-                <div class="col-lg-6">
-                    <h5>Contato</h5>
-                    <p>Email: contato@futebolfeminino.com.br</p>
+                <div class="col-md-4">
+                    <h3>Links Rápidos</h3>
+                    <ul class="list-unstyled">
+                        <li><a href="menu.html">Página Principal</a></li>
+                        <li><a href="artigos.html">Artigos</a></li>
+                        <li><a href="eventos.html">Eventos</a></li>
+                        <li><a href="info.html">Informações Gerais</a></li>
+                        <li><a href="sobre.html">Contato</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h3>Newsletter</h3>
+                    <p>Assine nossa newsletter e receba as últimas notícias diretamente no seu e-mail.</p>
+                    <form>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Seu e-mail">
+                        </div>
+                        <button type="submit" class="btn btn-warning">Assinar</button>
+                    </form>
                 </div>
             </div>
             <hr>
-
-            <!-- Botão para voltar ao topo -->
-            <a href="#" class="back-to-top">
-                <span class="material-icons">arrow_upward</span>
-            </a>
+            <div class="text-center">
+                <p>&copy; 2023 Portal de Futebol Feminino. Todos os direitos reservados.</p>
+            </div>
         </div>
     </footer>
+
+    <!-- Botão para voltar ao topo -->
+    <a href="#" class="back-to-top">
+        <span class="material-icons">arrow_upward</span>
+    </a>
 
     <!-- VLibras -->
     <div vw class="enabled">
@@ -196,13 +222,13 @@
         new window.VLibras.Widget('https://vlibras.gov.br/app');
 
         // Menu mobile toggle
-        document.getElementById('menuToggle').addEventListener('click', function() {
+        document.getElementById('menuToggle').addEventListener('click', function () {
             const menu = document.getElementById('links-menu');
             menu.classList.toggle('active');
         });
 
         // Smooth scroll para o botão "voltar ao topo"
-        document.querySelector('.back-to-top').addEventListener('click', function(e) {
+        document.querySelector('.back-to-top').addEventListener('click', function (e) {
             e.preventDefault();
             window.scrollTo({
                 top: 0,
@@ -211,4 +237,5 @@
         });
     </script>
 </body>
+
 </html>
