@@ -62,7 +62,7 @@ async function loadArtigo(id) {
     document.getElementById('titulo').value = artigo.titulo;
     document.getElementById('instituto').value = artigo.instituto;
     document.getElementById('resumo').value = artigo.resumo;
-    document.getElementById('conteudo').value = artigo.conteudo;
+    document.getElementById('descricao').value = artigo.descricao;
     document.getElementById('autor').value = artigo.autor;
     document.getElementById('data_publicacao').value = artigo.data_publicacao.split('T')[0];
     document.getElementById('link_artigo').value = artigo.link_artigo || '';
@@ -80,10 +80,10 @@ async function updateArtigo(id) {
         titulo: document.getElementById('titulo').value,
         instituto: document.getElementById('instituto').value,
         resumo: document.getElementById('resumo').value,
-        conteudo: document.getElementById('conteudo').value,
+        descricao: document.getElementById('descricao').value,
         autor: document.getElementById('autor').value,
         data_publicacao: document.getElementById('data_publicacao').value,
-        imagem: document.getElementById('link_artigo').value,
+        link_artigo: document.getElementById('link_artigo').value,
         status: document.getElementById('status').value,
         updated_at: new Date().toISOString()
     };

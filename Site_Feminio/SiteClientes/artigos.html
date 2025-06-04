@@ -10,6 +10,9 @@
     <link rel="stylesheet" href="../SiteClientes/ArtigEstilo.css">
     <link rel="stylesheet" href="../SiteClientes/estilo.css">
     <title>Artigos - Futebol Feminino</title>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
 </head>
 
 <body>
@@ -48,7 +51,7 @@
     <!-- Conteúdo principal -->
     <div class="container">
         <!-- Filtros -->
-        <div class="row mb-4">
+        <!-- <div class="row mb-4">
             <div class="col-lg-6">
                 <input type="text" class="form-control" placeholder="Pesquisar artigos...">
             </div>
@@ -61,102 +64,17 @@
                     <option>História e Cultura</option>
                 </select>
             </div>
-        </div>
+        </div> -->
 
         <!-- Artigos -->
-        <div class="row">
-            <!-- Artigo 1 -->
-            <div class="col-lg-6 mb-4">
-                <div class="article-section">
-                    <span class="category-badge">Gênero e Sociedade</span>
-                    <h3 class="article-title">O Estatuto da FIFA e a Igualdade de Gênero no Futebol</h3>
-                    <p class="institution">NAVI - Núcleo de Antropologia Visual e Estudos da Imagem | UFSC</p>
-                    <p>Análise crítica sobre as políticas de igualdade de gênero na FIFA e seu impacto no
-                        desenvolvimento do futebol feminino no Brasil.</p>
-                    <a href="https://periodicos.ufmg.br/index.php/fulia/article/view/14658/11856" class="article-link"
-                        target="_blank">Leia o artigo completo</a>
-                </div>
-            </div>
+        <div class="row" id="article-artigos">
 
-            <!-- Artigo 2 -->
-            <div class="col-lg-6 mb-4">
-                <div class="article-section">
-                    <span class="category-badge">Mídia</span>
-                    <h3 class="article-title">Mulher, Mídia e Esportes</h3>
-                    <p class="institution">OBMIDIA UFPE - Observatório de Gênero, Democracia e Direitos Humanos | UFPE
-                    </p>
-                    <p>Análise da cobertura midiática da Copa do Mundo de Futebol Feminino pelos portais de notícias
-                        pernambucanos.</p>
-                    <a href="https://seer.ufs.br/index.php/eptic/article/view/4635" class="article-link"
-                        target="_blank">Leia o artigo completo</a>
-                </div>
-            </div>
-
-            <!-- Artigo 3 -->
-            <div class="col-lg-6 mb-4">
-                <div class="article-section">
-                    <span class="category-badge">Saúde</span>
-                    <h3 class="article-title">Hábitos Alimentares de Equipe de Futsal Feminino</h3>
-                    <p class="institution">Grupo de Pesquisa e Estudo sobre o Futsal e o Futebol - GPEFF | UFMA</p>
-                    <p>Estudo sobre os padrões alimentares de atletas profissionais de futsal feminino e sua relação com
-                        o desempenho esportivo.</p>
-                    <a href="https://dialnet.unirioja.es/descarga/articulo/7063403.pdf" class="article-link"
-                        target="_blank">Leia o artigo completo</a>
-                </div>
-            </div>
-
-            <!-- Artigo 4 -->
-            <div class="col-lg-6 mb-4">
-                <div class="article-section">
-                    <span class="category-badge">História</span>
-                    <h3 class="article-title">Futebol em Salvador: História e Desenvolvimento</h3>
-                    <p class="institution">Grupo CORPO | UFBA</p>
-                    <p>Estudo histórico sobre o desenvolvimento do futebol em Salvador com enfoque nas desigualdades de
-                        gênero no esporte.</p>
-                    <a href="https://gcorpo.files.wordpress.com/2016/07/movimento2011.pdf" class="article-link"
-                        target="_blank">Leia o artigo completo</a>
-                </div>
-            </div>
-
-            <!-- Artigo 5 -->
-            <div class="col-lg-6 mb-4">
-                <div class="article-section">
-                    <span class="category-badge">Treinamento</span>
-                    <h3 class="article-title">Treinamento de Mulheres Atletas em Tempos de Pandemia</h3>
-                    <p class="institution">GRECCO - Grupo de Estudos sobre Esporte, Cultura e História | UFRGS</p>
-                    <p>Análise das rotinas de treinamento de jogadoras da seleção brasileira durante o isolamento
-                        social.</p>
-                    <a href="https://seer.ufrgs.br/Movimento/article/view/110137/60585" class="article-link"
-                        target="_blank">Leia o artigo completo</a>
-                </div>
-            </div>
-
-            <!-- Artigo 6 -->
-            <div class="col-lg-6 mb-4">
-                <div class="article-section">
-                    <span class="category-badge">Desempenho</span>
-                    <h3 class="article-title">Efeitos da Puberdade no Desempenho de Atletas Jovens</h3>
-                    <p class="institution">Genética e Esportes - GENES | UFMA</p>
-                    <p>Estudo sobre como as mudanças pubertárias afetam o desempenho físico de jovens atletas de futsal
-                        feminino.</p>
-                    <a href="http://rbme.org/detalhes/1505/efeitos-da-puberdade-no-desempenho-de-saltos-e-sprints-em-jogadores-jovens-de-futsal"
-                        class="article-link" target="_blank">Leia o artigo completo</a>
-                </div>
-            </div>
         </div>
 
         <!-- Paginação -->
         <div class="pagination">
-            <ul class="page-numbers">
-                <li class="page-item disabled">
-                    <a class="page-link" href="#" tabindex="-1">Anterior</a>
-                </li>
-                <li class="page-item active"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#">Próxima</a>
-                </li>
+            <ul class="page-numbers" id="pagination">
+                
             </ul>
         </div>
     </div>
@@ -184,6 +102,7 @@
                         <li><a href="eventos.html">Eventos</a></li>
                         <li><a href="info.html">Informações Gerais</a></li>
                         <li><a href="sobre.html">Contato</a></li>
+                        <li><a href="../login_admin/login.html">Painel Administrativo</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -216,6 +135,10 @@
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
+
+
+    <script type="module" src="../SiteClientes/artigos.js"></script>
+    <script src="../assets/JS/supabase-client.js"></script>
 
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>

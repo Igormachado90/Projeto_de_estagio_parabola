@@ -23,15 +23,15 @@ async function SalvarArtigo() {
             titulo: document.getElementById('titulo').value,
             instituto: document.getElementById('instituto').value,
             resumo: document.getElementById('resumo').value,
-            conteudo: document.getElementById('conteudo').value,
+            descricao: document.getElementById('descricao').value,
             autor: document.getElementById('autor').value,
             data_publicacao: document.getElementById('data_publicacao').value,
-            artigo: document.getElementById('link_artigo').value || null,
+            link_artigo: document.getElementById('link_artigo').value || null,
             status: document.getElementById('status').value
         };
         
         // Verifica se todos os campos obrigatórios estão preenchidos
-        if (!artigo.titulo || !artigo.conteudo || !artigo.autor) {
+        if (!artigo.titulo || !artigo.autor) {
             throw new Error('Preencha todos os campos obrigatórios');
         }
         
@@ -54,5 +54,5 @@ async function SalvarArtigo() {
         submitBtn.textContent = 'Salvar Artigo';
     }
 
-    console.log('Cliente Supabase:', supabase);
+    // console.log('Cliente Supabase:', supabase);
 }
