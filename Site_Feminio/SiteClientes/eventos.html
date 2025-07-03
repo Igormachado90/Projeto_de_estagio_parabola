@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../SiteClientes/eventosEstilo.css">
     <link rel="stylesheet" href="../SiteClientes/estilo.css">
+
+     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
     <!-- Barra de navegação -->
@@ -16,7 +18,7 @@
         <div class="container">
             <div class="navbar-header">
                 <a class="navbar-brand" href="../SiteClientes/Index.html">
-                    <img src="../Logo/Logo_Brasil_Futebol.png" alt="Logo">
+                    <img src="../Logo/logo.png" alt="Logo">
                 </a>
                 
                 <button class="menu-toggle" id="menuToggle">
@@ -26,10 +28,18 @@
             <nav id="links-menu">
                 <ul class="nav-links">
                     <li><a href="../SiteClientes/Index.html">PÁGINA PRINCIPAL</a></li>
-                    <li><a href="artigos.html">ARTIGOS</a></li>
+                    <li>
+                        <a class="titulo" href="#">PRODUÇÃO ACADÊMICA</a>
+                        <ul class="submenu">
+                            <li><a href="artigos.html">ARTIGOS</a></li>
+                            <li><a href="#">DISSERTAÇÃO</a></li>
+                            <li><a href="#">DOUTORADO</a></li>
+                        </ul>
+                    </li>
                     <li class="active"><a href="eventos.html">EVENTOS</a></li>
+                    <li><a href="mapas.html">MAPA</a></li>
                     <li><a href="info.html">INFORMAÇÕES</a></li>
-                    <li><a href="sobre.html">CONTATO</a></li>
+                    <!-- <li><a href="sobre.html">CONTATO</a></li> -->
                 </ul>
             </nav>
         </div>
@@ -44,50 +54,67 @@
 
     <!-- Conteúdo principal -->
     <main class="container">
-        <section class="event-section">
-            <article class="event-card">
-                <h2>CBF Academy - Futebol Feminino</h2>
-                <p>Evento organizado pela Confederação Brasileira de Futebol com foco no desenvolvimento do futebol feminino, incluindo workshops, palestras e treinamentos para jogadoras, treinadoras e gestoras do esporte.</p>
-                <a href="https://www.cbf.com.br/cbf-academy" class="event-link" target="_blank">Visite a página do evento</a>
+        <section class="event-section" id="article-eventos">
+            <!-- <article class="event-card">
+            <img src="https://womensfootballexpo.com/wp-content/uploads/2023/01/dario-2-scaled-e1710161572904.jpg" alt="CBF Academy - Futebol Feminino" class="event-image">
+            <h2>CBF Academy - Futebol Feminino</h2>
+            <p>Evento organizado pela Confederação Brasileira de Futebol com foco no desenvolvimento do futebol feminino, incluindo workshops, palestras e treinamentos para jogadoras, treinadoras e gestoras do esporte.</p>
+            <a href="https://www.cbf.com.br/cbf-academy" class="event-link" target="_blank">Visite a página do evento</a>
+            </article> -->
+
+            <!-- <article class="event-card">
+            <img src="../ImagensEventos/womens-football-expo.jpg" alt="Women's Football Expo" class="event-image">
+            <h2>Women's Football Expo</h2>
+            <p>O maior evento internacional dedicado exclusivamente ao futebol feminino, reunindo jogadoras, treinadoras, dirigentes e fãs para discutir o crescimento do esporte, igualdade de gênero e oportunidades no futebol feminino.</p>
+            <a href="https://womensfootballexpo.com/" class="event-link" target="_blank">Visite a página do evento</a>
             </article>
 
             <article class="event-card">
-                <h2>Women's Football Expo</h2>
-                <p>O maior evento internacional dedicado exclusivamente ao futebol feminino, reunindo jogadoras, treinadoras, dirigentes e fãs para discutir o crescimento do esporte, igualdade de gênero e oportunidades no futebol feminino.</p>
-                <a href="https://womensfootballexpo.com/" class="event-link" target="_blank">Visite a página do evento</a>
+            <img src="../ImagensEventos/fifa-womens-convention.jpg" alt="FIFA Women's Football Convention" class="event-image">
+            <h2>FIFA Women's Football Convention</h2>
+            <p>Evento anual realizado pela FIFA que reúne as principais lideranças do futebol feminino mundial para discutir estratégias de desenvolvimento, investimentos e o futuro do esporte.</p>
+            <a href="https://www.fifa.com/about-fifa/organisation/development/women" class="event-link" target="_blank">Visite a página do evento</a>
             </article>
 
             <article class="event-card">
-                <h2>FIFA Women's Football Convention</h2>
-                <p>Evento anual realizado pela FIFA que reúne as principais lideranças do futebol feminino mundial para discutir estratégias de desenvolvimento, investimentos e o futuro do esporte.</p>
-                <a href="https://www.fifa.com/about-fifa/organisation/development/women" class="event-link" target="_blank">Visite a página do evento</a>
+            <img src="../ImagensEventos/conmebol-seminario.jpg" alt="CONMEBOL - Seminário de Futebol Feminino" class="event-image">
+            <h2>CONMEBOL - Seminário de Futebol Feminino</h2>
+            <p>Evento organizado pela CONMEBOL para discutir o desenvolvimento do futebol feminino na América do Sul, com workshops técnicos e administrativos para federações e clubes.</p>
+            <a href="https://www.conmebol.com/" class="event-link" target="_blank">Visite a página do evento</a>
             </article>
 
             <article class="event-card">
-                <h2>CONMEBOL - Seminário de Futebol Feminino</h2>
-                <p>Evento organizado pela CONMEBOL para discutir o desenvolvimento do futebol feminino na América do Sul, com workshops técnicos e administrativos para federações e clubes.</p>
-                <a href="https://www.conmebol.com/" class="event-link" target="_blank">Visite a página do evento</a>
+            <img src="../ImagensEventos/shefootball-summit.jpg" alt="SheFootball Summit" class="event-image">
+            <h2>SheFootball Summit</h2>
+            <p>Conferência internacional que aborda temas como liderança feminina no esporte, carreira de jogadoras, mídia e patrocínios no futebol feminino.</p>
+            <a href="https://shefootball.com/" class="event-link" target="_blank">Visite a página do evento</a>
             </article>
 
             <article class="event-card">
-                <h2>SheFootball Summit</h2>
-                <p>Conferência internacional que aborda temas como liderança feminina no esporte, carreira de jogadoras, mídia e patrocínios no futebol feminino.</p>
-                <a href="https://shefootball.com/" class="event-link" target="_blank">Visite a página do evento</a>
+            <img src="../ImagensEventos/festival-brasileiro.jpg" alt="Festival Brasileiro de Futebol Feminino" class="event-image">
+            <h2>Festival Brasileiro de Futebol Feminino</h2>
+            <p>Evento que reúne jogadoras, treinadoras e fãs para celebrar o futebol feminino brasileiro, com jogos demonstrativos, palestras e atividades de integração.</p>
+            <a href="https://www.instagram.com/festivalfutfem/" class="event-link" target="_blank">Visite a página do evento</a>
             </article>
 
             <article class="event-card">
-                <h2>Festival Brasileiro de Futebol Feminino</h2>
-                <p>Evento que reúne jogadoras, treinadoras e fãs para celebrar o futebol feminino brasileiro, com jogos demonstrativos, palestras e atividades de integração.</p>
-                <a href="https://www.instagram.com/festivalfutfem/" class="event-link" target="_blank">Visite a página do evento</a>
-            </article>
-
-            <article class="event-card">
-                <h2>Women's International Champions Cup</h2>
-                <p>Torneio internacional que reúne os melhores clubes de futebol feminino do mundo em uma competição de pré-temporada.</p>
-                <a href="https://womensicc.com/" class="event-link" target="_blank">Visite a página do evento</a>
-            </article>
+            <img src="../ImagensEventos/womens-icc.jpg" alt="Women's International Champions Cup" class="event-image">
+            <h2>Women's International Champions Cup</h2>
+            <p>Torneio internacional que reúne os melhores clubes de futebol feminino do mundo em uma competição de pré-temporada.</p>
+            <a href="https://womensicc.com/" class="event-link" target="_blank">Visite a página do evento</a>
+            </article> -->
         </section>
+        
+        <!-- Paginação -->
+            <div class="pagination">
+                <ul class="page-numbers" id="pagination">
+                    
+                </ul>
+            </div>
+        </div>
+    
     </main>
+
 
     <!-- Rodapé -->
     <footer class="footer">
@@ -145,6 +172,9 @@
             <div class="vw-plugin-top-wrapper"></div>
         </div>
     </div>
+
+    <script type="module" src="../SiteClientes/eventos.js"></script>
+    <script src="../assets/JS/supabase-client.js"></script>
 
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>

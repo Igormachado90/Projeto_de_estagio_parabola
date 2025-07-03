@@ -28,13 +28,13 @@ const CarregaAtividadesRecentes = async () => {
         .from('artigos')
         .select('*')
         .order('created_at', { ascending: false })
-        .limit(5);
+        .limit(3);
 
     const { data: eventos } = await supabase
         .from('eventos')
         .select('*')
         .order('created_at', { ascending: false })
-        .limit(5);
+        .limit(3);
 
     // Combinar e ordenar todas as atividades
     const allActivities = [

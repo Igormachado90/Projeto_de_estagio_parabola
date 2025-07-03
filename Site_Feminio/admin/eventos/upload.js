@@ -1,4 +1,4 @@
-const supabase = window.supabase;
+// const supabase = window.supabase;
 
 document.getElementById('btn-upload').addEventListener('click', () => {
     document.getElementById('imagem-upload').click();
@@ -14,13 +14,15 @@ document.getElementById('imagem-upload').addEventListener('change', async (e) =>
     preview.style.display = 'block';
 
     // Upload para Supabase Storage
-    const filePath = `eventos/${Date.now()}_${file.name}`;
-    const { data, error } = await supabase.storage
+    const filePath = `/eventos${Date.now()}_${file.name}`;
+    
+    const { data, error } = await supabase
+        .storage
         .from('eventos')
         .upload(filePath, file);
 
     if (error) {
-        console.error('Upload error:', error);
+        console.error('Upload error:', error.message);
         return;
     }
 
@@ -30,4 +32,6 @@ document.getElementById('imagem-upload').addEventListener('change', async (e) =>
         .getPublicUrl(filePath);
 
     document.getElementById('imagem').value = publicUrl;
+
+    console.log('Imagem enviada para:', publicUrl);
 });

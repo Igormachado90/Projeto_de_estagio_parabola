@@ -1,7 +1,7 @@
 /* Variáveis de cores */
 :root {
-    --primary-color: #000044;
-    --secondary-color: #8a2be2;
+    --primary-color: #0236e9;
+    --secondary-color: #e50f0b;
     --accent-color: #ffd700;
     --light-color: #f8f9fa;
     --dark-color: #343a40;
@@ -29,9 +29,15 @@
 /* Seção de eventos */
 .event-section {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
     gap: 30px;
+    padding: 20px;
     margin-bottom: 60px;
+}
+
+.event-section {
+    max-width: 1200px;
+    margin: 0 auto 60px;
 }
 
 .event-card {
@@ -72,6 +78,52 @@
 
 .event-link:hover {
     background-color: var(--secondary-color);
+}
+
+.event-image {
+    
+    margin-bottom: 15px;
+    max-width:400%; 
+    max-height:200px; 
+    border-radius: 4px;
+    width:100%; 
+    height:auto; 
+    object-fit:cover;
+}
+
+/* Paginação */
+.pagination {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    /* list-style: none; */
+    /* padding: 20px 0; */
+    font-family: Arial, sans-serif;
+}
+
+.page-numbers {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+}
+
+.page-item {
+    /* margin: 0 5px; */
+    display: inline-block;
+}
+
+.page-link {
+    display: block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    background-color: white;
 }
 
 /* Responsividade */
@@ -116,6 +168,7 @@
 
     .event-card {
         padding: 20px;
+        width: 100%;
     }
 
     .event-card h2 {
