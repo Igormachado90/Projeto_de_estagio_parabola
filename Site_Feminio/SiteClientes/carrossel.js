@@ -34,3 +34,45 @@ setInterval(() => {
     currentIndex = (currentIndex + 1) % items.length;
     showSlide(currentIndex);
 }, 6000);
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    const menuToggle = document.getElementById('menuToggle');
+    const linksMenu = document.getElementById('links-menu');
+    const navLinks = document.querySelectorAll('.nav-links > li');
+    
+    // Toggle menu principal
+    menuToggle.addEventListener('click', function() {
+        linksMenu.classList.toggle('active');
+    });
+    
+    // Handle submenus on mobile
+    navLinks.forEach(item => {
+        if (item.querySelector('.submenu')) {
+            const link = item.querySelector('a:first-child');
+            
+            link.addEventListener('click', function(e) {
+                if (window.innerWidth <= 992) {
+                    e.preventDefault();
+                    item.classList.toggle('menu-open');
+                    
+                    // Fecha outros submenus abertos
+                    navLinks.forEach(otherItem => {
+                        if (otherItem !== item && otherItem.classList.contains('menu-open')) {
+                            otherItem.classList.remove('menu-open');
+                        }
+                    });
+                }
+            });
+        }
+    });
+    
+    // Fecha o menu ao clicar em um link (opcional)
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', function() {
+            if (window.innerWidth <= 992 && !this.parentElement.querySelector('.submenu')) {
+                linksMenu.classList.remove('active');
+            }
+        });
+    });
+});

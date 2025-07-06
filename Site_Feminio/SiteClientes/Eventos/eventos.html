@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <title>Eventos - Futebol Feminino</title>
     <meta charset="utf-8">
@@ -7,38 +8,39 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../SiteClientes/eventosEstilo.css">
-    <link rel="stylesheet" href="../SiteClientes/estilo.css">
+    <link rel="stylesheet" href="../../SiteClientes/Eventos/eventosEstilo.css">
+    <link rel="stylesheet" href="../../SiteClientes/estilo.css">
 
-     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
+
 <body>
     <!-- Barra de navegação -->
     <nav class="navbar">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="../SiteClientes/Index.html">
-                    <img src="../Logo/logo.png" alt="Logo">
+                <a class="navbar-brand" href="../../SiteClientes/Index.html">
+                    <img src="../../Logo/logo.png" alt="Logo">
                 </a>
-                
+
                 <button class="menu-toggle" id="menuToggle">
                     <i class="material-icons">menu</i>
                 </button>
             </div>
             <nav id="links-menu">
                 <ul class="nav-links">
-                    <li><a href="../SiteClientes/Index.html">PÁGINA PRINCIPAL</a></li>
+                    <li><a href="../../SiteClientes/Index.html">PÁGINA PRINCIPAL</a></li>
                     <li>
                         <a class="titulo" href="#">PRODUÇÃO ACADÊMICA</a>
                         <ul class="submenu">
-                            <li><a href="artigos.html">ARTIGOS</a></li>
+                            <li><a href="../ProAcademica/Artigos/artigos.html">ARTIGOS</a></li>
                             <li><a href="#">DISSERTAÇÃO</a></li>
                             <li><a href="#">DOUTORADO</a></li>
                         </ul>
                     </li>
-                    <li class="active"><a href="eventos.html">EVENTOS</a></li>
-                    <li><a href="mapas.html">MAPA</a></li>
-                    <li><a href="info.html">INFORMAÇÕES</a></li>
+                    <li class="active"><a href="../Eventos/eventos.html">EVENTOS</a></li>
+                    <li><a href="../Mapa/mapas.html">MAPA</a></li>
+                    <li><a href="../Informacoes/info.html">INFORMAÇÕES</a></li>
                     <!-- <li><a href="sobre.html">CONTATO</a></li> -->
                 </ul>
             </nav>
@@ -104,15 +106,15 @@
             <a href="https://womensicc.com/" class="event-link" target="_blank">Visite a página do evento</a>
             </article> -->
         </section>
-        
+
         <!-- Paginação -->
-            <div class="pagination">
-                <ul class="page-numbers" id="pagination">
-                    
-                </ul>
-            </div>
+        <div class="pagination">
+            <ul class="page-numbers" id="pagination">
+
+            </ul>
         </div>
-    
+        </div>
+
     </main>
 
 
@@ -134,12 +136,12 @@
                 <div class="col-md-4">
                     <h3>Links Rápidos</h3>
                     <ul class="list-unstyled">
-                        <li><a href="menu.html">Página Principal</a></li>
-                        <li><a href="artigos.html">Artigos</a></li>
-                        <li><a href="eventos.html">Eventos</a></li>
-                        <li><a href="info.html">Informações Gerais</a></li>
+                        <li><a href="../../SiteClientes/Index.html">Página Principal</a></li>
+                        <li><a href="../ProAcademica/Artigos/artigos.html">Artigos</a></li>
+                        <li><a href="../Eventos/eventos.html">Eventos</a></li>
+                        <li><a href="../Informações/info.html">Informações Gerais</a></li>
                         <li><a href="sobre.html">Contato</a></li>
-                        <li><a href="../login_admin/login.html">Painel Administrativo</a></li>
+                        <li><a href="../../login_admin/login.html">Painel Administrativo</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">
@@ -173,20 +175,20 @@
         </div>
     </div>
 
-    <script type="module" src="../SiteClientes/eventos.js"></script>
-    <script src="../assets/JS/supabase-client.js"></script>
+    <script type="module" src="../../SiteClientes/Eventos/eventos.js"></script>
+    <script src="../../assets/JS/supabase-client.js"></script>
 
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
 
         // Menu mobile toggle
-        document.getElementById('menuToggle').addEventListener('click', function() {
+        document.getElementById('menuToggle').addEventListener('click', function () {
             const menu = document.getElementById('links-menu');
             menu.classList.toggle('active');
         });
 
-         // Smooth scroll para o botão "voltar ao topo"
+        // Smooth scroll para o botão "voltar ao topo"
         document.querySelector('.back-to-top').addEventListener('click', function (e) {
             e.preventDefault();
             window.scrollTo({
@@ -196,4 +198,5 @@
         });
     </script>
 </body>
+
 </html>
