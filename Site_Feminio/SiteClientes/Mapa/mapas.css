@@ -1,0 +1,71 @@
+.container-mapas {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    /* background-color: #f0f0f0; */
+}
+
+#svg-map {
+    width: 100%;
+    height: auto;
+    max-width: 800px;
+    max-height: 600px;
+}
+
+@media (max-width: 992px) {
+    #svg-map {
+        max-width: 100%;
+        max-height: 400px;
+    }
+
+    .container-mapas {
+        height: auto;
+        padding: 40px 0;
+    }
+}
+
+.mensagem-flutuante {
+    min-width: 220px;
+    max-width: 320px;
+    background: #fff;
+    border: 2px solid #585656;
+    border-radius: 5px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+    padding: 16px 18px 12px 18px;
+    z-index: 9999;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #222;
+    font-size: 15px;
+}
+
+.mensagem-flutuante h3 {
+    margin: 0 0 10px 0;
+    font-size: 18px;
+    color: #047800;
+    text-align: left;
+}
+
+#mensagem-lista {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+#mensagem-lista li {
+    padding: 7px 12px;
+    border-radius: 6px;
+    font-size: 15px;
+    background-color: #394acb; 
+    color: #fff;
+    margin: 0;
+    transition: background 0.2s;
+    word-break: break-word;
+}
+
+#mensagem-lista li:nth-child(even) {
+    background-color: #394acb; 
+}
