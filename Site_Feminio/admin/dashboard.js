@@ -18,6 +18,18 @@ const CarregaEstatisticas = async () => {
         .from('eventos')
         .select('*', { count: 'exact', head: true });
     document.getElementById('total-eventos').textContent = eventosCount || 0;
+
+    // ler todas as linhas da tabela fotos
+    const { count: fotosCount } = await supabase
+        .from('galeria_fotos')
+        .select('*', { count: 'exact', head: true });
+    document.getElementById('total-fotos').textContent = fotosCount || 0;
+    
+    // ler todas as linhas da tabela artigos do estados
+    const { count: estadosCount } = await supabase
+        .from('artigos_estado')
+        .select('*', { count: 'exact', head: true });
+    document.getElementById('total-estados').textContent = estadosCount || 0;
 }
 
 const CarregaAtividadesRecentes = async () => {

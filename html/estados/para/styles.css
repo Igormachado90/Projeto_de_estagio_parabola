@@ -1,0 +1,214 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background:  #f6f88b;
+    display: flex;
+    flex-direction: column;
+}
+
+#text {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.search-container {
+    text-align: center;
+    margin: 20px 0;
+}
+
+#search-input {
+    padding: 10px;
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+#filter-select {
+    padding: 10px;
+    width: 150px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-right: 10px;
+}
+
+#search-button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#search-button:hover {
+    background-color: #0056b3;
+}
+
+.tabela-art {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    flex: 1;
+}
+
+.artigos {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 2px 2px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    width: 370px;
+    margin: 10px;
+    text-align: center;
+    position: relative;
+}
+
+.artigos h1 {
+    margin: 0;
+    padding: 10px;
+    color: #fff;
+    font-size:large;
+}
+
+.artigos img {
+    width: 100%;
+    height: auto;
+}
+
+.artigos p {
+    margin: 10px 10px 5px 10px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.artigos h2, .artigos h3 {
+    margin: 5px 10px 0 10px;
+    font-size: 14px;
+    background-color: #f2f2f2;
+    padding: 5px;
+    border-radius: 4px;
+}
+
+.artigos a {
+    display: inline-block;
+    margin: 10px 0;
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.artigos a:hover {
+    background-color: #0056b3;
+}
+
+.logos {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin: 10px 0;
+}
+
+.logos img {
+    width: 50px;
+    height: auto;
+}
+
+.views {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    font-size: 10px;
+    color: #555;
+}
+
+.footer {
+    background-color: #000044;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer .logo img {
+    width: 100px;
+    height: auto;
+}
+
+.footer .about {
+    margin: 20px 0;
+}
+
+.footer .about p {
+    margin: 5px 0;
+}
+
+.footer .about img {
+    width: 50px;
+    height: auto;
+    margin: 0 10px;
+}
+
+.footer .social-media {
+    margin: 20px 0;
+}
+
+.footer .social-media h1 {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.footer .social-media a {
+    margin: 0 10px;
+}
+
+.footer .social-media img {
+    width: 30px;
+    height: auto;
+}
+
+@media (max-width: 768px) {
+    .tabela-art {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .artigos {
+        width: 90%;
+    }
+
+    .artigos h2, .artigos h3 {
+        margin: 5px 5px 0 5px;
+        font-size: 14px;
+    }
+
+    .artigos p {
+        margin: 10px 5px 5px 5px;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    .views {
+        font-size: 7px;
+    }
+
+    .footer .logo img {
+        width: 80px;
+    }
+
+    .footer .about img {
+        width: 40px;
+    }
+
+    .footer .social-media img {
+        width: 25px;
+    }
+}

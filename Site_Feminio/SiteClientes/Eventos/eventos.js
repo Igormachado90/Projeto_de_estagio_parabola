@@ -1,6 +1,6 @@
 const supabase = window.supabase;
 let currentPage = 1;
-const itemsPerPage = 4; // Número de eventos por página
+const itemsPerPage = 6; // Número de eventos por página
 let totalEvents = 0;
 
 document.addEventListener('DOMContentLoaded', async () => {

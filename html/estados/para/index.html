@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <title>Artigos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@1.35.6/dist/umd/supabase.min.js"></script>
+    <link rel="stylesheet" href="../para/styles.css">
+</head>  
+   
+<body>
+    <!--////////////////////////////////vlibras///////////////////////////// -->
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+          <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+        new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+
+    <!--////////////////////////////////cabeçalho///////////////////////////// -->
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light"
+        style="margin: 0;color:white; background-color:#000044; font-size: 15px;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#links-menu"
+                    style="background-color: rgb(85, 81, 81);">
+                    <i class="material-icons">menu</i>
+                </button>
+            </div>
+            <nav id="links-menu" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="../../index.html"><b>Voltar ao Inicio</b></a></li>
+                    <li><a href="../eventos.html"><b>Eventos</b></a></li>
+                    <li><a href="../../mapadobrasil.html"><b>Mapa</b></a></li>
+                    <li><a href="../info.html"><b>Informações Gerais</b></a></li>
+                    <li><a href="../sobre.html"><b>Contato</b></a></li>
+                </ul>
+            </nav>
+        </div>
+        </nav>
+    </header>
+
+    <div id="text"><strong tabindex="0">Pesquisas publicadas pelos grupos de pesquisa no Pará</strong></div>
+    <div style="text-align: center; margin: 20px;">
+        <input type="text" id="search-input" placeholder="Buscar por título" style="padding: 10px; width: 300px;">
+        <select id="filter-select" style="padding: 10px; width: 150px;">
+            <option value="">Todos</option>         
+            <option value="Tipo Monografia">Monografia</option>
+            <option value="Mestrado">Mestrado</option>
+            <option value="Doutorado">Doutorado</option>
+        </select>
+        <button id="search-button" style="padding: 10px;">Buscar</button>
+    </div>
+    <div id="no-articles-message" style="text-align: center; display: none; margin-top: 20px; font-size: 18px; color: #ff0000;">Nenhum artigo encontrado.</div>
+    <div class="tabela-art" id="tabela-art"></div>
+
+    <div class="footer">
+        <div class="logo">
+            <img src="../../imagens/brasil f logo2.png" alt="Logo">
+        </div>
+        <div class="about">
+            <p>Desenvolvido por: Betânia, Caroline, Geise e Tânia. Discentes de Tecnologia em Redes de Computadores, IFPA
+                Campus Tucuruí. Turma T325-6NH.</p>
+            <p>Responsáveis pelas atualizações e manutenção: Thiago Felipe, Marley Roberto, Talia Santos, Kaillane. Discentes
+                de Tecnologia em Redes de Computadores, IFPA Campus Tucuruí. Turma T325-8NI.</p>
+            <img src="../../imagens/academ2.png" alt="Academia">
+            <img src="../../imagens/logogov.png" alt="Governo">
+            <img src="../../imagens/ministr.png" alt="Ministério">
+        </div>
+        <div class="social-media">
+            <h1 id="contat">Contatos de mídias sociais</h1>
+            <a href="https://www.facebook.com/share/1A7ETQFw2N/"><img src="../../imagens/facebook_2496095.png" alt="Facebook"></a>
+            <a href="https://www.instagram.com/para.bola_aldeia.do.futebol?utm_source=qr&igsh=M2VsMHk1ajVvZmRh"><img src="../../imagens/instagram_2111463.png" alt="Instagram"></a>
+            <a href="https://youtube.com/@parabolaifpa?si=vo5rNu4t3kIDI-jc"><img src="../../imagens/youtube_2496113.png" alt="YouTube"></a>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
