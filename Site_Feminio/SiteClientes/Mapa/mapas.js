@@ -1,9 +1,10 @@
-const supabase = window.supabase;
-
 document.addEventListener('DOMContentLoaded', () => {
+    const supabase = window.supabase;
     let hideTimeout;
     let updateTimeout;
     let ultimoEstadoId = null;
+    let currentPage = 1;
+    const itemsPerPage = 6;
 
     // Busca dados e mostra mensagem
     async function buscarDados(estado, estadoId) {
@@ -51,24 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return window.innerWidth <= 700 || /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
     }
 
-    document.querySelectorAll('svg a path').forEach((estado) => {
-        estado.addEventListener('mousemove', (event) => {
-            clearTimeout(hideTimeout);
-            clearTimeout(updateTimeout);
-            const texto = estado.getAttribute('title');
-            const estadoId = estado.getAttribute('id');
-            mostrarMensagem(event, texto, estadoId);
-        });
-
-        estado.addEventListener('mouseout', () => {
-            hideTimeout = setTimeout(() => {
-                document.getElementById('mensagem-flutuante').style.display = 'none';
-            }, 4000);
-        });
-    });
-
     function mostrarMensagem(event, estado, estadoId) {
         const mensagemFlutuante = document.getElementById('mensagem-flutuante');
+        if (!mensagemFlutuante) return;
+
         mensagemFlutuante.style.display = 'block';
         mensagemFlutuante.style.position = 'absolute';
 
@@ -97,26 +84,144 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    //Adiciona evento a cada um
-    document.querySelectorAll('svg a').forEach(link => {
-        link.addEventListener('click', function (e) {
-            e.preventDefault(); // Previne o comportamento padrão do link
-            
-            const estadoId = this.querySelector('path').id; // Obtém o ID do estado clicado
-            buscarDados(this.textContent, estadoId); // Busca os dados do estado
-            console.log(`Estado clicado: ${this.textContent}, ID: ${estadoId}`);
+    async function setupPagination() {
+        const pagination = document.getElementById('pagination');
+        if (!pagination) return;
 
-            // Redireciona para o caminho desejado
-            window.location.href = `/Projeto_de_estagio_parabola/html/ArtigoEstados/estado.html?estadoId=${estadoId}`;
-        });
-    });
-    
+        // Contar total de artigos
+        const { count, error } = await supabase
+            .from('artigos_estado')
+            .select('*', { count: 'exact', head: true });
 
-    // Ao esconder a mensagem, libera para mostrar novamente
-    document.addEventListener('mousemove', (e) => {
-        const mensagemFlutuante = document.getElementById('mensagem-flutuante');
-        if (mensagemFlutuante.style.display === 'none') {
-            ultimoEstadoId = null;
+        if (error) {
+            console.error('Erro ao contar artigos:', error);
+            return;
         }
-    });
+
+        const totalPages = Math.ceil(count / itemsPerPage);
+        pagination.innerHTML = '';
+
+        for (let i = 1; i <= totalPages; i++) {
+            const li = document.createElement('li');
+            const a = document.createElement('a');
+            a.href = '#';
+            a.textContent = i;
+            if (i === currentPage) {
+                a.classList.add('active');
+            }
+            a.addEventListener('click', (e) => {
+                e.preventDefault();
+                MostraEstado(i);
+            });
+            li.appendChild(a);
+            pagination.appendChild(li);
+        }
+    }
+
+    async function MostraEstado(page, estadoId = null) {
+        const activityList = document.getElementById('article-eventos');
+        console.log('mostra', activityList);
+        
+        if (!activityList) {
+            console.error('Elemento com ID "article-eventos" não encontrado.');
+            return;
+        }
+
+        // Mostrar estado de carregamento
+        activityList.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i>Carregando eventos...</div>';
+
+        const from = (page - 1) * itemsPerPage;
+        const to = from + itemsPerPage - 1;
+
+        try {
+            let query = supabase
+                .from('artigos_estado')
+                .select('*')
+                .order('created_at', { ascending: false })
+                .range(from, to);
+
+            if (estadoId) {
+                query = query.eq('estado_uf', estadoId);
+            }
+
+            const { data: eventos, error } = await query;
+
+            if (error) throw error || 'Erro ao carregar eventos';
+
+
+            // renderizar atividade
+            activityList.innerHTML = '';
+
+            if (!eventos || eventos.length === 0) {
+                activityList.innerHTML = '<div class="no-events">Nenhum artigo encontrado.</div>';
+                return;
+            }
+
+            eventos.forEach(evento => {
+                const activityItem = document.createElement('article');
+                activityItem.classList.add('event-card');
+
+                activityItem.innerHTML = `
+                    <div class="" data-id="${evento.id}">
+                        <h2>${evento.tipo_pesquisa}</h2>
+                        <img src="${evento.imagem || 'https://i0.wp.com/multarte.com.br/wp-content/uploads/2018/12/fundo-cinza-claro4.png?resize=696%2C427&ssl=1'}" alt="" class="event-image">
+                        <h2>${evento.titulo}</h2>
+                        <p>${evento.autores}</p>
+                        <p>${evento.instituto}</p>
+                        <a href="${evento.url_doi}" target="_blank" class="event-link">Visite a página do evento</a>
+                    </div>
+                `;
+
+                activityList.appendChild(activityItem);
+            });
+
+            currentPage = page;
+            await setupPagination(estadoId);
+
+        } catch (error) {
+            console.error('Erro ao exibir eventos:', error);
+            activityList.innerHTML = '<div class="error">Erro ao carregar eventos. Tente novamente mais tarde.</div>';
+        }
+    }
+
+    // Inicialização
+    function init() {
+        // Configurar eventos dos estados
+    
+        document.querySelectorAll('svg a path').forEach((estado) => {
+            estado.addEventListener('mousemove', (event) => {
+                clearTimeout(hideTimeout);
+                clearTimeout(updateTimeout);
+                const texto = estado.getAttribute('title');
+                const estadoId = estado.getAttribute('id');
+                mostrarMensagem(event, texto, estadoId);
+            });
+
+            estado.addEventListener('mouseout', () => {
+                hideTimeout = setTimeout(() => {
+                    const mensagemFlutuante = document.getElementById('mensagem-flutuante');
+                    if (mensagemFlutuante) {
+                        mensagemFlutuante.style.display = 'none';
+                    }
+                }, 4000);
+            });
+        });
+
+        // Configurar cliques nos estados
+        document.querySelectorAll('svg a').forEach(link => {
+            link.addEventListener('click', function (e) {
+                e.preventDefault();
+                const estadoId = this.querySelector('path').id;
+                buscarDados(this.textContent, estadoId);
+                console.log(`Estado clicado: ${this.textContent}, ID: ${estadoId}`);
+                window.location.href = `/Projeto_de_estagio_parabola/html/ArtigoEstados/estado.html?estadoId=${estadoId}`;
+            });
+        });
+
+        // Carregar dados iniciais
+        MostraEstado(1, estadoId);
+    }
+
+    init();
+
 });

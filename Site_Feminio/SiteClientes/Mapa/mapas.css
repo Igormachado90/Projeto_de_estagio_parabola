@@ -6,7 +6,7 @@
     /* background-color: #f0f0f0; */
 }
 
-#svg-map {
+.svg-map {
     width: 100%;
     height: auto;
     max-width: 800px;
@@ -14,7 +14,7 @@
 }
 
 @media (max-width: 992px) {
-    #svg-map {
+    .svg-map {
         max-width: 100%;
         max-height: 400px;
     }

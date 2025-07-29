@@ -61,24 +61,33 @@
     <main class="container">
         <section class="event-section" id="article-eventos">
             <article class="event-card">
-            <img src="https://i0.wp.com/multarte.com.br/wp-content/uploads/2018/12/fundo-cinza-claro4.png?resize=696%2C427&ssl=1" alt="imagem de cinza" class="event-image">
-            <h2>Women's Football</h2>
-            <p>Evento organizado pela Confederação Brasileira de Futebol com foco no desenvolvimento do futebol feminino, incluindo ....</p>
-            <a href="https://www.fifa.com/about-fifa/organisation/development/women" class="event-link" target="_blank">Link a página</a>
+                <img src="https://i0.wp.com/multarte.com.br/wp-content/uploads/2018/12/fundo-cinza-claro4.png?resize=696%2C427&ssl=1"
+                    alt="imagem de cinza" class="event-image">
+                <h2>Women's Football</h2>
+                <p>Evento organizado pela Confederação Brasileira de Futebol com foco no desenvolvimento do futebol
+                    feminino, incluindo ....</p>
+                <a href="https://www.fifa.com/about-fifa/organisation/development/women" class="event-link"
+                    target="_blank">Link a página</a>
             </article>
 
             <article class="event-card">
-            <img src="https://i0.wp.com/multarte.com.br/wp-content/uploads/2018/12/fundo-cinza-claro4.png?resize=696%2C427&ssl=1" alt="imagem de cinza" class="event-image">
-            <h2>Women's Football</h2>
-            <p>Evento organizado pela Confederação Brasileira de Futebol com foco no desenvolvimento do futebol feminino, incluindo ....</p>
-            <a href="https://www.fifa.com/about-fifa/organisation/development/women" class="event-link" target="_blank">Link a página</a>
+                <img src="https://i0.wp.com/multarte.com.br/wp-content/uploads/2018/12/fundo-cinza-claro4.png?resize=696%2C427&ssl=1"
+                    alt="imagem de cinza" class="event-image">
+                <h2>Women's Football</h2>
+                <p>Evento organizado pela Confederação Brasileira de Futebol com foco no desenvolvimento do futebol
+                    feminino, incluindo ....</p>
+                <a href="https://www.fifa.com/about-fifa/organisation/development/women" class="event-link"
+                    target="_blank">Link a página</a>
             </article>
 
             <article class="event-card">
-            <img src="https://i0.wp.com/multarte.com.br/wp-content/uploads/2018/12/fundo-cinza-claro4.png?resize=696%2C427&ssl=1" alt="imagem de cinza" class="event-image">
-            <h2>Women's Football</h2>
-            <p>Evento organizado pela Confederação Brasileira de Futebol com foco no desenvolvimento do futebol feminino, incluindo ....</p>
-            <a href="https://www.fifa.com/about-fifa/organisation/development/women" class="event-link" target="_blank">Link a página</a>
+                <img src="https://i0.wp.com/multarte.com.br/wp-content/uploads/2018/12/fundo-cinza-claro4.png?resize=696%2C427&ssl=1"
+                    alt="imagem de cinza" class="event-image">
+                <h2>Women's Football</h2>
+                <p>Evento organizado pela Confederação Brasileira de Futebol com foco no desenvolvimento do futebol
+                    feminino, incluindo ....</p>
+                <a href="https://www.fifa.com/about-fifa/organisation/development/women" class="event-link"
+                    target="_blank">Link a página</a>
             </article>
         </section>
 
@@ -148,8 +157,7 @@
     </div>
 
 
-    <!-- <script type="module" src="../SiteClientes/artigos.js"></script>
-    <script src="../assets/JS/supabase-client.js"></script> -->
+    <!-- <script type="module" src="../SiteClientes/artigos.js"></script> -->
 
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
     <script>
@@ -179,7 +187,23 @@
             });
         });
     </script>
-    <script src="../Mapa/mapas.js"></script>
+    <script>
+        if (typeof MostraEstado === 'undefined') {
+        function MostraEstado(page, estadoId) {
+            console.log(`Should load articles for state ${estadoId}, page ${page}`);
+            // Implement your logic here or fetch from server
+        }
+    }
+
+        const params = new URLSearchParams(window.location.search);
+        const estadoId = params.get('estadoId');
+        if (estadoId) {
+            MostraEstado(1, estadoId);
+        }
+    </script>
+
+    <script src="../../Site_Feminio/assets/JS/supabase-client.js"></script>
+    <script src="../../Site_Feminio/SiteClientes/Mapa/mapas.js"></script>
 </body>
 
 </html>
