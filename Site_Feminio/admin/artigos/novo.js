@@ -22,6 +22,7 @@ async function SalvarArtigo() {
         const artigo = {
             titulo: document.getElementById('titulo').value,
             instituto: document.getElementById('instituto').value,
+            tipo_pesquisa: document.getElementById('tipoPesquisa').value,
             resumo: document.getElementById('resumo').value,
             descricao: document.getElementById('descricao').value,
             autor: document.getElementById('autor').value,

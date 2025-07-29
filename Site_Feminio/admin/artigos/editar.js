@@ -61,6 +61,7 @@ async function loadArtigo(id) {
     document.getElementById('id').value = artigo.id;
     document.getElementById('titulo').value = artigo.titulo;
     document.getElementById('instituto').value = artigo.instituto;
+    document.getElementById('tipoPesquisa').value = artigo.tipo_pesquisa;
     document.getElementById('resumo').value = artigo.resumo;
     document.getElementById('descricao').value = artigo.descricao;
     document.getElementById('autor').value = artigo.autor;
@@ -79,6 +80,7 @@ async function updateArtigo(id) {
     const artigo = {
         titulo: document.getElementById('titulo').value,
         instituto: document.getElementById('instituto').value,
+        tipo_pesquisa: document.getElementById('tipoPesquisa').value,
         resumo: document.getElementById('resumo').value,
         descricao: document.getElementById('descricao').value,
         autor: document.getElementById('autor').value,
