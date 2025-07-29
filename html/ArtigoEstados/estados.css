@@ -1,0 +1,65 @@
+.event-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 30px;
+    padding: 20px;
+    margin-bottom: 60px;
+}
+
+.event-section {
+    max-width: 1200px;
+    margin: 0 auto 60px;
+}
+
+.event-card {
+    background-color: var(--white);
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.event-card h2 {
+    color: #000044;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+}
+
+.event-card p {
+    margin-bottom: 20px;
+    text-align: justify;
+    text-indent: 2em;
+}
+
+.event-link {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.event-link:hover {
+    background-color: var(--secondary-color);
+}
+
+
+
+.event-image {
+    background-color: #696969;
+    margin-bottom: 15px;
+    max-width:400%; 
+    max-height:200px; 
+    border-radius: 4px;
+    width:100%; 
+    height:auto; 
+    object-fit:cover;
+}

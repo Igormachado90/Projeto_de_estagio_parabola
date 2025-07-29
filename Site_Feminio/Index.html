@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-    <link rel="stylesheet" href="../SiteClientes/estilo.css">
+    <link rel="stylesheet" href="SiteClientes/estilo.css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
@@ -39,8 +39,8 @@
     <nav class="navbar">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="../SiteClientes/Index.html">
-                    <img src="../Logo/logo.png" alt="Logo">
+                <a class="navbar-brand" href="Index.html">
+                    <img src="Logo/logo.png" alt="Logo">
                 </a>
 
                 <button class="menu-toggle" id="menuToggle">
@@ -49,21 +49,21 @@
             </div>
             <nav id="links-menu">
                 <ul class="nav-links">
-                    <li class="active"><a href="../SiteClientes/Index.html">PÁGINA PRINCIPAL</a></li>
+                    <li class="active"><a href="Index.html">PÁGINA PRINCIPAL</a></li>
 
                     <li>
                         <a class="titulo" href="#">PRODUÇÃO ACADÊMICA</a>
                         <ul class="submenu">
-                            <li><a href="../SiteClientes/ProAcademica/Artigos/artigos.html">ARTIGOS</a></li>
-                            <li><a href="../SiteClientes/ProAcademica/Dissertacoes/dissertacao.html">DISSERTAÇÃO</a>
+                            <li><a href="SiteClientes/ProAcademica/Artigos/artigos.html">ARTIGOS</a></li>
+                            <li><a href="SiteClientes/ProAcademica/Dissertacoes/dissertacao.html">DISSERTAÇÃO</a>
                             </li>
-                            <li><a href="../SiteClientes/ProAcademica/Doutorados/doutorado.html">DOUTORADO</a></li>
+                            <li><a href="SiteClientes/ProAcademica/Doutorados/doutorado.html">DOUTORADO</a></li>
                         </ul>
                     </li>
 
-                    <li><a href="../SiteClientes/Eventos/eventos.html">EVENTOS</a></li>
-                    <li><a href="../SiteClientes/Mapa/mapas.html">MAPA</a></li>
-                    <li><a href="../SiteClientes/Informacoes/info.html">INFORMAÇÕES</a></li>
+                    <li><a href="SiteClientes/Eventos/eventos.html">EVENTOS</a></li>
+                    <li><a href="SiteClientes/Mapa/mapas.html">MAPA</a></li>
+                    <li><a href="SiteClientes/Informacoes/info.html">INFORMAÇÕES</a></li>
                     <!-- <li><a href="sobre.html">CONTATO</a></li> -->
                 </ul>
             </nav>
@@ -143,7 +143,7 @@
     <div class="container" id="destaques" style="margin-top: 50px;">
         <h2 class="section-title">DESTAQUES</h2>
         <div class="row">
-            <div class="col-md-4">
+            <!-- <div class="col-md-4">
                 <div class="feature-box text-center">
                     <i class="fas fa-trophy"></i>
                     <h3>COMPETIÇÕES</h3>
@@ -158,13 +158,13 @@
                     <p>Fique por dentro das últimas novidades do universo do futebol feminino.</p>
                     <a href="Destaques/noticias.html" class="btn btn-primary">Ler notícias</a>
                 </div>
-            </div>
+            </div> -->
             <div class="col-md-4">
                 <div class="feature-box text-center">
                     <i class="fas fa-users"></i>
                     <h3>ATLETAS</h3>
                     <p>Conheça as jogadoras que estão fazendo história no futebol brasileiro.</p>
-                    <a href="/Projeto_de_estagio_parabola/Site_Feminio/Destaques/atletas.html"
+                    <a href="Destaques/atletas.html"
                         class="btn btn-primary">Ver perfil das atletas</a>
                 </div>
             </div>
@@ -201,7 +201,7 @@
             </div>
         </div>
         <div class="text-center" style="margin: 30px 0;">
-            <a href="../Galeria_e_Foto/galeria.html" class="btn btn-primary btn-lg" target="_blank">Ver galeria
+            <a href="Galeria_e_Foto/galeria.html" class="btn btn-primary btn-lg" target="_blank">Ver galeria
                 completa</a>
         </div>
     </div>
@@ -247,23 +247,13 @@
                 <div class="col-md-4">
                     <h3>Links Rápidos</h3>
                     <ul class="list-unstyled">
-                        <li><a href="menu.html">Página Principal</a></li>
-                        <li><a href="artigos.html">Artigos</a></li>
-                        <li><a href="eventos.html">Eventos</a></li>
+                        <li><a href="Index.html">Página Principal</a></li>
+                        <li><a href="SiteClientes/ProAcademica/Artigos/artigos.html">Artigos</a></li>
+                        <li><a href="SiteClientes/Eventos/eventos.html">Eventos</a></li>
                         <li><a href="info.html">Informações Gerais</a></li>
                         <li><a href="sobre.html">Contato</a></li>
-                        <li><a href="../login_admin/login.html">Painel Administrativo</a></li>
+                        <li><a href="login_admin/login.html">Painel Administrativo</a></li>
                     </ul>
-                </div>
-                <div class="col-md-4">
-                    <h3>Newsletter</h3>
-                    <p>Assine nossa newsletter e receba as últimas notícias diretamente no seu e-mail.</p>
-                    <form>
-                        <div class="form-group">
-                            <input type="email" class="form-control" placeholder="Seu e-mail">
-                        </div>
-                        <button type="submit" class="btn">Assinar</button>
-                    </form>
                 </div>
             </div>
             <hr>
@@ -280,8 +270,8 @@
         window.supabase = supabase.createClient(supabaseUrl, supabaseKey);
     </script>
 
-    <script src="../SiteClientes/carrossel.js"></script>
-    <script src="../Galeria_e_Foto/galeriaFoto.js"></script>
+    <script src="SiteClientes/carrossel.js"></script>
+    <script src="Galeria_e_Foto/galeriaFoto.js"></script>
     <!-- <script src="../assets/JS/supabase-client.js"></script> -->
 </body>
 

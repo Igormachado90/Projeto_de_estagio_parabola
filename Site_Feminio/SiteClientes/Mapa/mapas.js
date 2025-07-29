@@ -14,10 +14,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             // Busca todos os artigos do estado na tabela state_articles
-            const { data, error } = await _supabase
-                .from('state_articles')
-                .select('stateContent, state')
-                .eq('state', estadoId);
+            const { data, error } = await supabase
+                .from('artigos_estado')
+                .select('tipo_pesquisa, estado_uf')
+                .eq('estado_uf', estadoId);
 
             if (error) {
                 mensagemLista.innerHTML = '<li>Erro ao buscar dados.</li>';
@@ -25,10 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (data && data.length > 0) {
-                // Conta as ocorrências de cada stateContent
+                // Agrupa os dados por tipo de pesquisa
                 const contagem = {};
                 data.forEach(item => {
-                    const conteudo = item.stateContent || 'Sem conteúdo';
+                    const conteudo = item.tipo_pesquisa || 'Sem conteúdo';
                     contagem[conteudo] = (contagem[conteudo] || 0) + 1;
                 });
 
@@ -96,6 +96,21 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 250);
         }
     }
+
+    //Adiciona evento a cada um
+    document.querySelectorAll('svg a').forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault(); // Previne o comportamento padrão do link
+            
+            const estadoId = this.querySelector('path').id; // Obtém o ID do estado clicado
+            buscarDados(this.textContent, estadoId); // Busca os dados do estado
+            console.log(`Estado clicado: ${this.textContent}, ID: ${estadoId}`);
+
+            // Redireciona para o caminho desejado
+            window.location.href = `/Projeto_de_estagio_parabola/html/ArtigoEstados/estado.html?estadoId=${estadoId}`;
+        });
+    });
+    
 
     // Ao esconder a mensagem, libera para mostrar novamente
     document.addEventListener('mousemove', (e) => {

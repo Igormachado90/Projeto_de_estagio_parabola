@@ -7,9 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../SiteClientes/ProAcademica/Artigos/ArtigEstilo.css">
-    <link rel="stylesheet" href="../../SiteClientes/estilo.css">
-    <link rel="stylesheet" href="../../SiteClientes/Mapa/mapas.css">
+    <!-- <link rel="stylesheet" href="SiteClientes/ProAcademica/Artigos/ArtigEstilo.css"> -->
+    <link rel="stylesheet" href="../../Site_Feminio/SiteClientes/estilo.css">
+    <link rel="stylesheet" href="../../Site_Feminio/SiteClientes/Mapa/mapas.css">
+    <link rel="stylesheet" href="../../html/ArtigoEstados/estados.css">
     <title>Mapa Regional do Brasil</title>
 
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -20,8 +21,8 @@
     <nav class="navbar">
         <div class="container">
             <div class="navbar-header">
-                <a class="navbar-brand" href="../../SiteClientes/Index.html">
-                    <img src="../../Logo/logo.png" alt="Logo">
+                <a class="navbar-brand" href="../../Site_Feminio/Index.html">
+                    <img src="../../Site_Feminio/Logo/logo.png" alt="Logo">
                 </a>
 
                 <button class="menu-toggle" id="menuToggle">
@@ -30,7 +31,7 @@
             </div>
             <nav id="links-menu">
                 <ul class="nav-links">
-                    <li><a href="../../SiteClientes/Index.html">PÁGINA PRINCIPAL</a></li>
+                    <li><a href="../../Site_Feminio/Index.html">PÁGINA PRINCIPAL</a></li>
                     <li>
                         <a class="titulo" href="#">PRODUÇÃO ACADÊMICA</a>
                         <ul class="submenu">
@@ -51,18 +52,43 @@
     <!-- Cabeçalho -->
     <div class="header-title">
         <div class="container">
-            <h1>Mapa Regional do Futebol Feminino Brasileiro</h1>
-            <p>O projeto "Pará Bola" visa promover a divulgação de pesquisas e artigos sobre o desenvolvimento do
-                futebol feminino em cada região do Brasil</p>
+            <h1>Artigos sobre Futebol Feminino</h1>
+            <p>Pesquisas publicadas pelos grupos de pesquisa no.</p>
         </div>
     </div>
 
-    
+    <!-- Conteúdo principal -->
+    <main class="container">
+        <section class="event-section" id="article-eventos">
+            <article class="event-card">
+            <img src="https://i0.wp.com/multarte.com.br/wp-content/uploads/2018/12/fundo-cinza-claro4.png?resize=696%2C427&ssl=1" alt="imagem de cinza" class="event-image">
+            <h2>Women's Football</h2>
+            <p>Evento organizado pela Confederação Brasileira de Futebol com foco no desenvolvimento do futebol feminino, incluindo ....</p>
+            <a href="https://www.fifa.com/about-fifa/organisation/development/women" class="event-link" target="_blank">Link a página</a>
+            </article>
 
-    <div id="mensagem-flutuante" class="mensagem-flutuante" style="display: none;">
-        <h3 id="mensagem-titulo"></h3>
-        <ul id="mensagem-lista"></ul>
-    </div>
+            <article class="event-card">
+            <img src="https://i0.wp.com/multarte.com.br/wp-content/uploads/2018/12/fundo-cinza-claro4.png?resize=696%2C427&ssl=1" alt="imagem de cinza" class="event-image">
+            <h2>Women's Football</h2>
+            <p>Evento organizado pela Confederação Brasileira de Futebol com foco no desenvolvimento do futebol feminino, incluindo ....</p>
+            <a href="https://www.fifa.com/about-fifa/organisation/development/women" class="event-link" target="_blank">Link a página</a>
+            </article>
+
+            <article class="event-card">
+            <img src="https://i0.wp.com/multarte.com.br/wp-content/uploads/2018/12/fundo-cinza-claro4.png?resize=696%2C427&ssl=1" alt="imagem de cinza" class="event-image">
+            <h2>Women's Football</h2>
+            <p>Evento organizado pela Confederação Brasileira de Futebol com foco no desenvolvimento do futebol feminino, incluindo ....</p>
+            <a href="https://www.fifa.com/about-fifa/organisation/development/women" class="event-link" target="_blank">Link a página</a>
+            </article>
+        </section>
+
+        <!-- Paginação -->
+        <div class="pagination">
+            <ul class="page-numbers" id="pagination">
+
+            </ul>
+        </div>
+    </main>
 
     <!-- Rodapé -->
     <footer class="footer">
