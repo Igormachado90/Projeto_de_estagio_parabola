@@ -101,27 +101,121 @@ document.addEventListener('DOMContentLoaded', () => {
         const totalPages = Math.ceil(count / itemsPerPage);
         pagination.innerHTML = '';
 
-        for (let i = 1; i <= totalPages; i++) {
-            const li = document.createElement('li');
-            const a = document.createElement('a');
-            a.href = '#';
-            a.textContent = i;
-            if (i === currentPage) {
-                a.classList.add('active');
+        const prevItem = document.createElement('li');
+        prevItem.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+        prevItem.innerHTML = `
+        <a class="page-link" href="#" aria-label="Anterior">
+            <span aria-hidden="true">&laquo;</span>
+        </a>
+        `;
+        prevItem.addEventListener('click', async (e) => {
+            e.preventDefault();
+            if (currentPage > 1) {
+                await MostraEstado(currentPage - 1);
             }
-            a.addEventListener('click', (e) => {
-                e.preventDefault();
-                MostraEstado(i);
-            });
-            li.appendChild(a);
-            pagination.appendChild(li);
+        });
+        pagination.appendChild(prevItem);
+
+        // Configuração da paginação limitada
+        const maxVisiblePages = 3; // Número máximo de páginas visíveis
+        let startPage, endPage;
+
+        if (totalPages <= maxVisiblePages) {
+            // Mostrar todas as páginas se não exceder o máximo
+            startPage = 1;
+            endPage = totalPages;
+        } else {
+            // Calcular páginas visíveis com a atual no centro
+            const halfVisible = Math.floor(maxVisiblePages / 2);
+
+            if (currentPage <= halfVisible + 1) {
+                // Páginas iniciais
+                startPage = 1;
+                endPage = maxVisiblePages;
+            } else if (currentPage >= totalPages - halfVisible) {
+                // Páginas finais
+                startPage = totalPages - maxVisiblePages + 1;
+                endPage = totalPages;
+            } else {
+                // Páginas intermediárias
+                startPage = currentPage - halfVisible;
+                endPage = currentPage + halfVisible;
+            }
         }
+
+        // Botão para primeira página (se necessário)
+        if (startPage > 1) {
+            const firstPageItem = document.createElement('li');
+            firstPageItem.className = 'page-item';
+            firstPageItem.innerHTML = `<a class="page-link" href="#">1</a>`;
+            firstPageItem.addEventListener('click', async (e) => {
+                e.preventDefault();
+                await MostraEstado(1);
+            });
+            pagination.appendChild(firstPageItem);
+
+            // Adicionar ellipsis se houver mais páginas antes
+            if (startPage > 2) {
+                const ellipsisItem = document.createElement('li');
+                ellipsisItem.className = 'page-item disabled';
+                ellipsisItem.innerHTML = `<span class="page-link">...</span>`;
+                pagination.appendChild(ellipsisItem);
+            }
+        }
+
+        // Páginas visíveis
+        for (let i = startPage; i <= endPage; i++) {
+            const pageItem = document.createElement('li');
+            pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
+            pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
+            pageItem.addEventListener('click', async (e) => {
+                e.preventDefault();
+                await MostraEstado(i);
+            });
+            pagination.appendChild(pageItem);
+        }
+
+        // Botão para última página (se necessário)
+        if (endPage < totalPages) {
+            // Adicionar ellipsis se houver mais páginas depois
+            if (endPage < totalPages - 1) {
+                const ellipsisItem = document.createElement('li');
+                ellipsisItem.className = 'page-item disabled';
+                ellipsisItem.innerHTML = `<span class="page-link">...</span>`;
+                pagination.appendChild(ellipsisItem);
+            }
+
+            const lastPageItem = document.createElement('li');
+            lastPageItem.className = 'page-item';
+            lastPageItem.innerHTML = `<a class="page-link" href="#">${totalPages}</a>`;
+            lastPageItem.addEventListener('click', async (e) => {
+                e.preventDefault();
+                await MostraEstado(totalPages);
+            });
+            pagination.appendChild(lastPageItem);
+        }
+
+        // Botão Próximo
+        const nextItem = document.createElement('li');
+        nextItem.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+        nextItem.innerHTML = `
+        <a class="page-link" href="#" aria-label="Próximo">
+            <span aria-hidden="true">&raquo;</span>
+        </a>
+    `;
+        nextItem.addEventListener('click', async (e) => {
+            e.preventDefault();
+            if (currentPage < totalPages) {
+                await MostraEstado(currentPage + 1);
+            }
+        });
+        pagination.appendChild(nextItem);
     }
 
     async function MostraEstado(page, estadoId = null) {
         const activityList = document.getElementById('article-eventos');
         console.log('mostra', activityList);
-        
+
         if (!activityList) {
             console.error('Elemento com ID "article-eventos" não encontrado.');
             return;
@@ -187,7 +281,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Inicialização
     function init() {
         // Configurar eventos dos estados
-    
+
         document.querySelectorAll('svg a path').forEach((estado) => {
             estado.addEventListener('mousemove', (event) => {
                 clearTimeout(hideTimeout);
@@ -214,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 const estadoId = this.querySelector('path').id;
                 buscarDados(this.textContent, estadoId);
                 console.log(`Estado clicado: ${this.textContent}, ID: ${estadoId}`);
-                window.location.href = `/Projeto_de_estagio_parabola/html/ArtigoEstados/estado.html?estadoId=${estadoId}`;
+                window.location.href = `../../ArtigoEstados/estado.html?estadoId=${estadoId}`;
             });
         });
 
