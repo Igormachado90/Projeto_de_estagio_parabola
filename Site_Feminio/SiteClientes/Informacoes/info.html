@@ -294,6 +294,12 @@
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
 
+        // Menu mobile toggle
+        document.getElementById('menuToggle').addEventListener('click', function () {
+            const menu = document.getElementById('links-menu');
+            menu.classList.toggle('active');
+        });
+
         // Smooth scroll para o botão "voltar ao topo"
         document.querySelector('.back-to-top').addEventListener('click', function (e) {
             e.preventDefault();
