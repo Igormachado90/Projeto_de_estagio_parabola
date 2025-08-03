@@ -1,6 +1,5 @@
-/* Estilos base */
 :root {
-    --primary-color-roxo: #8a2be2;
+    --primary-color-roxo: #007bff;
     --secondary-color: #ffd700;
     --dark-color: #343a40;
     --light-color: #f8f9fa;
@@ -8,9 +7,10 @@
 
 /* Cabeçalho */
 .header-title {
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1574629810360-7efbbe195018');
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('../../../Logo/futebol_F.jpg');
     background-size: cover;
-    background-position: center;
+    background-position: bottom;
     color: white;
     padding: 80px 0;
     text-align: center;
@@ -27,41 +27,25 @@
     margin: 0 auto;
 }
 
-/* Conteúdo principal */
 
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 30px -15px;
+.container {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
-.col-lg-6 {
-    width: 33.3333%;
-    padding: 0 15px;
+/* Layout de Artigos - GRID com 5 colunas */
+.row {
+    display: grid;
+    /* grid-template-columns: repeat(5, 1fr); */
+    gap: 20px;
+    padding: 40px;
+    /* margin: 0 auto; */
     box-sizing: border-box;
 }
 
-.mb-4 {
-    margin-bottom: 1.5rem;
-}
-
-p .institution1 {
-    font-style: italic;
-    color: #6c757d;
-}
-
-/* Filtros */
-.form-control,
-.form-select {
-    width: 100%;
-    padding: 10px 15px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
-    font-size: 1rem;
-    margin-bottom: 15px;
-}
-
-/* Artigos */
+/* Cartões de artigo */
 .article-section {
     background: white;
     padding: 25px;
@@ -70,18 +54,7 @@ p .institution1 {
     height: 100%;
 }
 
-.category-badge {
-    display: inline-block;
-    background-color: var(--primary-color);
-    color: white;
-    padding: 3px 10px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    margin-bottom: 10px;
-}
-
-.row h3 .article-title {
-    color: var(--primary-color);
+.article-title {
     margin: 10px 0;
     font-size: 1.3rem;
 }
@@ -97,6 +70,34 @@ p .institution1 {
     display: inline-block;
     margin-top: 15px;
     font-weight: bold;
+    color: var(--primary-color-roxo);
+    text-decoration: none;
+}
+
+.article-link:hover {
+    text-decoration: underline;
+}
+
+/* Badge de categoria */
+.category-badge {
+    display: inline-block;
+    background-color: var(--primary-color-roxo);
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+/* Filtros */
+.form-control,
+.form-select {
+    width: 100%;
+    padding: 10px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 1rem;
+    margin-bottom: 15px;
 }
 
 /* Paginação */
@@ -104,8 +105,6 @@ p .institution1 {
     margin-top: 30px;
     display: flex;
     justify-content: center;
-    /* list-style: none; */
-    /* padding: 20px 0; */
     font-family: Arial, sans-serif;
 }
 
@@ -119,7 +118,6 @@ p .institution1 {
 }
 
 .page-item {
-    /* margin: 0 5px; */
     display: inline-block;
 }
 
@@ -149,7 +147,7 @@ p .institution1 {
 
 .back-to-top {
     display: inline-block;
-    background-color: var(--primary-color);
+    background-color: var(--primary-color-roxo);
     color: white;
     width: 40px;
     height: 40px;
@@ -160,9 +158,27 @@ p .institution1 {
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
-    .col-lg-6 {
-        width: 100%;
+@media (max-width: 1600px) {
+    .row {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media (max-width: 1200px) {
+    .row {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 900px) {
+    .row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .row {
+        grid-template-columns: 1fr;
     }
 
     .nav-links {

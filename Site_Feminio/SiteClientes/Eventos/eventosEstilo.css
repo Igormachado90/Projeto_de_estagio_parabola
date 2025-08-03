@@ -11,14 +11,13 @@
 
 /* Cabeçalho da página */
 .page-header {
-    background: linear-gradient(rgba(0, 0, 68, 0.8), rgba(0, 0, 68, 0.8)), 
-                url('https://images.unsplash.com/photo-1574629810360-7efbbe195018');
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+        url('../../Logo/futebol_F.jpg');
     background-size: cover;
-    background-position: center;
-    color: var(--white);
+    background-position: bottom;
+    color: white;
     padding: 80px 0;
     text-align: center;
-    margin-bottom: 40px;
 }
 
 .page-header h1 {

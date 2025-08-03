@@ -208,6 +208,8 @@ body {
     color: #495057;
 }
 
+
+
 @media screen and (max-width: 768px) {
     .timeline-container::after {
         left: 31px;

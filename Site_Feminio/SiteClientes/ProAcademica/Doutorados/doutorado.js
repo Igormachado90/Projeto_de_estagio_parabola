@@ -1,6 +1,6 @@
 const supabase = window.supabase;
 let currentPage = 1;
-const itemsPerPage = 6; // Número de artigos por página
+const itemsPerPage = 8;
 let totalArticles = 0;
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -12,25 +12,24 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         totalArticles = count;
 
-        await MostraArtigos(currentPage);
-        await setupPagination();
+        await mostrarArtigos(currentPage);
+        await configurarPaginacao();
     } catch (error) {
         console.error('Erro ao carregar artigos:', error);
     }
 });
 
-const MostraArtigos = async (page) => {
-    const activityList = document.getElementById('article-artigos');
-    if (!activityList) {
+const mostrarArtigos = async (pagina) => {
+    const container = document.getElementById('article-artigos');
+    if (!container) {
         console.error('Elemento com ID "article-artigos" não encontrado.');
         return;
     }
-    //carregar a atividade de artigos
-    try {
-        // Mostrar estado de carregamento
-        activityList.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i>Carregando artigos...</div>';
 
-        const from = (page - 1) * itemsPerPage;
+    try {
+        container.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando artigos...</div>';
+
+        const from = (pagina - 1) * itemsPerPage;
         const to = from + itemsPerPage - 1;
 
         const { data: artigos, error } = await supabase
@@ -40,163 +39,140 @@ const MostraArtigos = async (page) => {
             .order('created_at', { ascending: false })
             .range(from, to);
 
-
-
-        if (error) throw error || 'Erro ao carregar artigos';
+        if (error) throw error;
 
         if (!artigos || artigos.length === 0) {
-            activityList.innerHTML = '<div class="no-articles">Nenhum artigo encontrado.</div>';
+            container.innerHTML = '<div class="no-articles">Nenhum artigo encontrado.</div>';
             return;
         }
 
-        // renderizar atividade
-        activityList.innerHTML = '';
-        artigos.forEach(artigoss => {
-            const activityItem = document.createElement('div');
-            activityItem.classList.add('col-lg-4', 'col-mb-6', 'col-sm-12', 'mb-4');
+        container.innerHTML = '';
 
-            // Verifica se o link está presente
-            const linkHTML = artigoss.link_artigo
-                ? `<a href="${artigoss.link_artigo}" class="article-link" target="_blank" rel="noopener noreferrer">Leia o artigo completo</a>`
+        artigos.forEach((artigo) => {
+            const linkHTML = artigo.link_artigo
+                ? `<a href="${artigo.link_artigo}" class="article-link" target="_blank" rel="noopener noreferrer">Leia a dissertação tess completo</a>`
                 : `<span class="article-link disabled">Link não disponível</span>`;
 
-            activityItem.innerHTML = `
-            <div class="article-section" data-id="${artigoss.id}">
-                <h3 class="article-title">${artigoss.titulo}</h3>
-                <p class="institution">${artigoss.instituto || ''}</p>
-                <p>${artigoss.descricao}</p>
-                ${linkHTML}
-            </div>       
-        `;
-            activityList.appendChild(activityItem);
+            container.innerHTML += `
+                <div class="article-section" data-id="${artigo.id}">
+                    <p class="institution">${artigo.tipo_pesquisa || ''}</p>
+                    <h3 class="article-title">${artigo.titulo}</h3>
+                    <p class="institution">${artigo.instituto || ''}</p>
+                    <p>${artigo.descricao}</p>
+                    ${linkHTML}
+                </div>
+            `;
         });
 
-        currentPage = page;
-        await setupPagination();
-
+        currentPage = pagina;
+        await configurarPaginacao();
     } catch (error) {
-        activityList.innerHTML = '<div class="error">Erro ao carregar artigos. Tente novamente mais tarde.</div>';
+        container.innerHTML = '<div class="error">Erro ao carregar artigos. Tente novamente mais tarde.</div>';
     }
-}
+};
 
-const setupPagination = async () => {
-    const pagination = document.getElementById('pagination');
-    if (!pagination) return;
+const configurarPaginacao = async () => {
+    const paginacao = document.getElementById('pagination');
+    if (!paginacao) return;
 
-    // Calcular o número total de páginas
     const totalPages = Math.ceil(totalArticles / itemsPerPage);
+    paginacao.innerHTML = '';
 
-    // Limpar paginação existente
-    pagination.innerHTML = '';
-
-    // Botão Anterior
-    const prevItem = document.createElement('li');
-    prevItem.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
-    prevItem.innerHTML = `
+    const btnAnterior = document.createElement('li');
+    btnAnterior.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+    btnAnterior.innerHTML = `
         <a class="page-link" href="#" aria-label="Anterior">
             <span aria-hidden="true">&laquo;</span>
         </a>
     `;
-    prevItem.addEventListener('click', async (e) => {
+    btnAnterior.addEventListener('click', async (e) => {
         e.preventDefault();
         if (currentPage > 1) {
-            await MostraArtigos(currentPage - 1);
+            await mostrarArtigos(currentPage - 1);
         }
     });
-    pagination.appendChild(prevItem);
+    paginacao.appendChild(btnAnterior);
 
-    // Configuração da paginação limitada
-    const maxVisiblePages = 3; // Número máximo de páginas visíveis
+    const maxPaginasVisiveis = 3;
     let startPage, endPage;
 
-    if (totalPages <= maxVisiblePages) {
-        // Mostrar todas as páginas se não exceder o máximo
+    if (totalPages <= maxPaginasVisiveis) {
         startPage = 1;
         endPage = totalPages;
     } else {
-        // Calcular páginas visíveis com a atual no centro
-        const halfVisible = Math.floor(maxVisiblePages / 2);
-        
-        if (currentPage <= halfVisible + 1) {
-            // Páginas iniciais
+        const meio = Math.floor(maxPaginasVisiveis / 2);
+
+        if (currentPage <= meio + 1) {
             startPage = 1;
-            endPage = maxVisiblePages;
-        } else if (currentPage >= totalPages - halfVisible) {
-            // Páginas finais
-            startPage = totalPages - maxVisiblePages + 1;
+            endPage = maxPaginasVisiveis;
+        } else if (currentPage >= totalPages - meio) {
+            startPage = totalPages - maxPaginasVisiveis + 1;
             endPage = totalPages;
         } else {
-            // Páginas intermediárias
-            startPage = currentPage - halfVisible;
-            endPage = currentPage + halfVisible;
+            startPage = currentPage - meio;
+            endPage = currentPage + meio;
         }
     }
 
-    // Botão para primeira página (se necessário)
     if (startPage > 1) {
-        const firstPageItem = document.createElement('li');
-        firstPageItem.className = 'page-item';
-        firstPageItem.innerHTML = `<a class="page-link" href="#">1</a>`;
-        firstPageItem.addEventListener('click', async (e) => {
+        const first = document.createElement('li');
+        first.className = 'page-item';
+        first.innerHTML = `<a class="page-link" href="#">1</a>`;
+        first.addEventListener('click', async (e) => {
             e.preventDefault();
-            await MostraArtigos(1);
+            await mostrarArtigos(1);
         });
-        pagination.appendChild(firstPageItem);
+        paginacao.appendChild(first);
 
-        // Adicionar ellipsis se houver mais páginas antes
         if (startPage > 2) {
-            const ellipsisItem = document.createElement('li');
-            ellipsisItem.className = 'page-item disabled';
-            ellipsisItem.innerHTML = `<span class="page-link">...</span>`;
-            pagination.appendChild(ellipsisItem);
+            const ellipsis = document.createElement('li');
+            ellipsis.className = 'page-item disabled';
+            ellipsis.innerHTML = `<span class="page-link">...</span>`;
+            paginacao.appendChild(ellipsis);
         }
     }
 
-    // Páginas visíveis
     for (let i = startPage; i <= endPage; i++) {
         const pageItem = document.createElement('li');
         pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
         pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
         pageItem.addEventListener('click', async (e) => {
             e.preventDefault();
-            await MostraArtigos(i);
+            await mostrarArtigos(i);
         });
-        pagination.appendChild(pageItem);
+        paginacao.appendChild(pageItem);
     }
 
-    // Botão para última página (se necessário)
     if (endPage < totalPages) {
-        // Adicionar ellipsis se houver mais páginas depois
         if (endPage < totalPages - 1) {
-            const ellipsisItem = document.createElement('li');
-            ellipsisItem.className = 'page-item disabled';
-            ellipsisItem.innerHTML = `<span class="page-link">...</span>`;
-            pagination.appendChild(ellipsisItem);
+            const ellipsis = document.createElement('li');
+            ellipsis.className = 'page-item disabled';
+            ellipsis.innerHTML = `<span class="page-link">...</span>`;
+            paginacao.appendChild(ellipsis);
         }
 
-        const lastPageItem = document.createElement('li');
-        lastPageItem.className = 'page-item';
-        lastPageItem.innerHTML = `<a class="page-link" href="#">${totalPages}</a>`;
-        lastPageItem.addEventListener('click', async (e) => {
+        const last = document.createElement('li');
+        last.className = 'page-item';
+        last.innerHTML = `<a class="page-link" href="#">${totalPages}</a>`;
+        last.addEventListener('click', async (e) => {
             e.preventDefault();
-            await MostraArtigos(totalPages);
+            await mostrarArtigos(totalPages);
         });
-        pagination.appendChild(lastPageItem);
+        paginacao.appendChild(last);
     }
 
-    // Botão Próximo
-    const nextItem = document.createElement('li');
-    nextItem.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
-    nextItem.innerHTML = `
+    const btnProximo = document.createElement('li');
+    btnProximo.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+    btnProximo.innerHTML = `
         <a class="page-link" href="#" aria-label="Próximo">
             <span aria-hidden="true">&raquo;</span>
         </a>
     `;
-    nextItem.addEventListener('click', async (e) => {
+    btnProximo.addEventListener('click', async (e) => {
         e.preventDefault();
         if (currentPage < totalPages) {
-            await MostraArtigos(currentPage + 1);
+            await mostrarArtigos(currentPage + 1);
         }
     });
-    pagination.appendChild(nextItem);
+    paginacao.appendChild(btnProximo);
 };

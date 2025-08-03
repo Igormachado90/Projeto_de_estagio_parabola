@@ -1,6 +1,6 @@
 const supabase = window.supabase;
 let currentPage = 1;
-const itemsPerPage = 6; // Número de artigos por página
+const itemsPerPage = 8; // Número de artigos por página
 let totalArticles = 0;
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -35,6 +35,7 @@ const MostraArtigos = async (page) => {
         const { data: artigos, error } = await supabase
             .from('artigos')
             .select('*')
+            .in('tipo_pesquisa', ['artigo científicos original', 'artigo científicos revisão'])
             .order('created_at', { ascending: false })
             .range(from, to);
 
@@ -50,23 +51,19 @@ const MostraArtigos = async (page) => {
         // renderizar atividade
         activityList.innerHTML = '';
         artigos.forEach(artigoss => {
-            const activityItem = document.createElement('div');
-            activityItem.classList.add('col-lg-4', 'col-mb-6', 'col-sm-12', 'mb-4');
-
-            // Verifica se o link está presente
             const linkHTML = artigoss.link_artigo
                 ? `<a href="${artigoss.link_artigo}" class="article-link" target="_blank" rel="noopener noreferrer">Leia o artigo completo</a>`
                 : `<span class="article-link disabled">Link não disponível</span>`;
 
-            activityItem.innerHTML = `
-            <div class="article-section" data-id="${artigoss.id}">
-                <h3 class="article-title">${artigoss.titulo}</h3>
-                <p class="institution">${artigoss.instituto || ''}</p>
-                <p>${artigoss.descricao}</p>
-                ${linkHTML}
-            </div>       
-        `;
-            activityList.appendChild(activityItem);
+            activityList.innerHTML += `
+        <div class="article-section" data-id="${artigoss.id}">
+            <p class="institution">${artigoss.tipo_pesquisa || ''}</p>
+            <h3 class="article-title">${artigoss.titulo}</h3>
+            <p class="institution">${artigoss.instituto || ''}</p>
+            <p>${artigoss.descricao}</p>
+            ${linkHTML}
+        </div>
+    `;
         });
 
         currentPage = page;
@@ -114,7 +111,7 @@ const setupPagination = async () => {
     } else {
         // Calcular páginas visíveis com a atual no centro
         const halfVisible = Math.floor(maxVisiblePages / 2);
-        
+
         if (currentPage <= halfVisible + 1) {
             // Páginas iniciais
             startPage = 1;
