@@ -6,11 +6,14 @@ const inner = document.querySelector('.carousel-inner');
 let currentIndex = 0;
 
 function showSlide(index) {
-    inner.style.transform = `translateX(-${index * 100}%)`;
+    items.forEach((item, i) => {
+        item.classList.toggle('active', i === index);
+    });
     indicators.forEach((btn, i) => {
         btn.classList.toggle('active', i === index);
     });
 }
+
 
 prev.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + items.length) % items.length;

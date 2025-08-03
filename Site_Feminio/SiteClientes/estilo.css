@@ -1,5 +1,5 @@
 :root {
-    --primary-color: #1bc01b;
+    --primary-color: #10eb10;
     --secondary-color: #1d048d;
     --dark-color: #343a40;
     --light-color: #f8f9fa;
@@ -283,11 +283,11 @@ body {
 }
 
 .footer a {
-    color: var(--secondary-color);
+    color: white;
 }
 
 .footer a:hover {
-    color: white;
+    color: #ffd700;
     text-decoration: none;
 }
 
