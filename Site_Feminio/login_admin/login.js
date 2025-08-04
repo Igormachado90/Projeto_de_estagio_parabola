@@ -23,7 +23,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
             .update({ ultimo_login: new Date() })
             .eq('id', data.id);
         
-        alert('Login realizado com sucesso!');
+        // alert('Login realizado com sucesso!');
         // Redirecionar para área logada
         window.location.href = '../admin/painel.html';
     } catch (error) {

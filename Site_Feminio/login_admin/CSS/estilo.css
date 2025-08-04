@@ -27,7 +27,7 @@ h1 {
 }
 
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1rem; /* Corrigido aqui */
 }
 
 label {
@@ -87,4 +87,11 @@ a:hover {
 p {
     text-align: center;
     margin-top: 1rem;
+}
+
+/* Responsividade */
+@media (max-width: 900px), (max-width: 600px) {
+    .auth-container {
+        max-width: 320px;
+    }
 }

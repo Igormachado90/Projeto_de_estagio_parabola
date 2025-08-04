@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             // Busca todos os artigos do estado na tabela state_articles
             const { data, error } = await supabase
-                .from('artigos_estado')
+                .from('artigos')
                 .select('tipo_pesquisa, estado_uf')
                 .eq('estado_uf', estadoId);
 
@@ -29,7 +29,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Agrupa os dados por tipo de pesquisa
                 const contagem = {};
                 data.forEach(item => {
-                    const conteudo = item.tipo_pesquisa || 'Sem conteúdo';
+                    let conteudo = item.tipo_pesquisa || 'Sem conteúdo';
+
+                    // Substituir "Dissertação" por "Mestrado"
+                    if (conteudo.toLowerCase() === 'dissertacao') {
+                        conteudo = 'Mestrado';
+                    }
+                    // Substituir "Artigo Científico Original" por "Artigo Científico - Original"
+
+
                     contagem[conteudo] = (contagem[conteudo] || 0) + 1;
                 });
 
@@ -90,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // Contar total de artigos
         const { count, error } = await supabase
-            .from('artigos_estado')
+            .from('artigos')
             .select('*', { count: 'exact', head: true });
 
         if (error) {
@@ -229,7 +237,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             let query = supabase
-                .from('artigos_estado')
+                .from('artigos')
                 .select('*')
                 .order('created_at', { ascending: false })
                 .range(from, to);
@@ -252,8 +260,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             eventos.forEach(evento => {
+
                 const activityItem = document.createElement('article');
                 activityItem.classList.add('event-card');
+
+                // Substituir "Dissertação" por "Mestrado"
+                if (evento.tipo_pesquisa && evento.tipo_pesquisa.toLowerCase() === 'dissertacao') {
+                    evento.tipo_pesquisa = 'Mestrado';
+                }
 
                 activityItem.innerHTML = `
                     <div class="" data-id="${evento.id}">
@@ -305,11 +319,15 @@ document.addEventListener('DOMContentLoaded', () => {
         document.querySelectorAll('svg a').forEach(link => {
             link.addEventListener('click', function (e) {
                 e.preventDefault();
-                const estadoId = this.querySelector('path').id;
-                buscarDados(this.textContent, estadoId);
-                console.log(`Estado clicado: ${this.textContent}, ID: ${estadoId}`);
-                window.location.href = `../../ArtigoEstados/estado.html?estadoId=${estadoId}`;
+                const estadoPath = this.querySelector('path');
+                const estadoId = estadoPath.id;
+                const estadoNome = estadoPath.getAttribute('title');
+                buscarDados(estadoNome, estadoId);
+                console.log(`Estado clicado: ${estadoNome}, ID: ${estadoId}`);
+                window.location.href = `../../ArtigoEstados/estado.html?estadoId=${estadoId}&estadoNome=${encodeURIComponent(estadoNome)}`;
             });
+
+
         });
 
         // Carregar dados iniciais

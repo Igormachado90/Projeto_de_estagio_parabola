@@ -37,7 +37,8 @@
                         <a class="titulo" href="#">PRODUÇÃO ACADÊMICA</a>
                         <ul class="submenu">
                             <li><a href="../SiteClientes/ProAcademica/Artigos/artigos.html">ARTIGOS</a></li>
-                            <li><a href="../SiteClientes/ProAcademica/Dissertacoes/dissertacao.html">DISSERTAÇÃO</a></li>
+                            <li><a href="../SiteClientes/ProAcademica/Dissertacoes/dissertacao.html">DISSERTAÇÃO</a>
+                            </li>
                             <li><a href="../SiteClientes/ProAcademica/Doutorados/doutorado.html">DOUTORADO</a></li>
                         </ul>
                     </li>
@@ -54,7 +55,7 @@
     <div class="header-title">
         <div class="container">
             <h1>Artigos sobre Futebol Feminino</h1>
-            <p>Pesquisas publicadas pelos grupos de pesquisa no.</p>
+            <p>Pesquisas publicadas pelos grupos de pesquisa no <span id="estado-nome">Brasil</span>.</p>
         </div>
     </div>
 
@@ -161,6 +162,7 @@
     <!-- <script type="module" src="../SiteClientes/artigos.js"></script> -->
 
     <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+
     <script>
         new window.VLibras.Widget('https://vlibras.gov.br/app');
 
@@ -179,6 +181,7 @@
             });
         });
     </script>
+
     <script>
         document.querySelectorAll('.estado').forEach(function (estado) {
             estado.addEventListener('click', function () {
@@ -188,13 +191,14 @@
             });
         });
     </script>
+
     <script>
         if (typeof MostraEstado === 'undefined') {
-        function MostraEstado(page, estadoId) {
-            console.log(`Should load articles for state ${estadoId}, page ${page}`);
-            // Implement your logic here or fetch from server
+            function MostraEstado(page, estadoId) {
+                console.log(`Should load articles for state ${estadoId}, page ${page}`);
+                // Implement your logic here or fetch from server
+            }
         }
-    }
 
         const params = new URLSearchParams(window.location.search);
         const estadoId = params.get('estadoId');
@@ -202,6 +206,24 @@
             MostraEstado(1, estadoId);
         }
     </script>
+
+    <script>
+        // Função para pegar parâmetros da URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Pega o estadoNome da URL ou define padrão
+        const estadoNome = getQueryParam('estadoNome') || 'Brasil';
+
+        // Insere no span
+        const spanEstadoNome = document.getElementById('estado-nome');
+        if (spanEstadoNome) {
+            spanEstadoNome.textContent = decodeURIComponent(estadoNome);
+        }
+    </script>
+
 
     <script src="../assets/JS/supabase-client.js"></script>
     <script src="../SiteClientes/Mapa/mapas.js"></script>
