@@ -187,7 +187,6 @@ body {
 }
 
 .player-info1 h2 {
-    color: var(--primary-color);
     margin-bottom: 10px;
     font-size: 1.4rem;
 }
