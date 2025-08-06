@@ -15,8 +15,7 @@ async function carregarArtigos() {
             titulo,
             estado_uf,
             tipo_pesquisa,
-            data_publicacao,
-            estados_brasil(nome)
+            data_publicacao
         `)
         .order('data_publicacao', { ascending: false });
 

@@ -63,7 +63,7 @@ async function loadArtigo(id) {
     document.getElementById('instituto').value = artigo.instituto;
     document.getElementById('estado').value = artigo.estado_uf;
     document.getElementById('tipoPesquisa').value = artigo.tipo_pesquisa;
-    document.getElementById('resumo').value = artigo.resumo;
+
     document.getElementById('descricao').value = artigo.descricao;
     document.getElementById('autor').value = artigo.autor;
     document.getElementById('data_publicacao').value = artigo.data_publicacao.split('T')[0];
@@ -83,7 +83,6 @@ async function updateArtigo(id) {
         instituto: document.getElementById('instituto').value,
         tipo_pesquisa: document.getElementById('tipoPesquisa').value,
         estado_uf: document.getElementById('estado').value || null,
-        resumo: document.getElementById('resumo').value,
         descricao: document.getElementById('descricao').value,
         autor: document.getElementById('autor').value,
         data_publicacao: document.getElementById('data_publicacao').value,

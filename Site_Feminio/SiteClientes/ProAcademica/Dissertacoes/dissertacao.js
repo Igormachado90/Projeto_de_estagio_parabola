@@ -1,37 +1,41 @@
-const supabase = window.supabase;
-let currentPage = 1;
-const itemsPerPage = 8;
-let totalArticles = 0;
+const supabase = window.supabase; // Referência para o cliente Supabase
+let currentPage = 1; // Página atual
+const itemsPerPage = 8; // Quantidade de artigos por página
+let totalArticles = 0; // Total de artigos encontrados
 
-document.addEventListener('DOMContentLoaded', async () => {
+document.addEventListener('DOMContentLoaded', async () => { // Quando o DOM carregar
     try {
+        // Busca o total de artigos do tipo "dissertacao"
         const { count } = await supabase
             .from('artigos')
             .select('*', { count: 'exact', head: true })
             .eq('tipo_pesquisa', 'dissertacao');
 
-        totalArticles = count;
+        totalArticles = count; // Guarda o total de artigos
 
-        await mostrarArtigos(currentPage);
-        await configurarPaginacao();
+        await mostrarArtigos(currentPage); // Mostra artigos da primeira página
+        await configurarPaginacao(); // Configura a paginação
     } catch (error) {
-        console.error('Erro ao carregar artigos:', error);
+        console.error('Erro ao carregar artigos:', error); // Log de erro
     }
 });
 
-const mostrarArtigos = async (pagina) => {
-    const container = document.getElementById('article-artigos');
+const mostrarArtigos = async (pagina) => { // Função para exibir artigos de uma página
+    const container = document.getElementById('article-artigos'); // Container dos artigos
     if (!container) {
-        console.error('Elemento com ID "article-artigos" não encontrado.');
+        console.error('Elemento com ID "article-artigos" não encontrado.'); // Verifica se existe
         return;
     }
 
     try {
+        // Mostra o texto de carregamento
         container.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i> Carregando artigos...</div>';
 
+        // Calcula o intervalo de artigos a buscar
         const from = (pagina - 1) * itemsPerPage;
         const to = from + itemsPerPage - 1;
 
+        // Busca os artigos no Supabase
         const { data: artigos, error } = await supabase
             .from('artigos')
             .select('*')
@@ -39,20 +43,24 @@ const mostrarArtigos = async (pagina) => {
             .order('created_at', { ascending: false })
             .range(from, to);
 
-        if (error) throw error;
+        if (error) throw error; // Lança erro se houver
 
+        // Caso não encontre artigos
         if (!artigos || artigos.length === 0) {
             container.innerHTML = '<div class="no-articles">Nenhum artigo encontrado.</div>';
             return;
         }
 
-        container.innerHTML = '';
+        container.innerHTML = ''; // Limpa o container
 
+        // Loop pelos artigos encontrados
         artigos.forEach((artigo) => {
+            // Cria link do artigo ou texto alternativo
             const linkHTML = artigo.link_artigo
                 ? `<a href="${artigo.link_artigo}" class="article-link" target="_blank" rel="noopener noreferrer">Leia o dissertação completo</a>`
                 : `<span class="article-link disabled">Link não disponível</span>`;
 
+            // Adiciona o HTML do artigo no container
             container.innerHTML += `
                 <div class="article-section" data-id="${artigo.id}">
                     <p class="institution">${artigo.tipo_pesquisa || ''}</p>
@@ -64,45 +72,47 @@ const mostrarArtigos = async (pagina) => {
             `;
         });
 
-        currentPage = pagina;
-        await configurarPaginacao();
+        currentPage = pagina; // Atualiza a página atual
+        await configurarPaginacao(); // Atualiza a paginação
     } catch (error) {
+        // Mensagem de erro na tela
         container.innerHTML = '<div class="error">Erro ao carregar artigos. Tente novamente mais tarde.</div>';
     }
 };
 
-const configurarPaginacao = async () => {
-    const paginacao = document.getElementById('pagination');
-    if (!paginacao) return;
+const configurarPaginacao = async () => { // Função para criar paginação
+    const paginacao = document.getElementById('pagination'); // Container da paginação
+    if (!paginacao) return; // Se não existir, não faz nada
 
-    const totalPages = Math.ceil(totalArticles / itemsPerPage);
-    paginacao.innerHTML = '';
+    const totalPages = Math.ceil(totalArticles / itemsPerPage); // Calcula total de páginas
+    paginacao.innerHTML = ''; // Limpa a paginação
 
     // Botão Anterior
-    const btnAnterior = document.createElement('li');
-    btnAnterior.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+    const btnAnterior = document.createElement('li'); // Cria elemento
+    btnAnterior.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`; // Desativa se for página 1
     btnAnterior.innerHTML = `
         <a class="page-link" href="#" aria-label="Anterior">
             <span aria-hidden="true">&laquo;</span>
         </a>
     `;
+    // Evento para voltar uma página
     btnAnterior.addEventListener('click', async (e) => {
         e.preventDefault();
         if (currentPage > 1) {
             await mostrarArtigos(currentPage - 1);
         }
     });
-    paginacao.appendChild(btnAnterior);
+    paginacao.appendChild(btnAnterior); // Adiciona na paginação
 
-    const maxPaginasVisiveis = 3;
-    let startPage, endPage;
+    const maxPaginasVisiveis = 3; // Máximo de páginas visíveis
+    let startPage, endPage; // Variáveis para início e fim
 
+    // Define início e fim das páginas
     if (totalPages <= maxPaginasVisiveis) {
         startPage = 1;
         endPage = totalPages;
     } else {
         const meio = Math.floor(maxPaginasVisiveis / 2);
-
         if (currentPage <= meio + 1) {
             startPage = 1;
             endPage = maxPaginasVisiveis;
@@ -115,6 +125,7 @@ const configurarPaginacao = async () => {
         }
     }
 
+    // Botão para primeira página
     if (startPage > 1) {
         const first = document.createElement('li');
         first.className = 'page-item';
@@ -125,6 +136,7 @@ const configurarPaginacao = async () => {
         });
         paginacao.appendChild(first);
 
+        // Reticências
         if (startPage > 2) {
             const ellipsis = document.createElement('li');
             ellipsis.className = 'page-item disabled';
@@ -133,6 +145,7 @@ const configurarPaginacao = async () => {
         }
     }
 
+    // Páginas intermediárias
     for (let i = startPage; i <= endPage; i++) {
         const pageItem = document.createElement('li');
         pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
@@ -144,6 +157,7 @@ const configurarPaginacao = async () => {
         paginacao.appendChild(pageItem);
     }
 
+    // Botão para última página
     if (endPage < totalPages) {
         if (endPage < totalPages - 1) {
             const ellipsis = document.createElement('li');
@@ -170,6 +184,7 @@ const configurarPaginacao = async () => {
             <span aria-hidden="true">&raquo;</span>
         </a>
     `;
+    // Evento para ir para próxima página
     btnProximo.addEventListener('click', async (e) => {
         e.preventDefault();
         if (currentPage < totalPages) {

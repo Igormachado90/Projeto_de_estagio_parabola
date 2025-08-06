@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         totalArticles = count;
 
         await MostraArtigos(currentPage);
-        await setupPagination();
+        await setupPagination(totalArticles);
     } catch (error) {
         console.error('Erro ao carregar artigos:', error);
     }
@@ -74,124 +74,94 @@ const MostraArtigos = async (page) => {
     }
 }
 
-const setupPagination = async () => {
+async function setupPagination(totalItems) {
     const pagination = document.getElementById('pagination');
     if (!pagination) return;
 
-    // Calcular o número total de páginas
-    const totalPages = Math.ceil(totalArticles / itemsPerPage);
-
-    // Limpar paginação existente
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
     pagination.innerHTML = '';
 
     // Botão Anterior
     const prevItem = document.createElement('li');
     prevItem.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
-    prevItem.innerHTML = `
-        <a class="page-link" href="#" aria-label="Anterior">
-            <span aria-hidden="true">&laquo;</span>
-        </a>
-    `;
+    prevItem.innerHTML = `<a class="page-link" href="#" aria-label="Anterior">&laquo;</a>`;
     prevItem.addEventListener('click', async (e) => {
         e.preventDefault();
         if (currentPage > 1) {
-            await MostraArtigos(currentPage - 1);
+            currentPage--;
+            await MostraArtigos(currentPage);
         }
     });
     pagination.appendChild(prevItem);
 
-    // Configuração da paginação limitada
-    const maxVisiblePages = 3; // Número máximo de páginas visíveis
+    const maxVisiblePages = 3;
     let startPage, endPage;
 
     if (totalPages <= maxVisiblePages) {
-        // Mostrar todas as páginas se não exceder o máximo
         startPage = 1;
         endPage = totalPages;
     } else {
-        // Calcular páginas visíveis com a atual no centro
-        const halfVisible = Math.floor(maxVisiblePages / 2);
-
-        if (currentPage <= halfVisible + 1) {
-            // Páginas iniciais
+        const meio = Math.floor(maxVisiblePages / 2);
+        if (currentPage <= meio + 1) {
             startPage = 1;
             endPage = maxVisiblePages;
-        } else if (currentPage >= totalPages - halfVisible) {
-            // Páginas finais
+        } else if (currentPage >= totalPages - meio) {
             startPage = totalPages - maxVisiblePages + 1;
             endPage = totalPages;
         } else {
-            // Páginas intermediárias
-            startPage = currentPage - halfVisible;
-            endPage = currentPage + halfVisible;
+            startPage = currentPage - meio;
+            endPage = currentPage + meio;
         }
     }
 
-    // Botão para primeira página (se necessário)
+    // Primeira página + ellipsis
     if (startPage > 1) {
-        const firstPageItem = document.createElement('li');
-        firstPageItem.className = 'page-item';
-        firstPageItem.innerHTML = `<a class="page-link" href="#">1</a>`;
-        firstPageItem.addEventListener('click', async (e) => {
-            e.preventDefault();
-            await MostraArtigos(1);
-        });
-        pagination.appendChild(firstPageItem);
-
-        // Adicionar ellipsis se houver mais páginas antes
-        if (startPage > 2) {
-            const ellipsisItem = document.createElement('li');
-            ellipsisItem.className = 'page-item disabled';
-            ellipsisItem.innerHTML = `<span class="page-link">...</span>`;
-            pagination.appendChild(ellipsisItem);
-        }
+        addPageItem(pagination, 1);
+        if (startPage > 2) addEllipsis(pagination);
     }
 
     // Páginas visíveis
     for (let i = startPage; i <= endPage; i++) {
-        const pageItem = document.createElement('li');
-        pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
-        pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
-        pageItem.addEventListener('click', async (e) => {
-            e.preventDefault();
-            await MostraArtigos(i);
-        });
-        pagination.appendChild(pageItem);
+        addPageItem(pagination, i, i === currentPage);
     }
 
-    // Botão para última página (se necessário)
+    // Última página + ellipsis
     if (endPage < totalPages) {
-        // Adicionar ellipsis se houver mais páginas depois
-        if (endPage < totalPages - 1) {
-            const ellipsisItem = document.createElement('li');
-            ellipsisItem.className = 'page-item disabled';
-            ellipsisItem.innerHTML = `<span class="page-link">...</span>`;
-            pagination.appendChild(ellipsisItem);
-        }
-
-        const lastPageItem = document.createElement('li');
-        lastPageItem.className = 'page-item';
-        lastPageItem.innerHTML = `<a class="page-link" href="#">${totalPages}</a>`;
-        lastPageItem.addEventListener('click', async (e) => {
-            e.preventDefault();
-            await MostraArtigos(totalPages);
-        });
-        pagination.appendChild(lastPageItem);
+        if (endPage < totalPages - 1) addEllipsis(pagination);
+        addPageItem(pagination, totalPages);
     }
 
     // Botão Próximo
     const nextItem = document.createElement('li');
     nextItem.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
-    nextItem.innerHTML = `
-        <a class="page-link" href="#" aria-label="Próximo">
-            <span aria-hidden="true">&raquo;</span>
-        </a>
-    `;
+    nextItem.innerHTML = `<a class="page-link" href="#" aria-label="Próximo">&raquo;</a>`;
     nextItem.addEventListener('click', async (e) => {
         e.preventDefault();
         if (currentPage < totalPages) {
-            await MostraArtigos(currentPage + 1);
+            currentPage++;
+            await MostraArtigos(currentPage);
         }
     });
     pagination.appendChild(nextItem);
-};
+}
+
+// Função auxiliar para criar item de página
+function addPageItem(container, pageNumber, isActive = false) {
+    const pageItem = document.createElement('li');
+    pageItem.className = `page-item ${isActive ? 'active' : ''}`;
+    pageItem.innerHTML = `<a class="page-link" href="#">${pageNumber}</a>`;
+    pageItem.addEventListener('click', async (e) => {
+        e.preventDefault();
+        currentPage = pageNumber;
+        await MostraArtigos(pageNumber);
+    });
+    container.appendChild(pageItem);
+}
+
+// Função auxiliar para criar reticências
+function addEllipsis(container) {
+    const ellipsisItem = document.createElement('li');
+    ellipsisItem.className = 'page-item disabled';
+    ellipsisItem.innerHTML = `<span class="page-link">...</span>`;
+    container.appendChild(ellipsisItem);
+}

@@ -5,48 +5,58 @@ document.addEventListener('DOMContentLoaded', () => {
     let ultimoEstadoId = null;
     let currentPage = 1;
     const itemsPerPage = 6;
+    let estadoSelecionado = null;
 
-    // Busca dados e mostra mensagem
+    // Cache simples para evitar buscas repetidas
+    const cacheDados = {};
+
+    // Elementos da UI
+    const loadingMessage = document.getElementById('loading-message');
+    const errorMessage = document.getElementById('error-message');
+
+    function showLoading() {
+        if (loadingMessage) loadingMessage.style.display = 'block';
+        if (errorMessage) errorMessage.style.display = 'none';
+    }
+
+    function hideLoading() {
+        if (loadingMessage) loadingMessage.style.display = 'none';
+    }
+
+    function showError() {
+        if (errorMessage) errorMessage.style.display = 'block';
+        if (loadingMessage) loadingMessage.style.display = 'none';
+    }
+
     async function buscarDados(estado, estadoId) {
         const mensagemTitulo = document.getElementById('mensagem-titulo');
         const mensagemLista = document.getElementById('mensagem-lista');
+
+        if (!mensagemTitulo || !mensagemLista) return;
+
         mensagemTitulo.textContent = estado;
-        mensagemLista.innerHTML = '';
+        mensagemLista.innerHTML = '<li>Carregando...</li>';
+
+        // Verificar cache
+        const cacheKey = `estado_${estadoId}`;
+        if (cacheDados[cacheKey]) {
+            atualizarMensagem(mensagemLista, cacheDados[cacheKey]);
+            return;
+        }
 
         try {
-            // Busca todos os artigos do estado na tabela state_articles
             const { data, error } = await supabase
                 .from('artigos')
                 .select('tipo_pesquisa, estado_uf')
                 .eq('estado_uf', estadoId);
 
-            if (error) {
-                mensagemLista.innerHTML = '<li>Erro ao buscar dados.</li>';
-                return;
-            }
+            if (error) throw error;
 
             if (data && data.length > 0) {
-                // Agrupa os dados por tipo de pesquisa
-                const contagem = {};
-                data.forEach(item => {
-                    let conteudo = item.tipo_pesquisa || 'Sem conteúdo';
-
-                    // Substituir "Dissertação" por "Mestrado"
-                    if (conteudo.toLowerCase() === 'dissertacao') {
-                        conteudo = 'Mestrado';
-                    }
-                    // Substituir "Artigo Científico Original" por "Artigo Científico - Original"
-
-
-                    contagem[conteudo] = (contagem[conteudo] || 0) + 1;
-                });
-
-                // Mostra o conteúdo e a quantidade
-                Object.entries(contagem).forEach(([conteudo, quantidade]) => {
-                    const li = document.createElement('li');
-                    li.textContent = `${conteudo}: ${quantidade}`;
-                    mensagemLista.appendChild(li);
-                });
+                // Processar e armazenar em cache
+                const contagem = processarDados(data);
+                cacheDados[cacheKey] = contagem;
+                atualizarMensagem(mensagemLista, contagem);
             } else {
                 mensagemLista.innerHTML = '<li>Nenhuma publicação encontrada.</li>';
             }
@@ -56,8 +66,35 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    function processarDados(data) {
+        const contagem = {};
+        data.forEach(item => {
+            let conteudo = item.tipo_pesquisa || 'Sem conteúdo';
+
+            // Normalizar tipos de pesquisa
+            if (conteudo.toLowerCase() === 'dissertacao') {
+                conteudo = 'Mestrado';
+            } else if (conteudo.toLowerCase() === 'artigo cientifico original') {
+                conteudo = 'Artigo Científico';
+            }
+
+            contagem[conteudo] = (contagem[conteudo] || 0) + 1;
+        });
+        return contagem;
+    }
+
+    function atualizarMensagem(elemento, contagem) {
+        elemento.innerHTML = '';
+        Object.entries(contagem).forEach(([conteudo, quantidade]) => {
+            const li = document.createElement('li');
+            li.textContent = `${conteudo}: ${quantidade}`;
+            elemento.appendChild(li);
+        });
+    }
+
     function isMobile() {
-        return window.innerWidth <= 700 || /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+        return window.innerWidth <= 700 ||
+            /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
     }
 
     function mostrarMensagem(event, estado, estadoId) {
@@ -65,26 +102,35 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!mensagemFlutuante) return;
 
         mensagemFlutuante.style.display = 'block';
-        mensagemFlutuante.style.position = 'absolute';
 
         if (isMobile()) {
-            // Centraliza na tela em dispositivos móveis
+            mensagemFlutuante.style.position = 'fixed';
             mensagemFlutuante.style.left = '50%';
             mensagemFlutuante.style.top = '50%';
             mensagemFlutuante.style.transform = 'translate(-50%, -50%)';
+            mensagemFlutuante.style.zIndex = '1000';
+            mensagemFlutuante.style.width = '80%';
         } else {
-            // Posição ao lado do mouse, ajustando para não sair da tela
+            mensagemFlutuante.style.position = 'absolute';
             mensagemFlutuante.style.transform = '';
+
             let left = event.pageX + 20;
             let top = event.pageY + 10;
-            if (left + 250 > window.innerWidth) left = window.innerWidth - 260;
-            if (top + 120 > window.innerHeight) top = window.innerHeight - 130;
-            mensagemFlutuante.style.left = left + 'px';
-            mensagemFlutuante.style.top = top + 'px';
+
+            if (left + mensagemFlutuante.offsetWidth > window.innerWidth) {
+                left = event.pageX - mensagemFlutuante.offsetWidth - 10;
+            }
+
+            if (top + mensagemFlutuante.offsetHeight > window.innerHeight) {
+                top = window.innerHeight - mensagemFlutuante.offsetHeight - 10;
+            }
+
+            mensagemFlutuante.style.left = `${left}px`;
+            mensagemFlutuante.style.top = `${top}px`;
         }
 
-        // Só busca novamente se mudou de estado, com atraso de 250ms
         if (ultimoEstadoId !== estadoId) {
+            clearTimeout(updateTimeout);
             updateTimeout = setTimeout(() => {
                 buscarDados(estado, estadoId);
                 ultimoEstadoId = estadoId;
@@ -92,153 +138,113 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    async function setupPagination() {
-        const pagination = document.getElementById('pagination');
-        if (!pagination) return;
+    async function setupPagination(totalItems, estadoId = null) {
+    const pagination = document.getElementById('pagination');
+    if (!pagination) return;
 
-        // Contar total de artigos
-        const { count, error } = await supabase
-            .from('artigos')
-            .select('*', { count: 'exact', head: true });
+    const totalPages = Math.ceil(totalItems / itemsPerPage);
+    pagination.innerHTML = '';
 
-        if (error) {
-            console.error('Erro ao contar artigos:', error);
-            return;
+    // Botão Anterior
+    const prevItem = document.createElement('li');
+    prevItem.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+    prevItem.innerHTML = `<a class="page-link" href="#" aria-label="Anterior">&laquo;</a>`;
+    prevItem.addEventListener('click', async (e) => {
+        e.preventDefault();
+        if (currentPage > 1) {
+            currentPage--;
+            await MostraEstado(currentPage, estadoId);
         }
+    });
+    pagination.appendChild(prevItem);
 
-        const totalPages = Math.ceil(count / itemsPerPage);
-        pagination.innerHTML = '';
+    const maxVisiblePages = 3;
+    let startPage, endPage;
 
-        const prevItem = document.createElement('li');
-        prevItem.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
-        prevItem.innerHTML = `
-        <a class="page-link" href="#" aria-label="Anterior">
-            <span aria-hidden="true">&laquo;</span>
-        </a>
-        `;
-        prevItem.addEventListener('click', async (e) => {
-            e.preventDefault();
-            if (currentPage > 1) {
-                await MostraEstado(currentPage - 1);
-            }
-        });
-        pagination.appendChild(prevItem);
-
-        // Configuração da paginação limitada
-        const maxVisiblePages = 3; // Número máximo de páginas visíveis
-        let startPage, endPage;
-
-        if (totalPages <= maxVisiblePages) {
-            // Mostrar todas as páginas se não exceder o máximo
+    if (totalPages <= maxVisiblePages) {
+        startPage = 1;
+        endPage = totalPages;
+    } else {
+        const meio = Math.floor(maxVisiblePages / 2);
+        if (currentPage <= meio + 1) {
             startPage = 1;
+            endPage = maxVisiblePages;
+        } else if (currentPage >= totalPages - meio) {
+            startPage = totalPages - maxVisiblePages + 1;
             endPage = totalPages;
         } else {
-            // Calcular páginas visíveis com a atual no centro
-            const halfVisible = Math.floor(maxVisiblePages / 2);
-
-            if (currentPage <= halfVisible + 1) {
-                // Páginas iniciais
-                startPage = 1;
-                endPage = maxVisiblePages;
-            } else if (currentPage >= totalPages - halfVisible) {
-                // Páginas finais
-                startPage = totalPages - maxVisiblePages + 1;
-                endPage = totalPages;
-            } else {
-                // Páginas intermediárias
-                startPage = currentPage - halfVisible;
-                endPage = currentPage + halfVisible;
-            }
+            startPage = currentPage - meio;
+            endPage = currentPage + meio;
         }
-
-        // Botão para primeira página (se necessário)
-        if (startPage > 1) {
-            const firstPageItem = document.createElement('li');
-            firstPageItem.className = 'page-item';
-            firstPageItem.innerHTML = `<a class="page-link" href="#">1</a>`;
-            firstPageItem.addEventListener('click', async (e) => {
-                e.preventDefault();
-                await MostraEstado(1);
-            });
-            pagination.appendChild(firstPageItem);
-
-            // Adicionar ellipsis se houver mais páginas antes
-            if (startPage > 2) {
-                const ellipsisItem = document.createElement('li');
-                ellipsisItem.className = 'page-item disabled';
-                ellipsisItem.innerHTML = `<span class="page-link">...</span>`;
-                pagination.appendChild(ellipsisItem);
-            }
-        }
-
-        // Páginas visíveis
-        for (let i = startPage; i <= endPage; i++) {
-            const pageItem = document.createElement('li');
-            pageItem.className = `page-item ${i === currentPage ? 'active' : ''}`;
-            pageItem.innerHTML = `<a class="page-link" href="#">${i}</a>`;
-            pageItem.addEventListener('click', async (e) => {
-                e.preventDefault();
-                await MostraEstado(i);
-            });
-            pagination.appendChild(pageItem);
-        }
-
-        // Botão para última página (se necessário)
-        if (endPage < totalPages) {
-            // Adicionar ellipsis se houver mais páginas depois
-            if (endPage < totalPages - 1) {
-                const ellipsisItem = document.createElement('li');
-                ellipsisItem.className = 'page-item disabled';
-                ellipsisItem.innerHTML = `<span class="page-link">...</span>`;
-                pagination.appendChild(ellipsisItem);
-            }
-
-            const lastPageItem = document.createElement('li');
-            lastPageItem.className = 'page-item';
-            lastPageItem.innerHTML = `<a class="page-link" href="#">${totalPages}</a>`;
-            lastPageItem.addEventListener('click', async (e) => {
-                e.preventDefault();
-                await MostraEstado(totalPages);
-            });
-            pagination.appendChild(lastPageItem);
-        }
-
-        // Botão Próximo
-        const nextItem = document.createElement('li');
-        nextItem.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
-        nextItem.innerHTML = `
-        <a class="page-link" href="#" aria-label="Próximo">
-            <span aria-hidden="true">&raquo;</span>
-        </a>
-    `;
-        nextItem.addEventListener('click', async (e) => {
-            e.preventDefault();
-            if (currentPage < totalPages) {
-                await MostraEstado(currentPage + 1);
-            }
-        });
-        pagination.appendChild(nextItem);
     }
+
+    // Primeira página + ellipsis
+    if (startPage > 1) {
+        addPageItem(pagination, 1, estadoId);
+        if (startPage > 2) addEllipsis(pagination);
+    }
+
+    // Páginas visíveis
+    for (let i = startPage; i <= endPage; i++) {
+        addPageItem(pagination, i, estadoId, i === currentPage);
+    }
+
+    // Última página + ellipsis
+    if (endPage < totalPages) {
+        if (endPage < totalPages - 1) addEllipsis(pagination);
+        addPageItem(pagination, totalPages, estadoId);
+    }
+
+    // Botão Próximo
+    const nextItem = document.createElement('li');
+    nextItem.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+    nextItem.innerHTML = `<a class="page-link" href="#" aria-label="Próximo">&raquo;</a>`;
+    nextItem.addEventListener('click', async (e) => {
+        e.preventDefault();
+        if (currentPage < totalPages) {
+            currentPage++;
+            await MostraEstado(currentPage, estadoId);
+        }
+    });
+    pagination.appendChild(nextItem);
+}
+
+// Função auxiliar para criar item de página
+function addPageItem(container, pageNumber, estadoId, isActive = false) {
+    const pageItem = document.createElement('li');
+    pageItem.className = `page-item ${isActive ? 'active' : ''}`;
+    pageItem.innerHTML = `<a class="page-link" href="#">${pageNumber}</a>`;
+    pageItem.addEventListener('click', async (e) => {
+        e.preventDefault();
+        currentPage = pageNumber;
+        await MostraEstado(pageNumber, estadoId);
+    });
+    container.appendChild(pageItem);
+}
+
+// Função auxiliar para criar reticências
+function addEllipsis(container) {
+    const ellipsisItem = document.createElement('li');
+    ellipsisItem.className = 'page-item disabled';
+    ellipsisItem.innerHTML = `<span class="page-link">...</span>`;
+    container.appendChild(ellipsisItem);
+}
+
 
     async function MostraEstado(page, estadoId = null) {
         const activityList = document.getElementById('article-eventos');
-        console.log('mostra', activityList);
+        if (!activityList) return;
 
-        if (!activityList) {
-            console.error('Elemento com ID "article-eventos" não encontrado.');
-            return;
-        }
-
-        // Mostrar estado de carregamento
-        activityList.innerHTML = '<div class="loading"><i class="fas fa-spinner fa-spin"></i>Carregando eventos...</div>';
-
-        const from = (page - 1) * itemsPerPage;
-        const to = from + itemsPerPage - 1;
+        showLoading();
+        activityList.innerHTML = '';
 
         try {
+            const from = (page - 1) * itemsPerPage;
+            const to = from + itemsPerPage - 1;
+
             let query = supabase
                 .from('artigos')
-                .select('*')
+                .select('*', { count: 'exact' })
                 .order('created_at', { ascending: false })
                 .range(from, to);
 
@@ -246,56 +252,62 @@ document.addEventListener('DOMContentLoaded', () => {
                 query = query.eq('estado_uf', estadoId);
             }
 
-            const { data: eventos, error } = await query;
+            const { data: eventos, count, error } = await query;
 
-            if (error) throw error || 'Erro ao carregar eventos';
+            if (error) throw error;
 
-
-            // renderizar atividade
-            activityList.innerHTML = '';
+            hideLoading();
 
             if (!eventos || eventos.length === 0) {
-                activityList.innerHTML = '<div class="no-events">Nenhum artigo encontrado.</div>';
+                activityList.innerHTML = '<div class="alert alert-info">Nenhum artigo encontrado.</div>';
                 return;
             }
 
+            // Renderizar artigos
             eventos.forEach(evento => {
+                const tipoPesquisa = normalizarTipoPesquisa(evento.tipo_pesquisa);
 
                 const activityItem = document.createElement('article');
                 activityItem.classList.add('event-card');
-
-                // Substituir "Dissertação" por "Mestrado"
-                if (evento.tipo_pesquisa && evento.tipo_pesquisa.toLowerCase() === 'dissertacao') {
-                    evento.tipo_pesquisa = 'Mestrado';
-                }
-
                 activityItem.innerHTML = `
-                    <div class="" data-id="${evento.id}">
-                        <h2>${evento.tipo_pesquisa}</h2>
-                        <img src="${evento.imagem || 'https://i0.wp.com/multarte.com.br/wp-content/uploads/2018/12/fundo-cinza-claro4.png?resize=696%2C427&ssl=1'}" alt="" class="event-image">
-                        <h2>${evento.titulo}</h2>
-                        <p>${evento.autores}</p>
-                        <p>${evento.instituto}</p>
-                        <a href="${evento.url_doi}" target="_blank" class="event-link">Visite a página do evento</a>
+                    <div data-id="${evento.id}">
+                        <h2>${tipoPesquisa}</h2>
+                        <img src="${evento.imagem || 'https://i0.wp.com/multarte.com.br/wp-content/uploads/2018/12/fundo-cinza-claro4.png?resize=696%2C427&ssl=1'}" 
+                             alt="${evento.titulo}" class="event-image">
+                        <h3>${evento.titulo || 'Sem título'}</h3>
+                        <p><strogan>Autores:</strogan> ${evento.autor || 'Autores não informados'}</p>
+                        <p>${evento.instituto || 'Instituto não informado'}</p>
+                        ${evento.link_artigo ? `<a href="${evento.link_artigo}" target="_blank" class="event-link">Visite a página</a>` : ''}
                     </div>
                 `;
-
                 activityList.appendChild(activityItem);
             });
 
-            currentPage = page;
-            await setupPagination(estadoId);
+            // Atualizar paginação
+            await setupPagination(count, estadoId);
 
         } catch (error) {
             console.error('Erro ao exibir eventos:', error);
-            activityList.innerHTML = '<div class="error">Erro ao carregar eventos. Tente novamente mais tarde.</div>';
+            showError();
         }
+    }
+
+    function normalizarTipoPesquisa(tipo) {
+        if (!tipo) return 'Outro';
+
+        tipo = tipo.toLowerCase();
+
+        if (tipo === 'dissertacao') return 'Mestrado';
+        if (tipo === 'doutorado') return 'Doutorado';
+        // if (tipo === 'artigo científicos original') return 'Artigo Original';
+        // if (tipo === 'artigo científicos revisão' || tipo === 'Artigo Revisão' || tipo === 'Artigo de revisao' || tipo === 'artigo revisao') return 'Artigo de Revisão';
+
+        return tipo.charAt(0).toUpperCase() + tipo.slice(1);
     }
 
     // Inicialização
     function init() {
-        // Configurar eventos dos estados
-
+        // Configurar eventos dos estados do mapa
         document.querySelectorAll('svg a path').forEach((estado) => {
             estado.addEventListener('mousemove', (event) => {
                 clearTimeout(hideTimeout);
@@ -311,29 +323,29 @@ document.addEventListener('DOMContentLoaded', () => {
                     if (mensagemFlutuante) {
                         mensagemFlutuante.style.display = 'none';
                     }
-                }, 4000);
+                }, 1000);
             });
         });
 
-        // Configurar cliques nos estados
+        // Clique nos estados
         document.querySelectorAll('svg a').forEach(link => {
             link.addEventListener('click', function (e) {
                 e.preventDefault();
                 const estadoPath = this.querySelector('path');
-                const estadoId = estadoPath.id;
+                const estadoId = estadoPath.getAttribute('id');
                 const estadoNome = estadoPath.getAttribute('title');
-                buscarDados(estadoNome, estadoId);
-                console.log(`Estado clicado: ${estadoNome}, ID: ${estadoId}`);
-                window.location.href = `../../ArtigoEstados/estado.html?estadoId=${estadoId}&estadoNome=${encodeURIComponent(estadoNome)}`;
+
+                if (estadoId && estadoNome) {
+                    window.location.href = `../../ArtigoEstados/estado.html?estadoId=${estadoId}&estadoNome=${encodeURIComponent(estadoNome)}`;
+                }
             });
-
-
         });
 
         // Carregar dados iniciais
-        MostraEstado(1, estadoId);
+        const params = new URLSearchParams(window.location.search);
+        const estadoId = params.get('estadoId');
+        MostraEstado(1, estadoId || null);
     }
 
     init();
-
 });

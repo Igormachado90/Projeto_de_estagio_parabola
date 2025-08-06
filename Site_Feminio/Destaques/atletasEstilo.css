@@ -59,7 +59,7 @@ body {
 .menu-toggle {
     background: none;
     border: none;
-    color: var(--white);
+    /* color: var(--white); */
     font-size: 1.5rem;
     cursor: pointer;
     display: none;
