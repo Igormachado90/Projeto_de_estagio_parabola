@@ -56,7 +56,7 @@ const MostraEventos = async (page) => {
                     <img src="${evento.imagem}" alt="${evento.titulo}" class="event-image">
                     <h2>${evento.titulo}</h2>
                     <p>${evento.descricao}</p>
-                    <a href="${evento.link}" target="_blank" class="event-link">Visite a página do evento</a>
+                    <a href="${evento.link_inscricao}" target="_blank" class="event-link">Visite a página do evento</a>
                 </div>
             `;
 

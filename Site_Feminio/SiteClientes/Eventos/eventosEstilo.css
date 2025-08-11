@@ -45,6 +45,10 @@
     padding: 25px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s, box-shadow 0.3s;
+
+    /* novo para alinhar botão no final */
+    display: flex;
+    flex-direction: column;
 }
 
 .event-card:hover {
@@ -62,10 +66,21 @@
     margin-bottom: 20px;
     text-align: justify;
     text-indent: 2em;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    /* faz o texto ocupar espaço flexível */
+    flex-grow: 1;
 }
 
 .event-link {
-    display: inline-block;
+    display: block;    /* para ocupar toda a largura disponível */
+    width: 100%;    /* mesma largura do cartão */
+    text-align: center;    /* centraliza o texto */
     background-color: #009120;
     color: var(--white);
     padding: 10px 20px;
@@ -73,6 +88,9 @@
     text-decoration: none;
     font-weight: bold;
     transition: background-color 0.3s;
+    box-sizing: border-box;    /* evita estourar o layout */
+    
+    margin-top: auto;
 }
 
 .event-link:hover {
@@ -81,14 +99,14 @@
 }
 
 .event-image {
-    
+
     margin-bottom: 15px;
-    max-width:400%; 
-    max-height:200px; 
+    max-width: 400%;
+    max-height: 200px;
     border-radius: 4px;
-    width:100%; 
-    height:auto; 
-    object-fit:cover;
+    width: 100%;
+    height: auto;
+    object-fit: cover;
 }
 
 /* Paginação */

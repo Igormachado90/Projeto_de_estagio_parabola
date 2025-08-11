@@ -50,7 +50,7 @@ const mostrarArtigos = async (pagina) => {
 
         artigos.forEach((artigo) => {
             const linkHTML = artigo.link_artigo
-                ? `<a href="${artigo.link_artigo}" class="article-link" target="_blank" rel="noopener noreferrer">Leia a dissertação tess completo</a>`
+                ? `<a href="${artigo.link_artigo}" class="article-link" target="_blank" rel="noopener noreferrer">Ler Tese</a>`
                 : `<span class="article-link disabled">Link não disponível</span>`;
 
             container.innerHTML += `

@@ -4,15 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <title>Informações Gerais - Futebol Feminino</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="../../SiteClientes/ProAcademica/Artigos/ArtigEstilo.css">
     <link rel="stylesheet" href="../../SiteClientes/estilo.css">
     <link rel="stylesheet" href="../../SiteClientes/Informacoes/inforEstilo.css">
-    <title>Mapa Regional do Brasil</title>
+    <link rel="stylesheet" href="../../SiteClientes/ProAcademica/Artigos/ArtigEstilo.css">
 
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 
 <body>
@@ -31,14 +30,16 @@
             <nav id="links-menu">
                 <ul class="nav-links">
                     <li><a href="../../Index.html">PÁGINA PRINCIPAL</a></li>
+
                     <li>
                         <a class="titulo" href="#">PRODUÇÃO ACADÊMICA</a>
                         <ul class="submenu">
-                            <li><a href="../../SiteClientes/ProAcademica/Artigos/artigos.html">REVISTA</a></li>
-                            <li><a href="../ProAcademica/Dissertacoes/dissertacao.html">MESTRADO</a></li>
+                            <li><a href="../ProAcademica/Artigos/artigos.html">ARTIGOS</a></li>
+                            <li><a href="../ProAcademica/Dissertacoes/dissertacao.html">DISSERTAÇÃO</a></li>
                             <li><a href="../ProAcademica/Doutorados/doutorado.html">DOUTORADO</a></li>
                         </ul>
                     </li>
+
                     <li><a href="../Eventos/eventos.html">NOTÍCIAS</a></li>
                     <li><a href="../Mapa/mapas.html">MAPA</a></li>
                     <li class="active"><a href="info.html">SAIBA MAIS</a></li>
@@ -51,8 +52,8 @@
     <!-- Cabeçalho -->
     <div class="header-title">
         <div class="container">
-            <h1>O Futebol Feminino no Brasil</h1>
-            <p>Conheça a história, estatísticas e importância do futebol feminino no país</p>
+            <h1 class="display-4">O Futebol Feminino no Brasil</h1>
+            <p class="lead">Conheça a história, estatísticas e importância do futebol feminino no país</p>
         </div>
     </div>
 
@@ -62,362 +63,153 @@
         <section class="info-section mb-5">
             <h2 class="section-title mb-4 text-center">História do Futebol Feminino</h2>
             <div class="timeline-container">
-                <!-- 1935 -->
+                <!-- 1941 -->
                 <div class="timeline-item left">
                     <div class="timeline-content">
-                        <div class="timeline-year">1935</div>
-                        <h3 class="timeline-title">Chegada do Futebol no Brasil</h3>
-                        <p>O futsal chega ao Brasil, marcando o início de uma nova modalidade esportiva que
-                            posteriormente abriria espaço para a participação feminina.</p>
-                    </div>
-                    <img src="./img/9.png" alt="1935" class="img-fluid mt-3">
-                </div>
-
-                <!-- 1941 -->
-                <div class="timeline-item right">
-                    <div class="timeline-content">
                         <div class="timeline-year">1941</div>
-                        <h3 class="timeline-title">Proibição Legal</h3>
-                        <p>Através do decreto-lei nº 3.199, o governo Getúlio Vargas proibiu as mulheres de praticar
-                            esportes considerados "incompatíveis com a sua natureza", incluindo o futebol, o que atrasou
-                            profundamente o desenvolvimento do futebol feminino no país.</p>
+                        <p>Proibição legal: Decreto-lei nº 3.199/41 proibiu as mulheres de praticarem esportes considerados "incompatíveis com sua natureza", como futebol e futsal.</p>
                     </div>
-                    <img src="./img/image1941.png" alt="1941" class="img-fluid mt-3">
+                    <img src="./img/9.png" alt="1941" class="img-fluid mt-3">
                 </div>
 
                 <!-- 1952 -->
-                <div class="timeline-item left">
+                <div class="timeline-item right">
                     <div class="timeline-content">
                         <div class="timeline-year">1952</div>
-                        <h3 class="timeline-title">Primeiras Notícias sobre Futebol Feminino</h3>
-                        <p>O jornal Última Hora noticia a prática do futebol feminino, apesar da proibição legal
-                            vigente.</p>
+                        <p>Primeiras notícias sobre futebol feminino: O jornal Última Hora noticia a prática do futebol feminino, apesar da proibição legal.</p>
                     </div>
                     <img src="./img/image1952.png" alt="1952" class="img-fluid mt-3">
                 </div>
 
                 <!-- 1959 -->
-                <div class="timeline-item right">
+                <div class="timeline-item left">
                     <div class="timeline-content">
                         <div class="timeline-year">1959</div>
-                        <h3 class="timeline-title">Contradição da mídia</h3>
-                        <p>Notícias da Última Hora tratam da proibição, mas também destacam o
-                            sucesso feminino em outros esportes como o tênis.</p>
+                        <p>Contradição da mídia: Notícias da Última Hora tratam da proibição, mas também destacam o sucesso feminino em outros esportes como o tênis.</p>
                     </div>
                     <img src="./img/image1959.png" alt="1959" class="img-fluid mt-3">
                 </div>
-
-                <!-- 1966 -->
-                <div class="timeline-item left">
+                
+                <!-- 1941 -->
+                <!-- <div class="timeline-item right">
                     <div class="timeline-content">
-                        <div class="timeline-year">1966</div>
-                        <h3 class="timeline-title">Pioneirismo em Palmares</h3>
-                        <p>Em Palmares (PE), Lúcia Macedo organiza a primeira partida de futsal feminino da cidade,
-                            apesar da proibição e opinião pública.</p>
+                        <div class="timeline-year">1941</div>
+                        <p>Getúlio Vargas assina decreto que proíbe mulheres de jogar futebol no Brasil. Norma foi
+                            revogada em 1979.</p>
                     </div>
-                    <img src="./img/image1966.png" alt="1966" class="img-fluid mt-3">
-                </div>
+                    <img src="./img/16.png" alt="1941" class="img-fluid mt-3">
+                </div> -->
 
                 <!-- 1977 -->
                 <div class="timeline-item right">
                     <div class="timeline-content">
                         <div class="timeline-year">1977</div>
-                        <h3 class="timeline-title">CPI da Mulher</h3>
-                        <p>CPI da Mulher: Maria Lenk denuncia o preconceito e defende a participação feminina no esporte
-                            durante uma CPI.
-                            (1915-2007) foi uma nadadora brasileira pioneira no esporte, sendo a primeira sul-americana
-                            a competir em Jogos Olímpicos (Los Angeles 1932 e Berlim 1936). Ela também foi a primeira
-                            mulher a quebrar recordes mundiais na natação brasileira, nas provas de 200m e 400m peito em
-                            1939. Além disso, foi uma das primeiras a utilizar o nado borboleta em competições.
+                        <p>CPI da Mulher: Maria Lenk denuncia o preconceito e defende a participação feminina no esporte durante uma CPI.
+                            (1915-2007) foi uma nadadora brasileira pioneira no esporte, sendo a primeira sul-americana a competir em Jogos Olímpicos (Los Angeles 1932 e Berlim 1936). Ela também foi a primeira mulher a quebrar recordes mundiais na natação brasileira, nas provas de 200m e 400m peito em 1939. Além disso, foi uma das primeiras a utilizar o nado borboleta em competições.
                         </p>
                     </div>
                     <img src="./img/image1977.png" alt="1977" class="img-fluid mt-3">
                 </div>
 
-                <!-- 1979 -->
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1979</div>
-                        <h3 class="timeline-title">Fim da Proibição Legal</h3>
-                        <p>Fim da proibição: A prática de futebol e futsal por mulheres é finalmente legalizada no
-                            Brasil. Torneios femininos começam a surgir: Primeira competição oficial promovida pela CBF
-                            - a Taça Brasil de Futebol Feminino.
-                        </p>
-                    </div>
-                    <img src="./img/image1979.png" alt="1979" class="img-fluid mt-3">
-                </div>
-
-                <!-- 1980 -->
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1980</div>
-                        <h3 class="timeline-title">Legalização e Invisibilidade</h3>
-                        <p>O período de legalização e invisibilidade do futebol de mulheres.</p>
-                    </div>
-                    <img src="./img/image1980.png" alt="1980" class="img-fluid mt-3">
-                </div>
+                
 
                 <!-- 1983 -->
                 <div class="timeline-item left">
                     <div class="timeline-content">
                         <div class="timeline-year">1983</div>
-                        <h3 class="timeline-title">Regulamentação</h3>
-                        <p>Oficialmente regulamentados. Torneios femininos começam a surgir: Primeira competição oficial
-                            promovida pela CBF - a Taça Brasil de Futebol Feminino.</p>
+                        <p>Fim da proibição: A prática de futebol e futsal por mulheres é finalmente legalizada no Brasil. Torneios femininos começam a surgir.</p>
                     </div>
                     <img src="./img/image1983.png" alt="1983" class="img-fluid mt-3">
-                    <img src="./img/image1983-I.png" alt="1983" class="img-fluid mt-3">
-                </div>
-
-                <!-- 1991 -->
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1991</div>
-                        <h3 class="timeline-title">Primeira Copa do Mundo</h3>
-                        <p>O Brasil participou da primeira Copa do Mundo de Futebol Feminino, na China.</p>
-                    </div>
-                    <img src="./img/image1991.png" alt="1991" class="img-fluid mt-3">
-                </div>
-
-                <!-- 1996 -->
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <div class="timeline-year">1996</div>
-                        <h3 class="timeline-title">Estreia Olímpica</h3>
-                        <p>Estreia do futebol feminino nas Olimpíadas (Atlanta – EUA), e o Brasil ficou em 4º lugar.
-                        </p>
-                    </div>
-                    <img src="./img/image1996.png" alt="1996" class="img-fluid mt-3">
                 </div>
 
                 <!-- 2000 -->
                 <div class="timeline-item right">
                     <div class="timeline-content">
                         <div class="timeline-year">2000</div>
-                        <h3 class="timeline-title">Protagonismo e Resistência</h3>
-                        <p>Protagonismo e resistência: Equipes femininas começam a se destacar, com jogadoras
-                            conciliando o esporte com outras profissões.</p>
+                        <p>Protagonismo e resistência: Equipes femininas começam a se destacar, com jogadoras conciliando o esporte com outras profissões.</p>
                     </div>
-                    <img src="./img/" alt="2000" class="img-fluid mt-3">
-                </div>
-
-                <!-- 2004 -->
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2004</div>
-                        <h3 class="timeline-title">Prata Olímpica</h3>
-                        <p>Seleção feminina de futebol conquista a prata nas Olimpíadas de Atenas.</p>
-                    </div>
-                    <img src="./img/image2004.png" alt="2004" class="img-fluid mt-3">
-                </div>
-
-                <!-- 2007 -->
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2007</div>
-                        <h3 class="timeline-title">Vice-Campeonato Mundial</h3>
-                        <p>O time de futebol feminino foi vice-campeão mundial na China. Marta brilha e ganha fama
-                            internacional.</p>
-                    </div>
-                    <img src="./img/image2007.png" alt="2007" class="img-fluid mt-3">
-                    <img src="./img/image2007-I.png" alt="2007" class="img-fluid mt-3">
-                    <img src="./img/image2007-II.png" alt="2007" class="img-fluid mt-3">
-                </div>
-
-                <!-- 2008 -->
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2008</div>
-                        <h3 class="timeline-title">Reconhecimento Internacional</h3>
-                        <p>Cilene Pereira Paranhos se torna a primeira mulher negra a ser eleita a Melhor Jogadora de
-                            Futsal do Mundo, colocando o futsal feminino brasileiro no cenário internacional.</p>
-                    </div>
-                    <img src="./img/image2008.png" alt="2008" class="img-fluid mt-3">
+                    <img src="./img/11.png" alt="2000" class="img-fluid mt-3">
                 </div>
 
                 <!-- 2009 -->
-                <div class="timeline-item right">
+                <div class="timeline-item left">
                     <div class="timeline-content">
                         <div class="timeline-year">2009</div>
-                        <h3 class="timeline-title">Constatação do Futsal Escolar Feminino</h3>
-                        <p>Primeira tentativa de quantificar e validar o futsal feminino escolar como realidade concreta
-                            no Brasil. Estudo presente no link "Revista brasileira de futsal e futebol"</p>
+                        <p>Constatação do futsal escolar feminino: Primeira tentativa de quantificar e validar o futsal feminino escolar como realidade concreta no Brasil.</p>
                     </div>
-                    <img src="./img/image2009.png" alt="2009" class="img-fluid mt-3">
-                </div>
-
-                <!-- 2013 -->
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2013</div>
-                        <h3 class="timeline-title"></h3>
-                        <h3 class="timeline-title">1° Brasileirão feminino</h3>
-                        <p>CBF organiza o primeiro campeonato nacional exclusivo para mulheres, reunindo 20 equipes. O
-                            Centro Olímpico conquista o título ao vencer o São José, marcando o início de uma nova fase
-                            para o futebol feminino no Brasil.</p>
-                    </div>
-                    <img src="./img/image2013.png" alt="2013" class="img-fluid mt-3">
+                    <img src="./img/6.png" alt="2009" class="img-fluid mt-3">
                 </div>
 
                 <!-- 2016 -->
                 <div class="timeline-item right">
                     <div class="timeline-content">
                         <div class="timeline-year">2016</div>
-                        <h3 class="timeline-title">Preconceito e Dificuldades</h3>
-                        <p>Relatos de jogadoras revelam preconceito de gênero e falta de reconhecimento. Estudo
-                            realizado no artigo intitulado "Feminilidade e preconceito de gênero no futsal a perspectiva
-                            de atletas brasileiras"</p>
+                        <p>Preconceito e dificuldades: Relatos de jogadoras revelam preconceito de gênero e falta de reconhecimento.</p>
                     </div>
-                    <img src="./img/image2016-I.png" alt="2016" class="img-fluid mt-3">
+                    <img src="./img/13.png" alt="2016" class="img-fluid mt-3">
                 </div>
 
-                <!-- 2016 -->
+                <!-- 2017 -->
                 <div class="timeline-item left">
                     <div class="timeline-content">
-                        <div class="timeline-year">2016</div>
-                        <h3 class="timeline-title">Em congresso da CONMEBOL aprovado novo formato do Campeonato
-                            Brasileiro Feminino (criação das séries A1 e A2)</h3>
-                        <p>Reflexão sobre feminilidade no futsal: O futsal ainda é um espaço de reserva masculina e as
-                            atletas enfrentam estigmas de gênero.</p>
+                        <div class="timeline-year">2017</div>
+                        <p>Reflexão sobre feminilidade no futsal: O futsal ainda é um espaço de reserva masculina e as atletas enfrentam estigmas de gênero.</p>
                     </div>
-                    <img src="./img/image2016.png" alt="2016" class="img-fluid mt-3">
+                    <img src="./img/15.png" alt="2017" class="img-fluid mt-3">
                 </div>
 
                 <!-- 2018 -->
                 <div class="timeline-item right">
                     <div class="timeline-content">
                         <div class="timeline-year">2018</div>
-                        <h3 class="timeline-title">Profissionalização Ainda é Paradoxal</h3>
-                        <p>Estudo revela que muitas jogadoras não conseguem viver apenas do futsal. Estudo presente nas
-                            referências, em "UFG - Pesquisas em Educação Física"</p>
+                        <p>Profissionalização ainda é paradoxal: Estudo revela que muitas jogadoras não conseguem viver apenas do futsal.</p>
                     </div>
-                    <img src="./img/image2018.png" alt="2018" class="img-fluid mt-3">
-                </div>
-
-                <!-- 2020 -->
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2020</div>
-                        <h3 class="timeline-title">Igualdade de Premiação</h3>
-                        <p>A CBF anunciou igualdade de premiação entre as seleções masculina e feminina em competições
-                            como Copa do Mundo e Olimpíadas. A Série A1 e A2 do Campeonato Brasileiro Feminino se
-                            consolidaram como competições nacionais regulares.</p>
-                    </div>
-                    <img src="./img/image2020.png" alt="2020" class="img-fluid mt-3">
+                    <img src="./img/8.png" alt="2018" class="img-fluid mt-3">
                 </div>
 
                 <!-- 2021 -->
-                <div class="timeline-item right">
+                <div class="timeline-item left">
                     <div class="timeline-content">
                         <div class="timeline-year">2021</div>
-                        <h3 class="timeline-title">Formação de Atletas de Elite</h3>
-                        <p>Intensificação do foco na formação de jogadoras da seleção brasileira de futsal feminino,
-                            criando ambientes esportivos de excelência.</p>
+                        <p>Formação de atletas de elite: Foco na formação de jogadoras da seleção brasileira de futsal e no ambiente esportivo de excelência.</p>
                     </div>
-                    <img src="./img/image2021.png" alt="2021" class="img-fluid mt-3">
+                    <img src="./img/18.png" alt="2021" class="img-fluid mt-3">
+                </div>
+
+                <!-- 2022 -->
+                <div class="timeline-item right">
+                    <div class="timeline-content">
+                        <div class="timeline-year">2022</div>
+                        <p>Ambiente universitário mais acolhedor: Pesquisa indica que o preconceito é menor entre universitárias devido ao contexto educacional mais aberto.</p>
+                    </div>
+                    <img src="./img/7.png" alt="2022" class="img-fluid mt-3">
                 </div>
 
                 <!-- 2023 -->
                 <div class="timeline-item left">
                     <div class="timeline-content">
                         <div class="timeline-year">2023</div>
-                        <h3 class="timeline-title">Recorde de Audiência</h3>
-                        <p>Na Copa do Mundo de futebol, os jogos atingiram mais de 43 milhões de espectadores no Brasil,
-                            sendo o jogo Brasil x França o jogo feminino mais assistido da história da TV brasileira.
-                        </p>
+                        <p>Reconhecimento institucional: O Senado relembra a história da proibição e destaca a atuação da CPI da Mulher.</p>
                     </div>
-                    <img src="./img/image2023.png" alt="2023" class="img-fluid mt-3">
+                    <img src="./img/5.png" alt="2023" class="img-fluid mt-3">
                 </div>
 
                 <!-- 2024 -->
                 <div class="timeline-item right">
                     <div class="timeline-content">
                         <div class="timeline-year">2024</div>
-                        <h3 class="timeline-title">Parceria Histórica</h3>
-                        <p>O CBC (Comitê Brasileiro de Clubes) firma parceria histórica com a Liga Feminina de Futsal,
-                            representando um marco no fortalecimento e organização do esporte.
-                        </p>
+                        <p>Parceria histórica: O CBC (Comitê Brasileiro de Clubes) firma parceria com a Liga Feminina de Futsal para fortalecer o esporte.</p>
                     </div>
-                    <img src="./img/image2024-I.png" alt="2024" class="img-fluid mt-3">
+                    <img src="./img/10.png" alt="2024" class="img-fluid mt-3">
                 </div>
 
                 <!-- 2025 -->
                 <div class="timeline-item left">
                     <div class="timeline-content">
                         <div class="timeline-year">2025</div>
-                        <h3 class="timeline-title">10ª Copa América</h3>
-                        <p>A seleção Brasileira de futebol feminino se tornou campeã da Copa América pela 9ª vez ao
-                            vencer a Colômbia por 5 x 4 nos pênaltis. Esta foi a 10ª edição da Copa América de futebol
-                            feminina, e apenas em 2006 o Brasil não foi campeão.</p>
+                        <p>A 1° Copa do Mundo Feminina de Futsal da FIFA™</p>
                     </div>
                     <img src="./img/image2025.png" alt="2025" class="img-fluid mt-3">
-                </div>
-
-                <!-- 2025 -->
-                <div class="timeline-item right">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2025</div>
-                        <h3 class="timeline-title">1ª Copa do Mundo Feminina de Futsal</h3>
-                        <p>A 1ª Copa do Mundo Feminina de Futsal da FIFA, a ser realizada em 21 de novembro, nas
-                            Filipinas.</p>
-                    </div>
-                    <img src="./img/image2025-II.png" alt="2025" class="img-fluid mt-3">
-                </div>
-
-                <!-- 2025 -->
-                <div class="timeline-item left">
-                    <div class="timeline-content">
-                        <div class="timeline-year">2025</div>
-                        <h3 class="timeline-title">Liderança Mundial</h3>
-                        <p>Brasil se manteve nº 1 do ranking mundial em futsal feminino.</p>
-                    </div>
-                    <img src="./img/image2025-I.png" alt="2025" class="img-fluid mt-3">
-                </div>
-            </div>
-        </section>
-
-        <section class="info-section">
-            <div class="info-card">
-                <p class="text-gray-700 leading-relaxed mb-8">
-                    <strong>*(1915-2007)</strong> foi uma nadadora brasileira pioneira no esporte, sendo a primeira
-                    sul-americana a competir em Jogos Olímpicos (Los Angeles 1932 e Berlim 1936). Ela também foi a
-                    primeira mulher a quebrar recordes mundiais na natação brasileira, nas provas de 200m e 400m peito
-                    em 1939. Além disso, foi uma das primeiras a utilizar o nado borboleta em competições.
-                </p>
-            </div>
-        </section>
-
-        <section class="info-section">
-            <div class="info-card">
-                <h3 class="text-2xl font-bold text-gray-800 mb-6">Referências</h3>
-                <div class="references-grid">
-                    <a href="https://www.fifa.com/pt/tournaments/womens/futsalwomensworldcup/philippines-2025/articles/copa-mundo-feminina-futsal-fifa-2025"
-                        class="reference-link" target="_blank">FIFA - Copa do Mundo Feminina de Futsal 2025</a>
-                    <a href="https://lume.ufrgs.br/handle/10183/245515" class="reference-link" target="_blank">UFRGS -
-                        Estudos sobre Futsal Feminino</a>
-                    <a href="https://planetafutebolfeminino.com.br/evolucao-do-futebol-feminino-e-futsal-feminino/"
-                        class="reference-link" target="_blank">Planeta Futebol Feminino - Evolução do Futsal</a>
-                    <a href="https://www.rbff.com.br/index.php/rbff/article/view/18" class="reference-link"
-                        target="_blank">Revista Brasileira de Futsal e Futebol</a>
-                    <a href="https://lnfoficial.com.br/noticias/cbc-oficializa-parceria-historica-com-a-liga-feminina-de-futsal/"
-                        class="reference-link" target="_blank">Liga Nacional de Futsal - Parceria CBC</a>
-                    <a href="https://revistas.ufg.br/fef/article/download/45075/pdf/217782" class="reference-link"
-                        target="_blank">UFG - Pesquisas em Educação Física</a>
-                    <a href="https://doi.org/10.5007/2175-8042.2021.e81073" class="reference-link"
-                        target="_blank">Revista Motrivivência - Estudos do Esporte</a>
-                    <a href="https://ge.globo.com/df/futebol/noticia/em-1966-lucia-macedo-organizou-a-primeira-partida-de-futsal-feminino-de-palmares-pe.ghtml"
-                        class="reference-link" target="_blank">Globo Esporte - História de Lúcia Macedo</a>
-                    <a href="https://pt.wikipedia.org/wiki/Campeonato_Brasileiro_de_Futebol_Feminino_de_2013"
-                        class="reference-link" target="_blank">Campeonato Brasileiro de Futebol Feminino de 2013</a>
-                    <a href="https://www.futebolbrasil.com/futebol/futebol-feminino-proibicao-nunca-mais-a-virada-de-1979/"
-                        class="reference-link" target="_blank">Futebol Feminino: Proibição? Nunca Mais! A Virada de
-                        1979</a>
-                    <a href="https://revistas.ulusofona.pt/index.php/fluxoseriscos/article/view/5742"
-                        class="reference-link" target="_blank">Feminilidade e preconceito de gênero no futsal
-                        a perspectiva de atletas brasileiras</a>
-                    <a href="https://ge.globo.com/futebol/noticia/montar-time-feminino-e-exigencia-para-equipes-da-serie-a-2019-veja-situacao-dos-clubes.ghtml"
-                        class="reference-link" target="_blank">Montar time feminino é exigência para equipes da Série A
-                        2019; veja situação dos clubes</a>
                 </div>
             </div>
         </section>
@@ -647,11 +439,9 @@
     <footer class="footer">
         <div class="container-footer">
             <div class="row-footer">
-                <div class="footer-col">
+                <div class="col-footer">
                     <h3>Sobre Nós</h3>
-                    <p>Este portal é dedicado a promover e divulgar os estudos acadêmicos sobre o futebol, de
-                        mulheres
-                        indígenas e não indígenas, assim como a sua prática.</p>
+                    <p>Este portal é dedicado a promover e divulgar os estudos acadêmicos sobre o futebol, de mulheres indígenas e não indígenas, assim como a sua prática.</p>
                     <div class="social-icons">
                         <a href="#"><i class="fab fa-facebook"></i></a>
                         <a href="#"><i class="fab fa-twitter"></i></a>
@@ -659,7 +449,7 @@
                         <a href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
-                <div class="footer-col">
+                <div class="col-footer">
                     <h3>Links Rápidos</h3>
                     <ul class="list-unstyled">
                         <li><a href="../../Index.html">Página Principal</a></li>
@@ -670,7 +460,7 @@
                         <li><a href="../../login_admin/login.html">Painel Administrativo</a></li>
                     </ul>
                 </div>
-                <div class="footer-col">
+                <div class="col-footer">
                     <h3>Newsletter</h3>
                     <p>Assine nossa newsletter e receba as últimas notícias diretamente no seu e-mail.</p>
                     <form>

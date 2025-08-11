@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let updateTimeout;
     let ultimoEstadoId = null;
     let currentPage = 1;
-    const itemsPerPage = 6;
+    const itemsPerPage = 8;
     let estadoSelecionado = null;
 
     // Cache simples para evitar buscas repetidas
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         try {
             const { data, error } = await supabase
-                .from('artigos')
+                .from('artigos_estado')
                 .select('tipo_pesquisa, estado_uf')
                 .eq('estado_uf', estadoId);
 
@@ -67,18 +67,22 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function processarDados(data) {
-        const contagem = {};
+                const contagem = {
+            'Mestrado': 0,
+            'Doutorado': 0,
+            'Artigo': 0
+        };
         data.forEach(item => {
-            let conteudo = item.tipo_pesquisa || 'Sem conteúdo';
+            let tipo = (item.tipo_pesquisa || '').toLowerCase();
 
             // Normalizar tipos de pesquisa
-            if (conteudo.toLowerCase() === 'dissertacao') {
-                conteudo = 'Mestrado';
-            } else if (conteudo.toLowerCase() === 'artigo cientifico original') {
-                conteudo = 'Artigo Científico';
+            if (tipo === 'dissertacao' || tipo === 'mestrado') {
+                contagem['Mestrado']++;
+            } else if (tipo === 'doutorado') {
+                contagem['Doutorado']++;
+            } else if (tipo.includes('artigo')) {
+                contagem['Artigo']++;
             }
-
-            contagem[conteudo] = (contagem[conteudo] || 0) + 1;
         });
         return contagem;
     }
@@ -247,7 +251,7 @@ function addEllipsis(container) {
             const to = from + itemsPerPage - 1;
 
             let query = supabase
-                .from('artigos')
+                .from('artigos_estado')
                 .select('*', { count: 'exact' })
                 .order('created_at', { ascending: false })
                 .range(from, to);
@@ -275,13 +279,15 @@ function addEllipsis(container) {
                 activityItem.classList.add('event-card');
                 activityItem.innerHTML = `
                     <div data-id="${evento.id}">
-                        <h2>${tipoPesquisa}</h2>
+                        <h3>${tipoPesquisa}</h3>
                         <img src="${evento.imagem || 'https://i0.wp.com/multarte.com.br/wp-content/uploads/2018/12/fundo-cinza-claro4.png?resize=696%2C427&ssl=1'}" 
                              alt="${evento.titulo}" class="event-image">
-                        <h3>${evento.titulo || 'Sem título'}</h3>
-                        <p><strogan>Autores:</strogan> ${evento.autor || 'Autores não informados'}</p>
+                        <h2>${evento.titulo || 'Sem título'}</h2>
+                        <strogan>Autores:</strogan>
+                        <p> ${evento.autores || 'Autores não informados'}</p>
+                        <strogan>Instituto:</strogan>
                         <p>${evento.instituto || 'Instituto não informado'}</p>
-                        ${evento.link_artigo ? `<a href="${evento.link_artigo}" target="_blank" class="event-link">Visite a página</a>` : ''}
+                        ${evento.url_doi ? `<a href="${evento.url_doi}" target="_blank" class="event-link">Visite a página</a>` : ''}
                     </div>
                 `;
                 activityList.appendChild(activityItem);

@@ -10,24 +10,56 @@ body {
     background-color: #f8f9fa;
 }
 
+
+
 .navbar {
-    /* background-image: url('https://www.publicdomainpictures.net/pictures/500000/nahled/geometrisches-muster-hintergrund-167664500031W.jpg'); */
-    /* background-color: #189a18; */
     background: linear-gradient(90deg, #60fc60, #189);
     transition: transform 0.3s ease;
     padding: 15px 0;
-    /* background-size: 22rem; */
+    background-size: cover;
     position: sticky;
     top: 0;
     z-index: 1000;
     width: 100%;
-    /* background-repeat: repeat; */
+    background-repeat: no-repeat;
 }
 
-.navbar a {
+.navbar::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 36%;
+    height: 100%;
+
+    background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0) 22%, #44d374 100%),
+        /* gradiente suave */
+        url(../assets/img/marajo.png);
+    background-repeat: no-repeat;
+    background-position: left center;
+    background-size: cover;
+
+    pointer-events: none;
+    z-index: 1;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+    position: relative;
+    z-index: 2;
+}
+
+/* .navbar a {
     color: var(--light-color);
     font-weight: 500;
-}
+} */
 
 .navbar a:hover {
     color: var(--secondary-color);
@@ -43,9 +75,10 @@ body {
     color: white;
     font-size: 1.5rem;
     font-weight: bold;
-    background-color: #b1ffad;
-    padding: 8px;
-    border-radius: 40px;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
 }
 
 
@@ -54,8 +87,14 @@ body {
 }
 
 .navbar-brand img {
-    width: 6rem;
-    height: auto;
+    width: 4.5rem;
+    height: 4.5rem;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 8px;
+    border-radius: 50%;
+    object-fit: contain;
+    border: 2px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .nav-links {
@@ -75,7 +114,7 @@ body {
     font-family: "Google Sans Code", monospace;
     padding: 5px 0;
     font-size: 17px;
-    /* position: relative; */
+    text-shadow: rgba(0, 0, 0, 0.8) 1px 1px 2px;
 }
 
 .submenu {
@@ -111,11 +150,11 @@ body {
 }
 
 .nav-links a:hover {
-    color: var(--secondary-color);
+    color: #ffc107;
 }
 
 .nav-links .active a {
-    color: var(--secondary-color);
+    color: #ffc107;
     font-weight: bold;
 }
 
@@ -243,12 +282,24 @@ body {
 }
 
 .feature-box {
-    padding: 20px;
+    padding: 30px 20px;
     margin: 15px 0;
     background-color: white;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s;
+    height: 290px;
+    position: relative;
+}
+
+.feature-box a {
+    display: block;
+    justify-content: center;
+    align-items: center;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 40px;
+    position: absolute;
 }
 
 .feature-box:hover {
@@ -424,12 +475,13 @@ hr {
 
     #links-menu {
         position: fixed;
-        top: 128px;
+        top: 112px;
         /* Ajuste conforme a altura da sua navbar */
         left: -100%;
         width: 80%;
         height: calc(100vh - 70px);
         background: linear-gradient(-90deg, #60fc60, #189);
+        /* background-color: #ffffff; */
         transition: left 0.3s ease;
         z-index: 999;
         overflow-y: auto;
@@ -492,5 +544,20 @@ hr {
         background-color: #b1ffad;
         padding: 8px;
         border-radius: 40px;
+    }
+
+    .feature-box {
+        margin: 15px auto;
+        max-width: 19rem;
+        height: 16rem;
+    }
+
+    .feature-box i {
+        font-size: 2rem;
+    }
+
+    .feature-box h3 {
+        font-size: 1.2rem;
+        margin-top: 10px;
     }
 }

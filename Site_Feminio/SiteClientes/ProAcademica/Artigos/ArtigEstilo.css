@@ -54,6 +54,18 @@
     height: 100%;
 }
 
+.article-section p {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+
+    /* faz o texto ocupar espaço flexível */
+    flex-grow: 1;
+}
+
 .article-title {
     margin: 10px 0;
     font-size: 1.3rem;

@@ -18,6 +18,6 @@ async function logout() {
         return;
     }
     
-    // Redirecionar para página de login ou home
-    window.location.href = '../login_admin/login.html'; // Ajuste conforme sua estrutura
+    // Redireciona para a página de login
+    window.location.replace('../login_admin/login.html');
 }

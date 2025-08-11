@@ -57,7 +57,7 @@ const mostrarArtigos = async (pagina) => { // Função para exibir artigos de um
         artigos.forEach((artigo) => {
             // Cria link do artigo ou texto alternativo
             const linkHTML = artigo.link_artigo
-                ? `<a href="${artigo.link_artigo}" class="article-link" target="_blank" rel="noopener noreferrer">Leia o dissertação completo</a>`
+                ? `<a href="${artigo.link_artigo}" class="article-link" target="_blank" rel="noopener noreferrer">Ler Dissertação</a>`
                 : `<span class="article-link disabled">Link não disponível</span>`;
 
             // Adiciona o HTML do artigo no container

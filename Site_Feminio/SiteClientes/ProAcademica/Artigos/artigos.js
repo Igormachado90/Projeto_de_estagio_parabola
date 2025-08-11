@@ -52,7 +52,7 @@ const MostraArtigos = async (page) => {
         activityList.innerHTML = '';
         artigos.forEach(artigoss => {
             const linkHTML = artigoss.link_artigo
-                ? `<a href="${artigoss.link_artigo}" class="article-link" target="_blank" rel="noopener noreferrer">Leia o artigo completo</a>`
+                ? `<a href="${artigoss.link_artigo}" class="article-link" target="_blank" rel="noopener noreferrer">Ler Artigo</a>`
                 : `<span class="article-link disabled">Link não disponível</span>`;
 
             activityList.innerHTML += `
