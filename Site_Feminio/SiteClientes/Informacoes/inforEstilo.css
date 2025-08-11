@@ -13,13 +13,13 @@ body {
     color: white !important;
 }
 
-.header-title {
+/* .header-title {
     background: linear-gradient(135deg, #0d0d52, #4a148c);
     color: white;
     padding: 40px 0;
     margin-bottom: 30px;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
-}
+} */
 
 .info-section {
     background-color: white;

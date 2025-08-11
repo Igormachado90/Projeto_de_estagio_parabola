@@ -92,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // Verifica se o usuário está em um dispositivo móvel
     function isMobile() {
         return window.innerWidth <= 700 ||
             /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
@@ -102,8 +103,10 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!mensagemFlutuante) return;
 
         mensagemFlutuante.style.display = 'block';
-
+        
+        
         if (isMobile()) {
+            // Centralizar no mobile
             mensagemFlutuante.style.position = 'fixed';
             mensagemFlutuante.style.left = '50%';
             mensagemFlutuante.style.top = '50%';
@@ -111,6 +114,7 @@ document.addEventListener('DOMContentLoaded', () => {
             mensagemFlutuante.style.zIndex = '1000';
             mensagemFlutuante.style.width = '80%';
         } else {
+            // Posicionar próximo ao mouse no desktop
             mensagemFlutuante.style.position = 'absolute';
             mensagemFlutuante.style.transform = '';
 
@@ -122,7 +126,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             if (top + mensagemFlutuante.offsetHeight > window.innerHeight) {
-                top = window.innerHeight - mensagemFlutuante.offsetHeight - 10;
+                top = event.pageY - mensagemFlutuante.offsetHeight - 10;
             }
 
             mensagemFlutuante.style.left = `${left}px`;

@@ -118,7 +118,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             if (fetchError) throw fetchError;
 
-            const urlParts = `imagens${foto.nome_arquivo}`;
+            const urlParts = foto.url_imagem.split('/');
             const fileName = urlParts[urlParts.length - 1];
 
             // Excluir do storage
@@ -185,15 +185,14 @@ document.addEventListener('DOMContentLoaded', function () {
         if (confirmUpload) confirmUpload.addEventListener('click', uploadFiles);
 
         // Botão de excluir no modal
-        const deleteBtn = document.getElementById('deleteImageBtn').addEventListener('click', () => {
-            if (!deleteBtn) {
-                deleteBtn.addEventListener('click', () => {
-                    if (currentImageId) {
-                        confirmDelete(currentImageId);
-                    }
-                });
-            }
-        });
+        const deleteBtn = document.getElementById('deleteImageBtn')
+        if (!deleteBtn) {
+            deleteBtn.addEventListener('click', () => {
+                if (currentImageId) {
+                    confirmDelete(currentImageId);
+                }
+            });
+        };
     }
 
     // Manipular seleção de arquivos
@@ -257,74 +256,67 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Upload de arquivos
     async function uploadFiles() {
-        if (selectedFiles.length === 0) return;
+    if (selectedFiles.length === 0) return;
 
-        const categoria = document.getElementById('categoriaFoto').value;
-        confirmUpload.disabled = true;
-        confirmUpload.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
+    const descricao = document.getElementById('imageDescription').value || '';
 
-        try {
-            // Array para armazenar os resultados
-            const uploadResults = [];
+    confirmUpload.disabled = true;
+    confirmUpload.innerHTML = '<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Enviando...';
 
-            // Fazer upload de cada arquivo
-            for (const file of selectedFiles) {
-                // Gerar nome único para o arquivo
-                const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}-${file.name}`;
+    try {
+        const uploadResults = [];
 
-                // Fazer upload para o storage
-                const { data: uploadData, error: uploadError } = await supabase
-                    .storage
-                    .from('galeria')
-                    .upload(fileName, file);
+        for (const file of selectedFiles) {
+            const fileName = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}-${file.name}`;
 
-                if (uploadError) throw uploadError;
+            const { data: uploadData, error: uploadError } = await supabase
+                .storage
+                .from('galeria')
+                .upload(fileName, file);
 
-                // Obter URL pública
-                const { data: urlData } = supabase
-                    .storage
-                    .from('galeria')
-                    .getPublicUrl(fileName);
+            if (uploadError) throw uploadError;
 
-                // Inserir no banco de dados
-                const { data: dbData, error: dbError } = await supabase
-                    .from('galeria_fotos')
-                    .insert([{
-                        url: urlData.publicUrl,
-                        // categoria: categoria,
-                        descricao: '',
-                        criado_em: new Date().toISOString()
-                    }])
-                    .select();
+            const { data: urlData } = supabase
+                .storage
+                .from('galeria')
+                .getPublicUrl(fileName);
 
-                if (dbError) throw dbError;
+            const { data: dbData, error: dbError } = await supabase
+                .from('galeria_fotos')
+                .insert([{
+                    url_imagem: urlData.publicUrl, // ajustado para url_imagem
+                    nome_arquivo: fileName,
+                    descricao: descricao,           // descrição capturada do input
+                    criado_em: new Date().toISOString()
+                }])
+                .select();
 
-                uploadResults.push(dbData[0]);
-            }
+            if (dbError) throw dbError;
 
-            // Recarregar galeria
-            await loadGallery();
-
-            // Resetar formulário
-            selectedFiles = [];
-            fileInput.value = '';
-            previewContainer.innerHTML = '';
-            uploadPreview.classList.add('d-none');
-
-            // Fechar modal
-            const modal = bootstrap.Modal.getInstance(document.getElementById('uploadModal'));
-            modal.hide();
-
-            alert(`${uploadResults.length} foto(s) enviada(s) com sucesso!`);
-
-        } catch (error) {
-            console.error('Erro no upload:', error);
-            alert('Erro ao enviar fotos. Tente novamente.');
-        } finally {
-            confirmUpload.disabled = false;
-            confirmUpload.innerHTML = 'Enviar Fotos';
+            uploadResults.push(dbData[0]);
         }
+
+        await loadGallery();
+
+        selectedFiles = [];
+        fileInput.value = '';
+        previewContainer.innerHTML = '';
+        uploadPreview.classList.add('d-none');
+
+        const modal = bootstrap.Modal.getInstance(document.getElementById('uploadModal'));
+        modal.hide();
+
+        alert(`${uploadResults.length} foto(s) enviada(s) com sucesso!`);
+
+    } catch (error) {
+        console.error('Erro no upload:', error);
+        alert('Erro ao enviar fotos. Tente novamente.');
+    } finally {
+        confirmUpload.disabled = false;
+        confirmUpload.innerHTML = 'Enviar Fotos';
     }
+}
+
 
     // Formatar data
     function formatDate(dateString) {
