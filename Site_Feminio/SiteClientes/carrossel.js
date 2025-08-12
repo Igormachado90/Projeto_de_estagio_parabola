@@ -1,81 +1,87 @@
-const items = document.querySelectorAll('.carousel-item');
-const indicators = document.querySelectorAll('.indicator');
-const prev = document.querySelector('.carousel-control.prev');
-const next = document.querySelector('.carousel-control.next');
-const inner = document.querySelector('.carousel-inner');
-let currentIndex = 0;
+const supabase = window.supabase;
 
-function showSlide(index) {
-    items.forEach((item, i) => {
-        item.classList.toggle('active', i === index);
+document.addEventListener('DOMContentLoaded', () => {
+    carregarCarrosselSite();
+});
+
+async function carregarCarrosselSite() {
+    const { data, error } = await supabase
+        .from('carrossel_noticias')
+        .select('*')
+        .eq('ativo', true)
+        .order('created_at', { ascending: false });
+
+    if (error) {
+        console.error('Erro ao carregar carrossel:', error);
+        return;
+    }
+
+    const inner = document.getElementById('carousel-inner');
+    const indicatorsContainer = document.getElementById('carousel-indicators');
+    inner.innerHTML = '';
+    indicatorsContainer.innerHTML = '';
+
+    data.forEach((item, index) => {
+        // Criar slide
+        const slide = document.createElement('div');
+        slide.className = `carousel-item${index === 0 ? ' active' : ''}`;
+        slide.innerHTML = `
+            <img src="${item.imagem_url}" alt="${item.titulo}" class="carousel-image">
+            <div class="carousel-caption">
+                <h3>${item.categoria.toUpperCase()}</h3>
+                <p>${item.titulo}</p>
+                ${item.link_url ? `<a href="${item.link_url}" class="btnn">${item.link_texto || 'Saiba mais'}</a>` : ''}
+            </div>
+        `;
+        inner.appendChild(slide);
+
+        // Criar indicador
+        const indicator = document.createElement('button');
+        indicator.className = `indicator${index === 0 ? ' active' : ''}`;
+        indicator.setAttribute('data-slide-to', index);
+        indicatorsContainer.appendChild(indicator);
     });
-    indicators.forEach((btn, i) => {
-        btn.classList.toggle('active', i === index);
-    });
+
+    // Agora que o HTML foi gerado, inicializar o carrossel
+    inicializarCarrossel();
 }
 
+function inicializarCarrossel() {
+    const items = document.querySelectorAll('.carousel-item');
+    const indicators = document.querySelectorAll('.indicator');
+    const prev = document.querySelector('.carousel-control.prev');
+    const next = document.querySelector('.carousel-control.next');
+    let currentIndex = 0;
 
-prev.addEventListener('click', () => {
-    currentIndex = (currentIndex - 1 + items.length) % items.length;
-    showSlide(currentIndex);
-});
+    function showSlide(index) {
+        items.forEach((item, i) => {
+            item.classList.toggle('active', i === index);
+        });
+        indicators.forEach((btn, i) => {
+            btn.classList.toggle('active', i === index);
+        });
+    }
 
-next.addEventListener('click', () => {
-    currentIndex = (currentIndex + 1) % items.length;
-    showSlide(currentIndex);
-});
-
-indicators.forEach((btn, i) => {
-    btn.addEventListener('click', () => {
-        currentIndex = i;
+    prev.addEventListener('click', () => {
+        currentIndex = (currentIndex - 1 + items.length) % items.length;
         showSlide(currentIndex);
     });
-});
 
-// Slide automático opcional
-setInterval(() => {
-    currentIndex = (currentIndex + 1) % items.length;
-    showSlide(currentIndex);
-}, 6000);
-
-
-document.addEventListener('DOMContentLoaded', function() {
-    const menuToggle = document.getElementById('menuToggle');
-    const linksMenu = document.getElementById('links-menu');
-    const navLinks = document.querySelectorAll('.nav-links > li');
-    
-    // Toggle menu principal
-    menuToggle.addEventListener('click', function() {
-        linksMenu.classList.toggle('active');
+    next.addEventListener('click', () => {
+        currentIndex = (currentIndex + 1) % items.length;
+        showSlide(currentIndex);
     });
-    
-    // Handle submenus on mobile
-    navLinks.forEach(item => {
-        if (item.querySelector('.submenu')) {
-            const link = item.querySelector('a:first-child');
-            
-            link.addEventListener('click', function(e) {
-                if (window.innerWidth <= 992) {
-                    e.preventDefault();
-                    item.classList.toggle('menu-open');
-                    
-                    // Fecha outros submenus abertos
-                    navLinks.forEach(otherItem => {
-                        if (otherItem !== item && otherItem.classList.contains('menu-open')) {
-                            otherItem.classList.remove('menu-open');
-                        }
-                    });
-                }
-            });
-        }
-    });
-    
-    // Fecha o menu ao clicar em um link (opcional)
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', function() {
-            if (window.innerWidth <= 992 && !this.parentElement.querySelector('.submenu')) {
-                linksMenu.classList.remove('active');
-            }
+
+    indicators.forEach((btn, i) => {
+        btn.addEventListener('click', () => {
+            currentIndex = i;
+            showSlide(currentIndex);
         });
     });
-});
+
+    // Slide automático
+    setInterval(() => {
+        currentIndex = (currentIndex + 1) % items.length;
+        showSlide(currentIndex);
+    }, 6000);
+}
