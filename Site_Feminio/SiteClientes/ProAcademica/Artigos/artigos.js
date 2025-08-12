@@ -58,7 +58,7 @@ const MostraArtigos = async (page) => {
             activityList.innerHTML += `
         <div class="article-section" data-id="${artigoss.id}">
             <p class="institution">${artigoss.tipo_pesquisa || ''}</p>
-            <h3 class="article-title">${artigoss.titulo}</h3>
+            <h3 class="article-title">${artigoss.titulo.toLowerCase()}</h3>
             <p class="institution">${artigoss.instituto || ''}</p>
             <p>${artigoss.descricao}</p>
             ${linkHTML}

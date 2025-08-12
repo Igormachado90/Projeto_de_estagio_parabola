@@ -64,7 +64,7 @@ const mostrarArtigos = async (pagina) => { // Função para exibir artigos de um
             container.innerHTML += `
                 <div class="article-section" data-id="${artigo.id}">
                     <p class="institution">${artigo.tipo_pesquisa || ''}</p>
-                    <h3 class="article-title">${artigo.titulo}</h3>
+                    <h3 class="article-title">${artigo.titulo.toLowerCase()}</h3>
                     <p class="institution">${artigo.instituto || ''}</p>
                     <p>${artigo.descricao}</p>
                     ${linkHTML}

@@ -49,6 +49,9 @@
     /* novo para alinhar botão no final */
     display: flex;
     flex-direction: column;
+
+    position: relative;
+    padding-bottom: 90px;
 }
 
 .event-card:hover {
@@ -79,7 +82,7 @@
 
 .event-link {
     display: block;    /* para ocupar toda a largura disponível */
-    width: 100%;    /* mesma largura do cartão */
+    /* width: 100%;   */
     text-align: center;    /* centraliza o texto */
     background-color: #009120;
     color: var(--white);
@@ -91,6 +94,11 @@
     box-sizing: border-box;    /* evita estourar o layout */
     
     margin-top: auto;
+
+    position: absolute;
+    bottom: 22px;
+    margin-left: 38px;
+    margin-right: 38px;
 }
 
 .event-link:hover {
